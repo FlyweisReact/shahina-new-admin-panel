@@ -39,7 +39,7 @@ const ECategory = () => {
   const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(
-        `${Baseurl}api/v1/admin/Category/deleteCategory/${id}`,
+        `https://krish-vapes-backend.vercel.app/api/v1/Category/deleteCategory/${id}`,
         Auth
       );
       console.log(data);
@@ -54,16 +54,15 @@ const ECategory = () => {
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
 
-    const fd = new FormData();
-    fd.append("image", image);
-    fd.append("name", name);
-
     const postHandler = async (e) => {
       e.preventDefault();
+      const fd = new FormData();
+      fd.append("image", image);
+      fd.append("name", name);
 
       try {
         const { data } = await axios.post(
-          `${Baseurl}api/v1/admin/Category/addCategory`,
+          `${Baseurl}`,
           fd,
           Auth
         );
@@ -77,9 +76,12 @@ const ECategory = () => {
 
     const putHandler = async (e) => {
       e.preventDefault();
+      const fd = new FormData();
+      fd.append("image", image);
+      fd.append("name", name);
       try {
         const { data } = await axios.put(
-          ` ${Baseurl}api/v1/admin/Category/updateCategory/${id}`,
+          `https://krish-vapes-backend.vercel.app/api/v1/Category/updateCategory/${id}`,
           fd,
           Auth
         );
@@ -161,7 +163,7 @@ const ECategory = () => {
               }}
               className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
             >
-              Create New
+           Create New
             </button>
           </div>
           {data?.length === 0 || !data ? (

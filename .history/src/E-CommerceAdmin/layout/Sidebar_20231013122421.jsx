@@ -70,20 +70,13 @@ const Sidebar = ({ hamb, setHamb }) => {
         <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>
       ),
       link: "/skin-condition",
-      name: "Skin Condition",
+      name: "Product Type",
     },
-    {
-      icon: (
-        <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>
-      ),
-      link: "/skinType",
-      name: "Skin Type",
-    },
-    {
-      icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
-      link: "/Category",
-      name: "Category",
-    },
+    // {
+    //   icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
+    //   link: "/Category",
+    //   name: "Category",
+    // },
     // {
     //   icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
     //   link: "/SubCategory",

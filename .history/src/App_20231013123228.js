@@ -73,8 +73,6 @@ function App() {
         <Route path="/Product-type" element={<ProductType />} />
         <Route path="/skin-condition" element={<SkinCondition />} />
         <Route path="/skinType" element={<SkinType />} />
-        <Route path="/Category" element={<ECategory />} />
-
       </Routes> 
     </>
   );

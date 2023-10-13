@@ -76,14 +76,14 @@ const Sidebar = ({ hamb, setHamb }) => {
       icon: (
         <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>
       ),
-      link: "/skinType",
-      name: "Skin Type",
+      link: "/skin-condition",
+      name: "Skin Condition",
     },
-    {
-      icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
-      link: "/Category",
-      name: "Category",
-    },
+    // {
+    //   icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
+    //   link: "/Category",
+    //   name: "Category",
+    // },
     // {
     //   icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
     //   link: "/SubCategory",

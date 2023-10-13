@@ -28,8 +28,6 @@ import Terms from "./E-CommerceAdmin/pages/Terms/Terms";
 import Brand from "./E-CommerceAdmin/pages/Brand";
 import Nutrition from "./E-CommerceAdmin/pages/Nutrition";
 import ProductType from "./E-CommerceAdmin/pages/ProductType";
-import SkinCondition from "./E-CommerceAdmin/pages/SkinCondition";
-import SkinType from "./E-CommerceAdmin/pages/SkinType";
 
 function App() {
   return (
@@ -48,6 +46,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/Category" element={<ECategory />} />
         <Route path="/SubCategory" element={<ESubCategory />} />
         <Route path="/Orders" element={<Order />} />
         <Route path="/order/:id" element={<SingleOrder />} />
@@ -71,10 +70,7 @@ function App() {
         <Route path="/brand" element={<Brand />} />
         <Route path="/nutrition" element={<Nutrition />} />
         <Route path="/Product-type" element={<ProductType />} />
-        <Route path="/skin-condition" element={<SkinCondition />} />
-        <Route path="/skinType" element={<SkinType />} />
-        <Route path="/Category" element={<ECategory />} />
-
+        <Route path="/skin" element={<ProductType />} />
       </Routes> 
     </>
   );

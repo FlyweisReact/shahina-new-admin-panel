@@ -5,14 +5,13 @@ import HOC from "../layout/HOC";
 import { Table, Modal, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Baseurl } from "../../Baseurl";
 
-const ECategory = () => {
-  const [modalShow, setModalShow] = useState(false);
+const Brand = () => {
   const [data, setData] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
   const [id, setId] = useState(null);
   const [edit, setEdit] = useState(false);
-  const [total, setTotal] = useState(0);
+
   const token = localStorage.getItem("AdminToken");
   const Auth = {
     headers: {
@@ -20,55 +19,39 @@ const ECategory = () => {
     },
   };
 
-  const fetchData = async () => {
+  const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        `${Baseurl}api/v1/admin/Category/allCategory`
+        "https://shahina-backend.vercel.app/api/v1/Gallary/getGallary"
       );
-      setData(data.data);
-      setTotal(data.data.length);
+      setData(data?.data);
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    fetchHandler();
   }, []);
-
-  const deleteHandler = async (id) => {
-    try {
-      const { data } = await axios.delete(
-        `${Baseurl}api/v1/admin/Category/deleteCategory/${id}`,
-        Auth
-      );
-      console.log(data);
-      toast.success(data.message);
-      fetchData();
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   function MyVerticallyCenteredModal(props) {
     const [image, setImage] = useState("");
-    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
 
     const fd = new FormData();
+    fd.append("description", description);
     fd.append("image", image);
-    fd.append("name", name);
 
     const postHandler = async (e) => {
       e.preventDefault();
-
       try {
         const { data } = await axios.post(
-          `${Baseurl}api/v1/admin/Category/addCategory`,
+          "https://shahina-backend.vercel.app/api/v1/Gallary/addGallary",
           fd,
           Auth
         );
         toast.success(data.message);
-        fetchData();
+        fetchHandler();
         props.onHide();
       } catch (e) {
         console.log(e);
@@ -79,13 +62,13 @@ const ECategory = () => {
       e.preventDefault();
       try {
         const { data } = await axios.put(
-          ` ${Baseurl}api/v1/admin/Category/updateCategory/${id}`,
+          `https://shahina-backend.vercel.app/api/v1/Gallary/updateGallary/${id}`,
           fd,
           Auth
         );
         toast.success(data.message);
-        fetchData();
         props.onHide();
+        fetchHandler();
       } catch (e) {
         console.log(e);
       }
@@ -100,7 +83,7 @@ const ECategory = () => {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             {" "}
-            {edit ? "Edit Category" : " Add Category"}
+            {edit ? "Edit" : "Create New"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -114,20 +97,16 @@ const ECategory = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
                 required
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
 
             <Button
-              style={{
-                backgroundColor: "#0c0c0c",
-                borderRadius: "0",
-                border: "1px solid #0c0c0c",
-              }}
+              style={{ backgroundColor: "#042b26", borderRadius: "0" }}
               type="submit"
             >
               Submit
@@ -138,6 +117,17 @@ const ECategory = () => {
     );
   }
 
+  const handleDelete = async (ide) => {
+    const url = `https://shahina-backend.vercel.app/api/v1/Gallary/${ide}`;
+    try {
+      const { data } = await axios.delete(url, Auth);
+      toast.success(data.message);
+      fetchHandler()
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <MyVerticallyCenteredModal
@@ -147,25 +137,29 @@ const ECategory = () => {
 
       <section>
         <section className="sectionCont">
-          <div className="pb-4   w-full flex justify-between items-center">
+          <div
+            className="pb-4   w-full flex justify-between items-center"
+            style={{ width: "98%", marginLeft: "2%" }}
+          >
             <span
               className="tracking-widest text-slate-900 font-semibold uppercase"
               style={{ fontSize: "1.5rem" }}
             >
-              All Category's ( Total : {total} )
+              Gallery
             </span>
             <button
+              className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
               onClick={() => {
                 setEdit(false);
                 setModalShow(true);
               }}
-              className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#0c0c0c] text-white tracking-wider"
             >
               Create New
             </button>
           </div>
+
           {data?.length === 0 || !data ? (
-            <Alert>Categories Not Found</Alert>
+            <Alert>Banner Not Found</Alert>
           ) : (
             <>
               <div className="overFlowCont">
@@ -174,8 +168,8 @@ const ECategory = () => {
                     <tr>
                       <th>No.</th>
                       <th>Image</th>
-                      <th>Name</th>
-                      <th>Option</th>
+                      <th>Title</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -189,18 +183,18 @@ const ECategory = () => {
                             style={{ maxWidth: "60px" }}
                           />
                         </td>
-                        <td>{i.name} </td>
+                        <td>{i.description} </td>
                         <td>
                           <span className="flexCont">
                             <i
                               className="fa-solid fa-trash"
-                              onClick={() => deleteHandler(i._id)}
+                              onClick={() => handleDelete(i._id)}
                             />
                             <i
                               className="fa-solid fa-pen-to-square"
                               onClick={() => {
-                                setEdit(true);
                                 setId(i._id);
+                                setEdit(true);
                                 setModalShow(true);
                               }}
                             ></i>
@@ -219,4 +213,4 @@ const ECategory = () => {
   );
 };
 
-export default HOC(ECategory);
+export default HOC(Brand);

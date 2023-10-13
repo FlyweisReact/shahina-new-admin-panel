@@ -39,7 +39,7 @@ const ECategory = () => {
   const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(
-        `${Baseurl}api/v1/admin/Category/deleteCategory/${id}`,
+        `https://krish-vapes-backend.vercel.app/api/v1/Category/deleteCategory/${id}`,
         Auth
       );
       console.log(data);
