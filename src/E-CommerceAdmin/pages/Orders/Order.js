@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Alert, Badge, Table } from "react-bootstrap";
+import { Alert, Badge, Button, Table, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Baseurl } from "../../../Baseurl";
 import HOC from "../../layout/HOC";
@@ -10,6 +10,8 @@ import HOC from "../../layout/HOC";
 const Order = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
+  const [modalshow, setModalShow] = useState(false);
+  const [ productOrderId  , setProductOrderId] = useState("")
 
   const token = localStorage.getItem("AdminToken");
   const Auth = {
@@ -20,6 +22,7 @@ const Order = () => {
   const getOrders = async () => {
     try {
       const response = await axios.get(
+
         `${Baseurl}api/v1/admin/ProductOrder`,
         Auth
       );
@@ -34,6 +37,43 @@ const Order = () => {
     getOrders();
     window.scrollTo(0, 0);
   }, []);
+
+  // Create Shipment
+
+  function MyVerticallyCenteredModal(props) {
+      const [first_mile_option , setFile_Mile_Option ] = useState("")
+      const [ description , setDescription ] = useState("")
+      const [ value , setValue ] = useState("")
+      const [ units , setUnits ] = useState("")
+      const [ customer_reference , setCustomer_Refrence ] = useState("")
+      const [ userId , setUserId ] = useState("")
+      const [ name , setName ]  = useState("")
+      const [ address_line1 , setAddress_Line_1 ] = useState("")
+      const [ suburb , setSuburb ] = useState("")
+      const [ state_name , setState_Name] = useState("")
+      const [ postcode , setPostCode] = useState("")
+      const [ country , setCountry ] = useState("")
+
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+      Create Shipment
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            
+          </Form>
+        </Modal.Body>
+      </Modal>
+    );
+  }
 
   return (
     <>
@@ -88,6 +128,7 @@ const Order = () => {
                       <th>Order Status</th>
                       <th>Payment Status</th>
                       <th>Delivery Status</th>
+                      <th>Shipment</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -114,6 +155,9 @@ const Order = () => {
                         <td>
                           {" "}
                           <Badge>{i.deliveryStatus}</Badge>{" "}
+                        </td>
+                        <td>
+                          <Button>Create</Button>
                         </td>
 
                         <td>

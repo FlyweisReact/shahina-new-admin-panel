@@ -39,14 +39,29 @@ const Scheduler = () => {
     fetchHandler();
   }, []);
 
-  const events = data?.map((i) => ({
-    title: i.orders?.map((item) =>
-      item.services?.map((c) => c.serviceId?.name)
-    ),
-    start: new Date(2023, i.month, i.day, 10, 0),
-    end: new Date(2023, i.month, i.day, 23, 0),
-    id: i.orders?.map((item) => item?._id),
-  }));
+  const events = data?.flatMap((order) =>
+    order?.orders?.flatMap((item) =>
+      item?._doc?.services?.map((service) => ({
+        title: service.serviceId?.name,
+        start: new Date(
+          order.year,
+          order.month - 1,
+          order.date,
+          order.hours,
+          order.minutes
+        ),
+        end: new Date(
+          order.year,
+          order.month - 1,
+          order.date,
+          order.hours,
+          order.minutes
+        ),
+        id: item?._doc?._id,
+        serviceId: service?.serviceId?._id,
+      }))
+    )
+  );
 
   // Calender Modal
   function MyVerticallyCenteredModal(props) {
@@ -55,7 +70,7 @@ const Scheduler = () => {
     const fetchHandler = async () => {
       try {
         const { data } = await axios.get(
-          `https://shahina-backend.vercel.app/api/v1/admin/viewserviceOrder/${props.event?.id?.[0]}`
+          `https://shahina-backend.vercel.app/api/v1/admin/viewserviceOrder/${props.event?.id}`
         );
         setData(data.data);
       } catch {}
@@ -67,6 +82,12 @@ const Scheduler = () => {
       }
     }, [props]);
 
+    const filterdServices =
+      data != null &&
+      data?.services?.filter(
+        (i) => i.serviceId?._id === props.event?.serviceId
+      );
+
     return (
       <Modal
         {...props}
@@ -74,15 +95,24 @@ const Scheduler = () => {
         centered
       >
         <Modal.Body className="Schedule_Enquiry_Modal">
-          {data  != null&& (
+          {data != null && (
             <>
               <div className="close_btn">
-                <h4>{data?.services?.[0]?.serviceId?.name}</h4>
+                <h4>{filterdServices?.[0]?.serviceId?.name}</h4>
                 <i className="fa-solid fa-x" onClick={() => props.onHide()}></i>
               </div>
-              <p>{data?.services?.[0]?.serviceId?.description}</p>
+              <p>{filterdServices?.[0]?.serviceId?.description}</p>
+              <p>Service Price : ${filterdServices?.[0]?.serviceId?.price} </p>
               <p>Time : {data?.time} </p>
-              <p>Amount : ${data?.total} </p>
+              <p>Membership : {data?.memberShip} </p>
+              <p>Membership Percentage : {data?.memberShipPer} </p>
+              <p>Offer Discount : {data?.offerDiscount} </p>
+              <p>Payment Status : {data?.paymentStatus} </p>
+              <p>User First name : {data?.user?.firstName} </p>
+              <p>User Last Name : {data?.user?.lastName} </p>
+              <p>User Gender : {data?.user?.gender} </p>
+              <p>User Email : {data?.user?.email} </p>
+              <p>User Phone Number : {data?.user?.phone} </p>
             </>
           )}
         </Modal.Body>
