@@ -50,8 +50,8 @@ const Contact = () => {
     const [sundayClose, setSundayClose] = useState("");
     const [monToFriday, setMonTOFriday] = useState("");
     const [saturday, setSaturday] = useState("");
-    const [ratings, setRating] = useState("");
-    const [numOfReviews, setNumOfReviews] = useState("");
+    const [ ratings , setRating ] = useState("")
+    const [ numOfReviews , setNumOfReviews ] = useState("")
 
     const payload = new FormData();
     payload.append("image", image);
@@ -208,7 +208,7 @@ const Contact = () => {
               <Form.Label>Num of Reviews </Form.Label>
               <Form.Control
                 type="text"
-                onChange={(e) => setNumOfReviews(e.target.value)}
+                onChange={(e) => setSaturday(e.target.value)}
               />
             </Form.Group>
 
@@ -278,8 +278,6 @@ const Contact = () => {
         {ValueChecker(data?.sundayClose, "Sunday Close ")}
         {ValueChecker(data?.saturday, "Saturday ")}
         {ValueChecker(data?.monToFriday, "Monday to Friday ")}
-        {ValueChecker(data?.ratings, "Rating")}
-        {ValueChecker(data?.numOfReviews, "Num of Reviews")}
       </section>
     </>
   );

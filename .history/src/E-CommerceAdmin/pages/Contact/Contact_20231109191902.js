@@ -278,8 +278,8 @@ const Contact = () => {
         {ValueChecker(data?.sundayClose, "Sunday Close ")}
         {ValueChecker(data?.saturday, "Saturday ")}
         {ValueChecker(data?.monToFriday, "Monday to Friday ")}
-        {ValueChecker(data?.ratings, "Rating")}
-        {ValueChecker(data?.numOfReviews, "Num of Reviews")}
+        {ValueChecker(data?.ratings, "Rating ")}
+        {ValueChecker(data?.numOfReviews, "Num of Reviews ")}
       </section>
     </>
   );

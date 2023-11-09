@@ -50,8 +50,8 @@ const Contact = () => {
     const [sundayClose, setSundayClose] = useState("");
     const [monToFriday, setMonTOFriday] = useState("");
     const [saturday, setSaturday] = useState("");
-    const [ratings, setRating] = useState("");
-    const [numOfReviews, setNumOfReviews] = useState("");
+    const [ ratings , setRating ] = useState("")
+    const [ numOfReviews , setNumOfReviews ] = useState("")
 
     const payload = new FormData();
     payload.append("image", image);
@@ -278,8 +278,8 @@ const Contact = () => {
         {ValueChecker(data?.sundayClose, "Sunday Close ")}
         {ValueChecker(data?.saturday, "Saturday ")}
         {ValueChecker(data?.monToFriday, "Monday to Friday ")}
-        {ValueChecker(data?.ratings, "Rating")}
-        {ValueChecker(data?.numOfReviews, "Num of Reviews")}
+        {ValueChecker(data?.ratings, "Rating ")}
+        {ValueChecker(data?.monToFriday, "Monday to Friday ")}
       </section>
     </>
   );
