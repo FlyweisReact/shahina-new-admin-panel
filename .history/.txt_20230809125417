@@ -1,4 +1,0 @@
-- Change Invoice format like below in admin and backend. 
-- Decimal amount also take it and calculation will be according to that in the backend. Show in frontend admin accordingly.
-- VAT Amount will be in % so make it accordingly in the backend. 
-- Order Received notification email also got on client email id Krishvapes that you made yesterday from the backend.
