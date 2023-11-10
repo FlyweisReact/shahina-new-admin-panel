@@ -99,14 +99,14 @@ const Banner = () => {
             <Form.Group className="mb-3">
               <Form.Label>Banner Title</Form.Label>
               <Form.Control
-                type="text"
+                type="file"
                 onChange={(e) => setBannerName(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label> Title</Form.Label>
               <Form.Control
-                type="text"
+                type="file"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
