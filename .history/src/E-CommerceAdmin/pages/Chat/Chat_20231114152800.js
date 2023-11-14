@@ -136,7 +136,7 @@ const Chat = () => {
   return (
     <>
       <section className="sectionCont">
-        <div className="pb-4   w-full flex justify-between items-center">
+        <div className="w-full flex justify-between items-center">
           <span></span>
           {user ? (
             <button

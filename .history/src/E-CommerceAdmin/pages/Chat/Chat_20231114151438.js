@@ -154,14 +154,13 @@ const Chat = () => {
             </button>
           )}
         </div>
-            {console.log(documentId)}
+
         {user && (
           <div className="chat">
             <div className="sidebar">
               <ChatMenu
                 collections={collections}
                 setDocumentId={setDocumentId}
-                documentId={documentId}
               />
             </div>
             <div className="content">

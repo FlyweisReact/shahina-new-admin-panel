@@ -43,7 +43,7 @@ const SendMessage = ({
               </div>
             ))
           ) : (
-            <span>No Previous Chat Found !</span>
+            <span>No Previous Chat Found !!</span>
           )}
         </div>
 

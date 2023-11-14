@@ -105,12 +105,6 @@ const Chat = () => {
     const documentRef = doc(db, "Chat", documentId);
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
-
-    const recieverDetail = {
-      avatar: photoURL,
-      name: displayName,
-    };
-
     try {
       const documentSnapshot = await getDoc(documentRef);
       if (documentSnapshot.exists()) {
@@ -119,10 +113,7 @@ const Chat = () => {
           ...existingData.reply,
           { text: newMessage, type: "reciver", date: formattedDate },
         ];
-        await updateDoc(documentRef, {
-          reply: updatedReply,
-          reciver: recieverDetail,
-        });
+        await updateDoc(documentRef, { reply: updatedReply });
         fetchDocumentData();
         setNewMessage("");
       } else {
@@ -154,14 +145,13 @@ const Chat = () => {
             </button>
           )}
         </div>
-            {console.log(documentId)}
+
         {user && (
           <div className="chat">
             <div className="sidebar">
               <ChatMenu
                 collections={collections}
                 setDocumentId={setDocumentId}
-                documentId={documentId}
               />
             </div>
             <div className="content">

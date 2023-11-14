@@ -2,17 +2,16 @@
 
 import React from "react";
 
-const ChatMenu = ({ collections, setDocumentId, documentId }) => {
-
+const ChatMenu = ({ collections, setDocumentId }) => {
   return (
     <>
-      <aside className="h-auto">
+      <aside className="p-4 h-auto">
         <nav className="menu-list">
           {collections?.map((nav, index) => {
             return (
               <span
                 key={`chats${nav.id}${index}`}
-                className={`container ${documentId === nav.id ? "active" : ""}`}
+                className="`container`"
                 onClick={() => setDocumentId(nav.id)}
               >
                 <img src={nav?.data?.user?.avatar} alt="" />

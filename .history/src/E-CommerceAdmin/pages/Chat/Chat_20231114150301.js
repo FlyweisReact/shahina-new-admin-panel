@@ -21,15 +21,6 @@ const Chat = () => {
   const [collections, setCollections] = useState([]);
   const [document, setDocument] = useState(null);
   const [documentId, setDocumentId] = useState(null);
-  const [displayName, setDisplayName] = useState("");
-  const [photoURL, stPhotoUrl] = useState("");
-
-  useEffect(() => {
-    if (user) {
-      setDisplayName(user?.displayName);
-      stPhotoUrl(user?.photoURL);
-    }
-  }, [user]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -44,10 +35,6 @@ const Chat = () => {
     });
     return unsubscribe;
   }, [initializing]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   // Get All Document Of Collection
   const fetchChatDocuments = async () => {
@@ -105,12 +92,6 @@ const Chat = () => {
     const documentRef = doc(db, "Chat", documentId);
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
-
-    const recieverDetail = {
-      avatar: photoURL,
-      name: displayName,
-    };
-
     try {
       const documentSnapshot = await getDoc(documentRef);
       if (documentSnapshot.exists()) {
@@ -119,10 +100,7 @@ const Chat = () => {
           ...existingData.reply,
           { text: newMessage, type: "reciver", date: formattedDate },
         ];
-        await updateDoc(documentRef, {
-          reply: updatedReply,
-          reciver: recieverDetail,
-        });
+        await updateDoc(documentRef, { reply: updatedReply });
         fetchDocumentData();
         setNewMessage("");
       } else {
@@ -132,6 +110,11 @@ const Chat = () => {
       console.error("Error updating document: ", error);
     }
   };
+
+
+  useEffect(() => {
+    
+  })
 
   return (
     <>
@@ -154,14 +137,13 @@ const Chat = () => {
             </button>
           )}
         </div>
-            {console.log(documentId)}
+
         {user && (
           <div className="chat">
             <div className="sidebar">
               <ChatMenu
                 collections={collections}
                 setDocumentId={setDocumentId}
-                documentId={documentId}
               />
             </div>
             <div className="content">

@@ -3,10 +3,9 @@
 import React from "react";
 
 const ChatMenu = ({ collections, setDocumentId, documentId }) => {
-
   return (
     <>
-      <aside className="h-auto">
+      <aside className="p-4 h-auto">
         <nav className="menu-list">
           {collections?.map((nav, index) => {
             return (

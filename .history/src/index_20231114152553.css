@@ -814,8 +814,9 @@ td {
   align-items: flex-start;
 }
 .chat .sidebar {
-  flex: 0 0 30%;
   max-width: 30%;
+  width: auto;
+  height: auto;
   border: 1px solid #ddd;
 }
 .chat .menu-list .container {
@@ -823,7 +824,10 @@ td {
   gap: 10px;
   align-items: center;
   cursor: pointer;
+  margin-top: 20px;
   border-top: 1px solid #ddd;
+  /* padding: 10px; */
+ 
   height: 72px;
 }
 .chat .menu-list .container:hover {
@@ -836,8 +840,8 @@ td {
   border: none;
 }
 .chat .menu-list .container img {
-  width: 49px;
-  height: 49px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   vertical-align: middle;
 }
@@ -845,12 +849,10 @@ td {
   font-size: 20px;
   font-weight: 700;
   margin: 0;
-  padding-right: 15px;
 }
 
 .chat .content {
-  flex:  70%;
-  max-width: 70%;
+  width: 70%;
 }
 .chat .chat-box {
   border: 1px solid #ddd;

@@ -119,10 +119,15 @@ const Chat = () => {
           ...existingData.reply,
           { text: newMessage, type: "reciver", date: formattedDate },
         ];
+        console.log("Receiver Detail:", recieverDetail);
+        console.log("Updated Reply:", updatedReply);
+
         await updateDoc(documentRef, {
           reply: updatedReply,
-          reciver: recieverDetail,
+          reciever: recieverDetail,
         });
+
+        console.log("Document updated successfully!");
         fetchDocumentData();
         setNewMessage("");
       } else {
@@ -132,6 +137,8 @@ const Chat = () => {
       console.error("Error updating document: ", error);
     }
   };
+
+  console.log(collections);
 
   return (
     <>
@@ -154,14 +161,13 @@ const Chat = () => {
             </button>
           )}
         </div>
-            {console.log(documentId)}
+
         {user && (
           <div className="chat">
             <div className="sidebar">
               <ChatMenu
                 collections={collections}
                 setDocumentId={setDocumentId}
-                documentId={documentId}
               />
             </div>
             <div className="content">

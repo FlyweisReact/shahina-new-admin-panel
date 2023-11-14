@@ -154,7 +154,7 @@ const Chat = () => {
             </button>
           )}
         </div>
-            {console.log(documentId)}
+            {console.log(d)}
         {user && (
           <div className="chat">
             <div className="sidebar">

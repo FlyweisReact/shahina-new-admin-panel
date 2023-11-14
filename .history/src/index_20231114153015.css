@@ -814,8 +814,8 @@ td {
   align-items: flex-start;
 }
 .chat .sidebar {
-  flex: 0 0 30%;
-  max-width: 30%;
+  flex: 0 0 40%;
+  max-width: 40%;
   border: 1px solid #ddd;
 }
 .chat .menu-list .container {
@@ -849,8 +849,8 @@ td {
 }
 
 .chat .content {
-  flex:  70%;
-  max-width: 70%;
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 .chat .chat-box {
   border: 1px solid #ddd;

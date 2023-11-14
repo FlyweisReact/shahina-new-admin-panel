@@ -849,7 +849,7 @@ td {
 }
 
 .chat .content {
-  flex:  70%;
+  flex: 0 0 70%;
   max-width: 70%;
 }
 .chat .chat-box {
