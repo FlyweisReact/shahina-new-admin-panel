@@ -852,9 +852,7 @@ td {
   
 }
 .chat .chat-box .ttt{
-  max-height: 500px;
-  overflow-y: scroll;
-  padding: 20px;
+  max-height: ;
 }
 .chat .chat-box .img-container {
   display: flex;

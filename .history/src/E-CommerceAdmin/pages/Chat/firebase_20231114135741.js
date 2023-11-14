@@ -6,7 +6,7 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC4hyCyozCG8hlv4hYzXQ9YzAbTdro2YtU",
-  authDomain: "shahina-skincare.firebaseapp.com",
+  authDomain: "shahina-admin-panel.vercel.app",
   projectId: "shahina-skincare",
   storageBucket: "shahina-skincare.appspot.com",
   messagingSenderId: "275323700379",

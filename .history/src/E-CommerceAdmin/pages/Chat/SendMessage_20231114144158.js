@@ -31,9 +31,7 @@ const SendMessage = ({
                       ? document?.user?.name
                       : document?.reciver?.name}
                   </span>
-                  <span className="date">
-                    ( {i.date?.slice(0, 10)} {i.date?.slice(11 , 16)} )
-                  </span>
+                  <span className="date"> ( {i.date?.slice(0,10)} )</span>
                 </span>
               </div>
               <p className="text"> {i.text} </p>
