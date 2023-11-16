@@ -8,6 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import SpinnerComp from "../Component/SpinnerComp";
 import { useNavigate } from "react-router-dom";
+import { Baseurl } from "../../../Baseurl";
 
 const User = () => {
   const [data, setData] = useState([]);
@@ -166,24 +167,6 @@ const User = () => {
     );
   }
 
-  const targteHandler = () => {
-    const target = document.getElementById("file");
-    target.click();
-  };
-
-  const uploader = async (file) => {
-    const fd = new FormData();
-    fd.append("file", file);
-    try {
-      const { res } = await axios.post(
-        `http://127.0.0.1:2018/api/v1/admin/uploadClient`,
-        fd,
-        Auth
-      );
-      toast.success("Uploaded");
-    } catch {}
-  };
-
   return (
     <>
       <MyVerticallyCenteredModal
@@ -200,27 +183,12 @@ const User = () => {
           >
             All User's ( Total : {total} )
           </span>
-          <div className="flex gap-2">
-            <button
-              className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
-              onClick={() => targteHandler()}
-            >
-              Upload
-            </button>
-            <input
-              onChange={(e) => uploader(e.target.files[0])}
-              style={{ display: "none" }}
-              id="file"
-              type="file"
-            />
-
-            <button
-              className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
-              onClick={() => setModalShow(true)}
-            >
-              Create New
-            </button>
-          </div>
+          <button
+            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
+            onClick={() => setModalShow(true)}
+          >
+            Create New
+          </button>
         </div>
 
         {data?.length === 0 || !data ? (

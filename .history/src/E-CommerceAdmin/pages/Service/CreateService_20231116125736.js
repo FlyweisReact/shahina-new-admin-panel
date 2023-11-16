@@ -9,6 +9,8 @@ import axios from "axios";
 
 const CreateService = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
+
+  // Form Payload
   const [categoryId, setCategoryId] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -23,14 +25,18 @@ const CreateService = () => {
   const [session, setSession] = useState("");
   const [benfit, setBenefit] = useState("");
   const [images, setImages] = useState([]);
-  const [discountPrice, setDiscountPrice] = useState(0);
+  const [discountActive, setDiscountActive] = useState("");
+  const [discount, setDiscount] = useState(0);
   const [beforeAfterImage, setBeforeAfterImage] = useState("");
   const [catArr, setCatArr] = useState([]);
+
+  // -----------
   const [multipleArr, setMultipleArr] = useState([]);
   const [areaArr, setAreaArr] = useState([]);
   const [sessionArr, setSessionArr] = useState([]);
   const [benifitArr, setBenifitArr] = useState([]);
 
+  // -----------------
   const multipleObj = {
     sizes,
     multiplePrice,
@@ -108,8 +114,9 @@ const CreateService = () => {
   fd.append("beforeAfterImage", beforeAfterImage);
   fd.append("type", type);
   if (type === "offer") {
+    fd.append("discountActive", discountActive);
+    fd.append("discount", discount);
     fd.append("price", price);
-    fd.append("discountPrice", discountPrice);
   } else {
     fd.append("multipleSize", multipleSize);
     Array.from(multipleArr).forEach((i) => {
@@ -312,22 +319,36 @@ const CreateService = () => {
           {type === "offer" && (
             <>
               <Form.Group className="mb-3">
-                <Form.Label>Discount Price </Form.Label>
-                <Form.Control
-                  type="number"
-                  min={0}
-                  onChange={(e) => setDiscountPrice(e.target.value)}
-                />
+                <Form.Label>Discount Status</Form.Label>
+                <Form.Select
+                  onChange={(e) => setDiscountActive(e.target.value)}
+                >
+                  <option>Select Your Prefrence</option>
+                  <option value="true"> Activate </option>
+                  <option value="false"> Deactivate </option>
+                </Form.Select>
               </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Price</Form.Label>
-                <Form.Control
-                  type="number"
-                  min={0}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </Form.Group>
+              {discountActive === "true" && (
+                <Form.Group className="mb-3">
+                  <Form.Label>Discount </Form.Label>
+                  <Form.Control
+                    type="number"
+                    min={0}
+                    onChange={(e) => setDiscount(e.target.value)}
+                  />
+                </Form.Group>
+              )}
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    type="number"
+                    min={0}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </Form.Group>
+      
             </>
           )}
 

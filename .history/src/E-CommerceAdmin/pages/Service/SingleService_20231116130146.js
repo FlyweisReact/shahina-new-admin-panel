@@ -77,6 +77,8 @@ const SingleService = () => {
             {ValueChecker(data?.rating, "Rating")}
             {ValueChecker(data?.sellCount, "Sell Count")}
             {ValueChecker(data?.type, "Type")}
+          div>
+            )}
             {ValueChecker(data?.discountPrice, "Discounted Price")}
             {ValueChecker(data?.discount, "Discount")}
             {data?.area?.length > 0 && (

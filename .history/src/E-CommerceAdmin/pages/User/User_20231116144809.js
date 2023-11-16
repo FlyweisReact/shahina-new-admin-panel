@@ -172,6 +172,7 @@ const User = () => {
   };
 
   const uploader = async (file) => {
+    console.log("running");
     const fd = new FormData();
     fd.append("file", file);
     try {

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { Baseurl } from "../../../Baseurl";
 
 const Cart = () => {
   const [data, setData] = useState([]);
@@ -230,7 +231,7 @@ const Cart = () => {
         </div>
 
         <div className="overFlowCont">
-          {!data ? (
+          {data?.length === 0 || !data ? (
             <Alert>No Data Found</Alert>
           ) : (
             <>

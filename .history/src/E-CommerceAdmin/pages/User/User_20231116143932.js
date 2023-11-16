@@ -13,6 +13,7 @@ const User = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [modalShow, setModalShow] = useState(false);
+  const [file, setFile] = useState("");
 
   const navigate = useNavigate();
 
@@ -169,14 +170,15 @@ const User = () => {
   const targteHandler = () => {
     const target = document.getElementById("file");
     target.click();
+    uploader();
   };
 
-  const uploader = async (file) => {
+  const uploader = async () => {
     const fd = new FormData();
     fd.append("file", file);
     try {
       const { res } = await axios.post(
-        `http://127.0.0.1:2018/api/v1/admin/uploadClient`,
+        `localhost:2018/api/v1/admin/uploadClient`,
         fd,
         Auth
       );
@@ -208,10 +210,9 @@ const User = () => {
               Upload
             </button>
             <input
-              onChange={(e) => uploader(e.target.files[0])}
+              onChange={(e) => setFile(e.target.files[0])}
               style={{ display: "none" }}
               id="file"
-              type="file"
             />
 
             <button

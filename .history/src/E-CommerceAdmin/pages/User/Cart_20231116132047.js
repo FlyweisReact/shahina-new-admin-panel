@@ -7,10 +7,15 @@ import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { Baseurl } from "../../../Baseurl";
 
 const Cart = () => {
   const [data, setData] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
   const [serviceShow, setServiceShow] = useState(false);
+  const [giftShow, setGiftShow] = useState(false);
+  const [adOnShow, setAdOnShow] = useState(false);
+  const [frequentShow, setFrequentShow] = useState(false);
 
   const { id } = useParams();
 
@@ -38,6 +43,100 @@ const Cart = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  // Product Modal
+  function MyVerticallyCenteredModal(props) {
+    const [products, setProducts] = useState([]);
+    const [productId, setProductId] = useState("");
+    const [quantity, setQuantity] = useState("");
+
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.React_App_Baseurl}api/v1/Product/all/paginateProductSearch`
+        );
+        const data = res.data.data?.docs;
+        setProducts(data);
+      } catch {}
+    };
+
+    useEffect(() => {
+      if (props.show) {
+        getProducts();
+      }
+    }, [props]);
+
+    const payload = {
+      quantity,
+      userId: id,
+    };
+
+    const postHandler = async (e) => {
+      e.preventDefault();
+      try {
+        const { data } = await axios.post(
+          `${process.env.React_App_Baseurl}api/v1/admin/addtoCart/product/${productId}`,
+          payload,
+          Auth
+        );
+        toast.success(data.message);
+        props.onHide();
+        fetchData();
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    return (
+      <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Create New
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={postHandler}>
+            <Form.Group className="mb-3">
+              <Form.Label>Products</Form.Label>
+              <Form.Select
+                required
+                onChange={(e) => setProductId(e.target.value)}
+              >
+                <option>Select Your Prefrence</option>
+                {products?.map((i, index) => (
+                  <option key={index} value={i._id}>
+                    {" "}
+                    {i.name}{" "}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Quantity</Form.Label>
+              <Form.Control
+                required
+                type="number"
+                min={0}
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+            </Form.Group>
+
+            <Button
+              style={{ backgroundColor: "#19376d", borderRadius: "0" }}
+              type="submit"
+            >
+              Submit
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    );
+  }
 
   // Service Modal
   function ServiceModal(props) {
@@ -155,6 +254,7 @@ const Cart = () => {
     );
   }
 
+
   const deleteService = async (payload) => {
     try {
       const { res } = await axios.delete(
@@ -230,7 +330,7 @@ const Cart = () => {
         </div>
 
         <div className="overFlowCont">
-          {!data ? (
+          {data?.length === 0 || !data ? (
             <Alert>No Data Found</Alert>
           ) : (
             <>

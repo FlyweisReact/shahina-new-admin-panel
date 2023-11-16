@@ -9,6 +9,8 @@ import axios from "axios";
 
 const CreateService = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
+
+  // Form Payload
   const [categoryId, setCategoryId] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -23,14 +25,18 @@ const CreateService = () => {
   const [session, setSession] = useState("");
   const [benfit, setBenefit] = useState("");
   const [images, setImages] = useState([]);
-  const [discountPrice, setDiscountPrice] = useState(0);
+  const [discountActive, setDiscountActive] = useState("");
+  const [discount, setDiscount] = useState(0);
   const [beforeAfterImage, setBeforeAfterImage] = useState("");
   const [catArr, setCatArr] = useState([]);
+
+  // -----------
   const [multipleArr, setMultipleArr] = useState([]);
   const [areaArr, setAreaArr] = useState([]);
   const [sessionArr, setSessionArr] = useState([]);
   const [benifitArr, setBenifitArr] = useState([]);
 
+  // -----------------
   const multipleObj = {
     sizes,
     multiplePrice,
@@ -108,8 +114,9 @@ const CreateService = () => {
   fd.append("beforeAfterImage", beforeAfterImage);
   fd.append("type", type);
   if (type === "offer") {
+    fd.append("discountActive", discountActive);
+    fd.append("discount", discount);
     fd.append("price", price);
-    fd.append("discountPrice", discountPrice);
   } else {
     fd.append("multipleSize", multipleSize);
     Array.from(multipleArr).forEach((i) => {

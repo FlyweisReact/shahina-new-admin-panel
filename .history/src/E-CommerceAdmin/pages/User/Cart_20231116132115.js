@@ -230,8 +230,9 @@ const Cart = () => {
         </div>
 
         <div className="overFlowCont">
-          {!data ? (
+          {data?.length === 0 || !data ? (
             <Alert>No Data Found</Alert>
+            <No
           ) : (
             <>
               <Table>
