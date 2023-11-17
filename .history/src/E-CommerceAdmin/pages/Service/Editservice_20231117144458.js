@@ -156,7 +156,6 @@ const Editservice = () => {
       <section className="sectionCont">
         <p className="headP">Dashboard / Edit Service</p>
 
-      
         <Form onSubmit={createProduct}>
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
@@ -316,22 +315,37 @@ const Editservice = () => {
           {type === "offer" && (
             <>
               <Form.Group className="mb-3">
-                <Form.Label>Discount Price </Form.Label>
-                <Form.Control
-                  type="number"
-                  min={0}
-                  onChange={(e) => setDiscountPrice(e.target.value)}
-                />
+                <Form.Label>Discount Status</Form.Label>
+                <Form.Select
+                  onChange={(e) => setDiscountActive(e.target.value)}
+                >
+                  <option>Select Your Prefrence</option>
+                  <option value="true"> Activate </option>
+                  <option value="false"> Deactivate </option>
+                </Form.Select>
               </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Price</Form.Label>
-                <Form.Control
-                  type="number"
-                  min={0}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </Form.Group>
+              {discountActive === "true" && (
+                <Form.Group className="mb-3">
+                  <Form.Label>Discount </Form.Label>
+                  <Form.Control
+                    type="number"
+                    min={0}
+                    onChange={(e) => setDiscount(e.target.value)}
+                  />
+                </Form.Group>
+              )}
+
+              {discountActive === "false" && (
+                <Form.Group className="mb-3">
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    type="number"
+                    min={0}
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </Form.Group>
+              )}
             </>
           )}
 
