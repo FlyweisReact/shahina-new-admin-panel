@@ -33,6 +33,7 @@ const Shipping = () => {
 
   useEffect(() => {
     getOrders();
+
     window.scrollTo(0, 0);
   }, []);
 

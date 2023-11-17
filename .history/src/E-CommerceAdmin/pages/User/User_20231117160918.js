@@ -13,7 +13,7 @@ const User = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [modalShow, setModalShow] = useState(false);
-  const [query, setQuery] = useState("");
+  const [ query , setQuery ]
 
   const navigate = useNavigate();
 
@@ -186,18 +186,6 @@ const User = () => {
     } catch {}
   };
 
-  // Filter User
-
-  const TotolData = query
-    ? data?.filter(
-        (i) =>
-          i?.firstName?.toLowerCase().includes(query?.toLowerCase()) ||
-          i?.lastName?.toLowerCase().includes(query?.toLowerCase()) ||
-          i?.email?.toLowerCase().includes(query?.toLowerCase()) ||
-          i?.phone?.toString()?.toLowerCase().includes(query?.toLowerCase())
-      )
-    : data;
-
   return (
     <>
       <MyVerticallyCenteredModal
@@ -241,17 +229,6 @@ const User = () => {
           <SpinnerComp />
         ) : (
           <>
-            <div className="filterBox">
-              <img
-                src="https://t4.ftcdn.net/jpg/01/41/97/61/360_F_141976137_kQrdYIvfn3e0RT1EWbZOmQciOKLMgCwG.jpg"
-                alt=""
-              />
-              <input
-                type="search"
-                placeholder="Seach by First Name , Last Name , Email Address and Phone Number"
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </div>
             <div className="overFlowCont">
               {data?.length === 0 || !data ? (
                 <Alert>No User Found</Alert>
@@ -270,18 +247,12 @@ const User = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {TotolData?.map((i, index) => (
+                    {data?.map((i, index) => (
                       <tr key={index}>
                         <td> #{index + 1} </td>
                         <td> {i.firstName} </td>
                         <td> {i.lastName} </td>
-                        <td>
-                          <i
-                            className="fa-solid fa-plus"
-                            style={{ fontSize: "10px", marginRight: "2px" }}
-                          />
-                          {i.phone}
-                        </td>
+                        <td>{i.phone}</td>
                         <td>{i.email}</td>
                         <td>{i.gender}</td>
                         <td>

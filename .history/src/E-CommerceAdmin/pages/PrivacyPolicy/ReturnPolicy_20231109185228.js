@@ -36,7 +36,6 @@ const ReturnPolicy = () => {
 
   useEffect(() => {
     fetchData();
-    window.scrollTo(0, 0);
   }, []);
 
   function MyVerticallyCenteredModal(props) {

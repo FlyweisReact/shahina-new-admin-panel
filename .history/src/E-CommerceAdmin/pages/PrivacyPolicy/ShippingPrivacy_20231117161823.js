@@ -8,10 +8,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import SpinnerComp from "../Component/SpinnerComp";
 
-const ReturnPolicy = () => {
+const ShippingPrivacy = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
-  const [id, setId] = useState(null);
   const [edit, setEdit] = useState(false);
   const [modalShow, setModalShow] = useState(false);
 
@@ -25,7 +24,7 @@ const ReturnPolicy = () => {
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.React_App_Baseurl}api/v1/static/getReturnPrivacy`
+        `${process.env.React_App_Baseurl}api/v1/static/getShippingPrivacy`
       );
       setData(data.data);
       setTotal(data.data.length);
@@ -48,7 +47,7 @@ const ReturnPolicy = () => {
       e.preventDefault();
       try {
         const { data } = await axios.post(
-          `${process.env.React_App_Baseurl}api/v1/static/createReturnPrivacy`,
+          `${process.env.React_App_Baseurl}api/v1/static/createShippingPrivacy`,
           payload,
           Auth
         );
@@ -122,7 +121,7 @@ const ReturnPolicy = () => {
             className="tracking-widest text-slate-900 font-semibold uppercase"
             style={{ fontSize: "1.5rem" }}
           >
-            Return Privacy Policy ( Total : {total} )
+            Shipping Privacy Policy ( Total : {total} )
           </span>
           <div className="d-flex gap-1">
             <button
@@ -186,4 +185,4 @@ const ReturnPolicy = () => {
   );
 };
 
-export default HOC(ReturnPolicy);
+export default HOC(ShippingPrivacy);

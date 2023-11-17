@@ -248,7 +248,7 @@ const User = () => {
               />
               <input
                 type="search"
-                placeholder="Seach by First Name , Last Name , Email Address and Phone Number"
+                placeholder="Start typing to search for users"
                 onChange={(e) => setQuery(e.target.value)}
               />
             </div>
@@ -276,12 +276,8 @@ const User = () => {
                         <td> {i.firstName} </td>
                         <td> {i.lastName} </td>
                         <td>
-                          <i
-                            className="fa-solid fa-plus"
-                            style={{ fontSize: "10px", marginRight: "2px" }}
-                          />
-                          {i.phone}
-                        </td>
+                        <i clas
+                        {i.phone}</td>
                         <td>{i.email}</td>
                         <td>{i.gender}</td>
                         <td>

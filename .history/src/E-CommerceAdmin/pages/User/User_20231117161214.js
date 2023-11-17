@@ -194,7 +194,10 @@ const User = () => {
           i?.firstName?.toLowerCase().includes(query?.toLowerCase()) ||
           i?.lastName?.toLowerCase().includes(query?.toLowerCase()) ||
           i?.email?.toLowerCase().includes(query?.toLowerCase()) ||
-          i?.phone?.toString()?.toLowerCase().includes(query?.toLowerCase())
+          i?.minimumAmount
+            ?.toString()
+            ?.toLowerCase()
+            .includes(query?.toLowerCase())
       )
     : data;
 
@@ -248,7 +251,7 @@ const User = () => {
               />
               <input
                 type="search"
-                placeholder="Seach by First Name , Last Name , Email Address and Phone Number"
+                placeholder="Start typing to search for users"
                 onChange={(e) => setQuery(e.target.value)}
               />
             </div>
@@ -275,13 +278,7 @@ const User = () => {
                         <td> #{index + 1} </td>
                         <td> {i.firstName} </td>
                         <td> {i.lastName} </td>
-                        <td>
-                          <i
-                            className="fa-solid fa-plus"
-                            style={{ fontSize: "10px", marginRight: "2px" }}
-                          />
-                          {i.phone}
-                        </td>
+                        <td>{i.phone}</td>
                         <td>{i.email}</td>
                         <td>{i.gender}</td>
                         <td>

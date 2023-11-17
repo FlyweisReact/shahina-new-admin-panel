@@ -248,7 +248,7 @@ const User = () => {
               />
               <input
                 type="search"
-                placeholder="Seach by First Name , Last Name , Email Address and Phone Number"
+                placeholder="Start typing to search for users"
                 onChange={(e) => setQuery(e.target.value)}
               />
             </div>

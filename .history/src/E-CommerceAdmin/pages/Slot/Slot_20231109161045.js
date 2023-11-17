@@ -22,7 +22,9 @@ const Slot = () => {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.get(`${Baseurl}api/v1/admin/Slot/allSlot`);
+      const { data } = await axios.get(
+        `${Baseurl}api/v1/admin/Slot/allSlot`
+      );
       setData(data.data);
       setTotal(data.data.length);
     } catch (e) {
@@ -32,8 +34,6 @@ const Slot = () => {
 
   useEffect(() => {
     fetchData();
-
-    window.scrollTo(0, 0);
   }, []);
 
   const deleteHandler = async (id) => {
@@ -51,15 +51,13 @@ const Slot = () => {
   };
 
   function MyVerticallyCenteredModal(props) {
-    const [date, setDate] = useState("");
-    const [from, setFrom] = useState("");
-    const [to, setTo] = useState("");
+    const [ date , setDate ] = useState("")
+    const [from, setFrom ] = useState("")
+    const [ to, setTo ] = useState("")
 
-    const payload = {
-      date,
-      from,
-      to,
-    };
+    const payload ={ 
+        date , from , to
+    }
 
     const postHandler = async (e) => {
       e.preventDefault();
@@ -108,6 +106,7 @@ const Slot = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={edit ? putHandler : postHandler}>
+      
             <Form.Group className="mb-3">
               <Form.Label>Date</Form.Label>
               <Form.Control
@@ -194,10 +193,10 @@ const Slot = () => {
                     {data?.map((i, index) => (
                       <tr key={index}>
                         <td>#{index + 1} </td>
-                        <td> {i.date?.slice(0, 10)} </td>
+                        <td> {i.date?.slice(0,10)} </td>
                         <td> {i.from} </td>
                         <td> {i.to} </td>
-                        <td> {i.createdAt?.slice(0, 10)} </td>
+                        <td> {i.createdAt?.slice(0,10)} </td>
                         <td>
                           <span className="flexCont">
                             <i

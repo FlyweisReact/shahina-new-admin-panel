@@ -194,6 +194,7 @@ const User = () => {
           i?.firstName?.toLowerCase().includes(query?.toLowerCase()) ||
           i?.lastName?.toLowerCase().includes(query?.toLowerCase()) ||
           i?.email?.toLowerCase().includes(query?.toLowerCase()) ||
+          i?.gender?.toLowerCase().includes(query?.toLowerCase()) ||
           i?.phone?.toString()?.toLowerCase().includes(query?.toLowerCase())
       )
     : data;
@@ -248,7 +249,7 @@ const User = () => {
               />
               <input
                 type="search"
-                placeholder="Seach by First Name , Last Name , Email Address and Phone Number"
+                placeholder="Start typing to search for users"
                 onChange={(e) => setQuery(e.target.value)}
               />
             </div>

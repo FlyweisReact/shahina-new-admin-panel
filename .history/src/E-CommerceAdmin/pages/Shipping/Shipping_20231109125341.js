@@ -33,10 +33,11 @@ const Shipping = () => {
 
   useEffect(() => {
     getOrders();
-    window.scrollTo(0, 0);
   }, []);
 
   function MyVerticallyCenteredModal(props) {
+    console.log(edit);
+
     function ValueChecker(holder, string) {
       return holder ? (
         <div className="Desc-Container">
