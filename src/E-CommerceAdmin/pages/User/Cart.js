@@ -43,7 +43,6 @@ const Cart = () => {
   function ServiceModal(props) {
     const [products, setProducts] = useState([]);
     const [productId, setProductId] = useState("");
-    const [quantity, setQuantity] = useState("");
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
 
@@ -64,7 +63,7 @@ const Cart = () => {
     }, [props]);
 
     const payload = {
-      quantity,
+      quantity: 1,
       userId: id,
       date,
       time,
@@ -113,16 +112,6 @@ const Cart = () => {
                   </option>
                 ))}
               </Form.Select>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Quantity</Form.Label>
-              <Form.Control
-                required
-                type="number"
-                min={0}
-                onChange={(e) => setQuantity(e.target.value)}
-              />
             </Form.Group>
 
             <Form.Group className="mb-3">

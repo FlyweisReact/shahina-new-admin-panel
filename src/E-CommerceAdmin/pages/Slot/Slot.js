@@ -54,11 +54,14 @@ const Slot = () => {
     const [date, setDate] = useState("");
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
+    const [zone, setZone] = useState("AM");
+
+    const final = to + " " + zone;
 
     const payload = {
       date,
       from,
-      to,
+      to: final,
     };
 
     const postHandler = async (e) => {
@@ -133,6 +136,15 @@ const Slot = () => {
               />
             </Form.Group>
 
+            <Form.Group className="mb-3">
+              <Form.Label>AM/PM</Form.Label>
+              <Form.Select onChange={(e) => setZone(e.target.value)}>
+                <option>Select Prefrence</option>
+                <option value="AM">AM</option>
+                <option value="PM"> PM</option>
+              </Form.Select>
+            </Form.Group>
+
             <Button
               style={{
                 backgroundColor: "#0c0c0c",
@@ -187,6 +199,7 @@ const Slot = () => {
                       <th>Date</th>
                       <th>From</th>
                       <th>To</th>
+                      <th>AM/PM</th>
                       <th>Created At</th>
                     </tr>
                   </thead>
@@ -196,7 +209,8 @@ const Slot = () => {
                         <td>#{index + 1} </td>
                         <td> {i.date?.slice(0, 10)} </td>
                         <td> {i.from} </td>
-                        <td> {i.to} </td>
+                        <td> {i.to?.slice(0, 5)} </td>
+                        <td> {i.to?.slice(6,8)} </td>
                         <td> {i.createdAt?.slice(0, 10)} </td>
                         <td>
                           <span className="flexCont">

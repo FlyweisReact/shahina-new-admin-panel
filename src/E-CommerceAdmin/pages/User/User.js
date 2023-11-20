@@ -178,7 +178,7 @@ const User = () => {
     fd.append("file", file);
     try {
       const { res } = await axios.post(
-        `http://127.0.0.1:2018/api/v1/admin/uploadClient`,
+        `http://127.0.0.1:2019/api/v1/admin/uploadClient`,
         fd,
         Auth
       );

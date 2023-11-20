@@ -158,6 +158,7 @@ const Order = () => {
               <Form.Label>First mile option</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Pickup"
                 onChange={(e) => setFile_Mile_Option(e.target.value)}
               />
             </Form.Group>
@@ -166,6 +167,7 @@ const Order = () => {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Test"
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
@@ -174,6 +176,7 @@ const Order = () => {
               <Form.Label>Weight value</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="1"
                 onChange={(e) => setValue(e.target.value)}
               />
             </Form.Group>
@@ -182,6 +185,7 @@ const Order = () => {
               <Form.Label>Weight Unit</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="kg"
                 onChange={(e) => setUnits(e.target.value)}
               />
             </Form.Group>
@@ -190,6 +194,7 @@ const Order = () => {
               <Form.Label>Customer Refrence</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="1537"
                 onChange={(e) => setCustomer_Refrence(e.target.value)}
               />
             </Form.Group>
@@ -198,6 +203,7 @@ const Order = () => {
               <Form.Label>User Id</Form.Label>
               <Form.Control
                 type="number"
+                placeholder="100"
                 onChange={(e) => setUserId(e.target.value)}
               />
             </Form.Group>
@@ -206,6 +212,7 @@ const Order = () => {
               <Form.Label>Sender Name</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Lex Luthor"
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Group>
@@ -213,6 +220,7 @@ const Order = () => {
               <Form.Label>Sender Address Line 1</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="123 Main Street"
                 onChange={(e) => setAddress_Line_1(e.target.value)}
               />
             </Form.Group>
@@ -221,6 +229,7 @@ const Order = () => {
               <Form.Label>Sender Suburb</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Los Angeles"
                 onChange={(e) => setSuburb(e.target.value)}
               />
             </Form.Group>
@@ -229,6 +238,7 @@ const Order = () => {
               <Form.Label>Sender state</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="CA"
                 onChange={(e) => setState_Name(e.target.value)}
               />
             </Form.Group>
@@ -237,6 +247,7 @@ const Order = () => {
               <Form.Label>Sender post code</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="90001"
                 onChange={(e) => setPostCode(e.target.value)}
               />
             </Form.Group>
@@ -245,6 +256,7 @@ const Order = () => {
               <Form.Label>Sender country</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="US"
                 onChange={(e) => setCountry(e.target.value)}
               />
             </Form.Group>
@@ -253,6 +265,7 @@ const Order = () => {
               <Form.Label>Reciver Instruction</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Signature on Delivery"
                 onChange={(e) => setInstructions(e.target.value)}
               />
             </Form.Group>
@@ -261,6 +274,7 @@ const Order = () => {
               <Form.Label>Reciver Name</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Clark Kent"
                 onChange={(e) => setName2(e.target.value)}
               />
             </Form.Group>
@@ -269,6 +283,7 @@ const Order = () => {
               <Form.Label>Reciver Email</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="clarkissuper@dailyplanet.xyz"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Group>
@@ -276,6 +291,7 @@ const Order = () => {
               <Form.Label>Reciver Company</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="Daily Planet"
                 onChange={(e) => setCompany(e.target.value)}
               />
             </Form.Group>
@@ -283,6 +299,7 @@ const Order = () => {
               <Form.Label>Reciver Address</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="456 Elm Street"
                 onChange={(e) => setAddressLine2(e.target.value)}
               />
             </Form.Group>
@@ -291,6 +308,7 @@ const Order = () => {
               <Form.Label>Reciver suburb</Form.Label>
               <Form.Control
                 type="text"
+                placeholder="New York"
                 onChange={(e) => setSuburb2(e.target.value)}
               />
             </Form.Group>
@@ -299,6 +317,7 @@ const Order = () => {
               <Form.Label>Reciver state </Form.Label>
               <Form.Control
                 type="text"
+                placeholder="NY"
                 onChange={(e) => setStateName2(e.target.value)}
               />
             </Form.Group>
@@ -306,6 +325,7 @@ const Order = () => {
               <Form.Label>Reciver postcode </Form.Label>
               <Form.Control
                 type="text"
+                placeholder="10001"
                 onChange={(e) => setPostCode2(e.target.value)}
               />
             </Form.Group>
@@ -313,6 +333,7 @@ const Order = () => {
               <Form.Label>Reciver country </Form.Label>
               <Form.Control
                 type="text"
+                placeholder="US"
                 onChange={(e) => setCountry2(e.target.value)}
               />
             </Form.Group>
