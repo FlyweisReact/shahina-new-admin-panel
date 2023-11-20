@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Form, Button, FloatingLabel, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Baseurl } from "../../../Baseurl";
 
 const CreateProduct = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -33,6 +32,12 @@ const CreateProduct = () => {
   const [multiplePrice, setMultiplePrice] = useState(0);
   const [multipleStock, setMultipleStock] = useState(0);
   const [multipleArr, setMultipleArr] = useState([]);
+
+  const [nutritionId, setNutritionId] = useState([]);
+  const [skinTypeId, seteSkinTypeId] = useState([]);
+  const [productTypeId, setProductTypeId] = useState([]);
+  const [skinConditionId, setSkinConditionId] = useState([]);
+  const [brandId, setBrandId] = useState([]);
 
   // New Field
   const [keyIngredients, setKeyIngredients] = useState([]);
@@ -128,7 +133,9 @@ const CreateProduct = () => {
 
   const fetchBrand = async () => {
     try {
-      const { data } = await axios.get(`${process.env.React_App_Baseurl}api/v1/admin/Brand/allBrand`);
+      const { data } = await axios.get(
+        `${process.env.React_App_Baseurl}api/v1/admin/Brand/allBrand`
+      );
       setBrandArr(data?.data);
     } catch (e) {
       console.log(e.message);
@@ -163,7 +170,6 @@ const CreateProduct = () => {
   Array.from(images).forEach((img) => {
     fd.append("image", img);
   });
-  fd.append(shopId, id);
   fd.append("name", name);
   fd.append("description", description);
   fd.append("stock", stock);
@@ -178,6 +184,21 @@ const CreateProduct = () => {
   });
   Array.from(benfit).forEach((i) => {
     fd.append("benfit", i);
+  });
+  Array.from(nutritionId).forEach((i) => {
+    fd.append("nutritionId", i);
+  });
+  Array.from(skinTypeId).forEach((i) => {
+    fd.append("skinTypeId", i);
+  });
+  Array.from(productTypeId).forEach((i) => {
+    fd.append("productTypeId", i);
+  });
+  Array.from(skinConditionId).forEach((i) => {
+    fd.append("skinConditionId", i);
+  });
+  Array.from(brandId).forEach((i) => {
+    fd.append("brandId", i);
   });
   fd.append("price", price);
   fd.append("ingredients", ingredients);
@@ -213,6 +234,15 @@ const CreateProduct = () => {
     setId(first);
   };
 
+  // Select Id In Arr
+  const handleChange = (e, setData) => {
+    const selectedOptions = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setData(selectedOptions);
+  };
+
   return (
     <section>
       <section className="sectionCont">
@@ -230,9 +260,10 @@ const CreateProduct = () => {
           <Form.Group className="mb-3">
             <Form.Label>Nutrition</Form.Label>
             <Form.Select
-              onChange={(e) => selectHandler(e.target.value, "nutritionId")}
+              onChange={(e) => handleChange(e, setNutritionId)}
+              multiple
+              style={{ height: "100px" }}
             >
-              <option>Selete Your Prefrence</option>
               {nutritionArray?.map((i, index) => (
                 <option key={index} value={i._id}>
                   {" "}
@@ -245,9 +276,10 @@ const CreateProduct = () => {
           <Form.Group className="mb-3">
             <Form.Label>Skin Type</Form.Label>
             <Form.Select
-              onChange={(e) => selectHandler(e.target.value, "skinTypeId")}
+              onChange={(e) => handleChange(e, seteSkinTypeId)}
+              multiple
+              style={{ height: "100px" }}
             >
-              <option>Select Your Prefrence</option>
               {skinTypeArray?.map((i, index) => (
                 <option key={index} value={i._id}>
                   {" "}
@@ -260,9 +292,10 @@ const CreateProduct = () => {
           <Form.Group className="mb-3">
             <Form.Label>Product Type</Form.Label>
             <Form.Select
-              onChange={(e) => selectHandler(e.target.value, "productTypeId")}
+              onChange={(e) => handleChange(e, setProductTypeId)}
+              multiple
+              style={{ height: "100px" }}
             >
-              <option>Select Your Prefrence</option>
               {productTypeArr?.map((i, index) => (
                 <option key={index} value={i._id}>
                   {" "}
@@ -274,9 +307,10 @@ const CreateProduct = () => {
           <Form.Group className="mb-3">
             <Form.Label>Skin Condition</Form.Label>
             <Form.Select
-              onChange={(e) => selectHandler(e.target.value, "skinConditionId")}
+              onChange={(e) => handleChange(e, setSkinConditionId)}
+              multiple
+              style={{ height: "100px" }}
             >
-              <option>Select Your Prefrence</option>
               {skinConditionArr?.map((i, index) => (
                 <option key={index} value={i._id}>
                   {" "}
@@ -288,9 +322,10 @@ const CreateProduct = () => {
           <Form.Group className="mb-3">
             <Form.Label>Brands</Form.Label>
             <Form.Select
-              onChange={(e) => selectHandler(e.target.value, "brandId")}
+              onChange={(e) => handleChange(e, setBrandId)}
+              multiple
+              style={{ height: "100px" }}
             >
-              <option>Select Your Prefrence</option>
               {brandArr?.map((i, index) => (
                 <option key={index} value={i._id}>
                   {" "}

@@ -118,7 +118,7 @@ const Frequently = () => {
               <Form.Label>Product</Form.Label>
               <Form.Select
                 multiple
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 style={{ height: "300px" }}
               >
                 <option>Select Your Prefrence</option>
