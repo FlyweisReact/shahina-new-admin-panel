@@ -407,7 +407,6 @@ const EditProduct = () => {
             <FloatingLabel>
               <Form.Control
                 as="textarea"
-                value={ingredients}
                 style={{ height: "100px" }}
                 onChange={(e) => setIngredeints(e.target.value)}
               />
@@ -430,7 +429,6 @@ const EditProduct = () => {
                 <Form.Control
                   type="number"
                   min={1}
-                  value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </Form.Group>
@@ -594,7 +592,6 @@ const EditProduct = () => {
                 as="textarea"
                 style={{ height: "100px" }}
                 className="mb-3"
-                value={returnPolicy}
                 onChange={(e) => setReturnPolicy(e.target.value)}
               />
             </FloatingLabel>
@@ -605,7 +602,6 @@ const EditProduct = () => {
             <Form.Label>Acne Type</Form.Label>
             <Form.Control
               type="text"
-              value={acneType}
               onChange={(e) => setAcneType(e.target.value)}
             />
           </Form.Group>
@@ -613,7 +609,6 @@ const EditProduct = () => {
             <Form.Label>Consider Acne</Form.Label>
             <Form.Control
               type="text"
-              value={considerAcne}
               onChange={(e) => setConsiderAcne(e.target.value)}
             />
           </Form.Group>

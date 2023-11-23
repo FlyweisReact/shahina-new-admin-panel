@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { Form, Button, FloatingLabel, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Baseurl } from "../../../Baseurl";
 
 const EditProduct = () => {
   const { product } = useParams();
@@ -17,7 +18,7 @@ const EditProduct = () => {
   const [productTypeArr, setProductTypeArr] = useState([]);
   const [skinConditionArr, SkinConditionArr] = useState([]);
   const [brandArr, setBrandArr] = useState([]);
-  const [stock, setStock] = useState(0);
+  const [stock, setStock] = useState(1);
   const [step, setStep] = useState("");
   const [stepDescription, setStepDescription] = useState("");
   const [howToUse, setHowToUse] = useState([]);
@@ -26,6 +27,8 @@ const EditProduct = () => {
   const [benfit, setBenefit] = useState([]);
   const [benefitName, setBenefitName] = useState("");
   const [multipleSize, setMultipleSize] = useState("false");
+  const [shopId, setShopId] = useState("");
+  const [id, setId] = useState("");
   const [sizes, setSizes] = useState("");
   const [multiplePrice, setMultiplePrice] = useState(0);
   const [multipleStock, setMultipleStock] = useState(0);
@@ -36,12 +39,6 @@ const EditProduct = () => {
   const [returnPolicy, setReturnPolicy] = useState("");
   const [acneType, setAcneType] = useState("");
   const [considerAcne, setConsiderAcne] = useState("");
-
-  const [nutritionId, setNutritionId] = useState("");
-  const [skinTypeId, seteSkinTypeId] = useState("");
-  const [productTypeId, setProductTypeId] = useState("");
-  const [skinConditionId, setSkinConditionId] = useState("");
-  const [brandId, setBrandId] = useState("");
 
   const descObject = {
     step,
@@ -139,9 +136,7 @@ const EditProduct = () => {
 
   const fetchBrand = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.React_App_Baseurl}api/v1/admin/Brand/allBrand`
-      );
+      const { data } = await axios.get(`${process.env.React_App_Baseurl}api/v1/admin/Brand/allBrand`);
       setBrandArr(data?.data);
     } catch (e) {
       console.log(e.message);
@@ -156,46 +151,6 @@ const EditProduct = () => {
     fetchBrand();
   }, []);
 
-  //  ---
-  const [data, setData] = useState({});
-  const fetchDetails = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.React_App_Baseurl}api/v1/Product/${product}`
-      );
-      setData(response.data.data);
-    } catch {}
-  };
-
-  useEffect(() => {
-    fetchDetails();
-  }, [product]);
-
-  useEffect(() => {
-    if (data) {
-      setName(data?.name);
-      setDescription(data?.description);
-      setStock(data?.stock);
-      setIngredeints(data?.ingredients);
-      setPrice(data?.price);
-      setReturnPolicy(data?.returnPolicy);
-      setAcneType(data?.acneType);
-      setConsiderAcne(data?.considerAcne);
-      setNutritionId(data?.nutritionId);
-      seteSkinTypeId(data?.skinTypeId);
-      setProductTypeId(data?.productTypeId);
-      setSkinConditionId(data?.skinConditionId);
-      setBrandId(data?.brandId);
-      setBenefit(data?.benefit?.length > 0 ? data?.benefit : []);
-      setMultipleArr(data?.sizePrice?.length > 0 ? data?.sizePrice : []);
-      setKeyIngredients(
-        data?.keyIngredients?.length > 0 ? data?.keyIngredients : []
-      );
-    }
-  }, [data]);
-
-  // ----
-
   const token = localStorage.getItem("AdminToken");
   const Auth = {
     headers: {
@@ -207,11 +162,7 @@ const EditProduct = () => {
   Array.from(images).forEach((img) => {
     fd.append("image", img);
   });
-  fd.append("nutritionId", nutritionId);
-  fd.append("skinTypeId", skinTypeId);
-  fd.append("productTypeId", productTypeId);
-  fd.append("brandId", brandId);
-  fd.append("skinConditionId", skinConditionId);
+  fd.append(shopId, id);
   fd.append("name", name);
   fd.append("description", description);
   fd.append("stock", stock);
@@ -256,6 +207,11 @@ const EditProduct = () => {
     }
   };
 
+  const selectHandler = (first, second) => {
+    setShopId(second);
+    setId(first);
+  };
+
   return (
     <section>
       <section className="sectionCont">
@@ -267,13 +223,14 @@ const EditProduct = () => {
             <Form.Control
               type="text"
               onChange={(e) => setName(e.target.value)}
-              value={name}
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Nutrition</Form.Label>
-            <Form.Select onChange={(e) => setNutritionId(e.target.value)}>
+            <Form.Select
+              onChange={(e) => selectHandler(e.target.value, "nutritionId")}
+            >
               <option>Selete Your Prefrence</option>
               {nutritionArray?.map((i, index) => (
                 <option key={index} value={i._id}>
@@ -286,7 +243,9 @@ const EditProduct = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Skin Type</Form.Label>
-            <Form.Select onChange={(e) => seteSkinTypeId(e.target.value)}>
+            <Form.Select
+              onChange={(e) => selectHandler(e.target.value, "skinTypeId")}
+            >
               <option>Select Your Prefrence</option>
               {skinTypeArray?.map((i, index) => (
                 <option key={index} value={i._id}>
@@ -299,7 +258,9 @@ const EditProduct = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Product Type</Form.Label>
-            <Form.Select onChange={(e) => setProductTypeId(e.target.value)}>
+            <Form.Select
+              onChange={(e) => selectHandler(e.target.value, "productTypeId")}
+            >
               <option>Select Your Prefrence</option>
               {productTypeArr?.map((i, index) => (
                 <option key={index} value={i._id}>
@@ -311,7 +272,9 @@ const EditProduct = () => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Skin Condition</Form.Label>
-            <Form.Select onChange={(e) => setSkinConditionId(e.target.value)}>
+            <Form.Select
+              onChange={(e) => selectHandler(e.target.value, "skinConditionId")}
+            >
               <option>Select Your Prefrence</option>
               {skinConditionArr?.map((i, index) => (
                 <option key={index} value={i._id}>
@@ -323,7 +286,9 @@ const EditProduct = () => {
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Brands</Form.Label>
-            <Form.Select onChange={(e) => setBrandId(e.target.value)}>
+            <Form.Select
+              onChange={(e) => selectHandler(e.target.value, "brandId")}
+            >
               <option>Select Your Prefrence</option>
               {brandArr?.map((i, index) => (
                 <option key={index} value={i._id}>
@@ -395,7 +360,6 @@ const EditProduct = () => {
             <FloatingLabel>
               <Form.Control
                 as="textarea"
-                value={description}
                 style={{ height: "100px" }}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -407,7 +371,6 @@ const EditProduct = () => {
             <FloatingLabel>
               <Form.Control
                 as="textarea"
-                value={ingredients}
                 style={{ height: "100px" }}
                 onChange={(e) => setIngredeints(e.target.value)}
               />
@@ -430,7 +393,6 @@ const EditProduct = () => {
                 <Form.Control
                   type="number"
                   min={1}
-                  value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </Form.Group>
@@ -594,7 +556,6 @@ const EditProduct = () => {
                 as="textarea"
                 style={{ height: "100px" }}
                 className="mb-3"
-                value={returnPolicy}
                 onChange={(e) => setReturnPolicy(e.target.value)}
               />
             </FloatingLabel>
@@ -605,7 +566,6 @@ const EditProduct = () => {
             <Form.Label>Acne Type</Form.Label>
             <Form.Control
               type="text"
-              value={acneType}
               onChange={(e) => setAcneType(e.target.value)}
             />
           </Form.Group>
@@ -613,7 +573,6 @@ const EditProduct = () => {
             <Form.Label>Consider Acne</Form.Label>
             <Form.Control
               type="text"
-              value={considerAcne}
               onChange={(e) => setConsiderAcne(e.target.value)}
             />
           </Form.Group>

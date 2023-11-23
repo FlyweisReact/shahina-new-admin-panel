@@ -605,7 +605,6 @@ const EditProduct = () => {
             <Form.Label>Acne Type</Form.Label>
             <Form.Control
               type="text"
-              value={acneType}
               onChange={(e) => setAcneType(e.target.value)}
             />
           </Form.Group>
@@ -613,7 +612,6 @@ const EditProduct = () => {
             <Form.Label>Consider Acne</Form.Label>
             <Form.Control
               type="text"
-              value={considerAcne}
               onChange={(e) => setConsiderAcne(e.target.value)}
             />
           </Form.Group>

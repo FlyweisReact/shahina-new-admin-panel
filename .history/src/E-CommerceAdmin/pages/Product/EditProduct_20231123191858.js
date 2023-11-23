@@ -181,16 +181,6 @@ const EditProduct = () => {
       setReturnPolicy(data?.returnPolicy);
       setAcneType(data?.acneType);
       setConsiderAcne(data?.considerAcne);
-      setNutritionId(data?.nutritionId);
-      seteSkinTypeId(data?.skinTypeId);
-      setProductTypeId(data?.productTypeId);
-      setSkinConditionId(data?.skinConditionId);
-      setBrandId(data?.brandId);
-      setBenefit(data?.benefit?.length > 0 ? data?.benefit : []);
-      setMultipleArr(data?.sizePrice?.length > 0 ? data?.sizePrice : []);
-      setKeyIngredients(
-        data?.keyIngredients?.length > 0 ? data?.keyIngredients : []
-      );
     }
   }, [data]);
 
@@ -267,7 +257,6 @@ const EditProduct = () => {
             <Form.Control
               type="text"
               onChange={(e) => setName(e.target.value)}
-              value={name}
             />
           </Form.Group>
 
@@ -395,7 +384,6 @@ const EditProduct = () => {
             <FloatingLabel>
               <Form.Control
                 as="textarea"
-                value={description}
                 style={{ height: "100px" }}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -407,7 +395,6 @@ const EditProduct = () => {
             <FloatingLabel>
               <Form.Control
                 as="textarea"
-                value={ingredients}
                 style={{ height: "100px" }}
                 onChange={(e) => setIngredeints(e.target.value)}
               />
@@ -430,7 +417,6 @@ const EditProduct = () => {
                 <Form.Control
                   type="number"
                   min={1}
-                  value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </Form.Group>
@@ -594,7 +580,6 @@ const EditProduct = () => {
                 as="textarea"
                 style={{ height: "100px" }}
                 className="mb-3"
-                value={returnPolicy}
                 onChange={(e) => setReturnPolicy(e.target.value)}
               />
             </FloatingLabel>
@@ -605,7 +590,6 @@ const EditProduct = () => {
             <Form.Label>Acne Type</Form.Label>
             <Form.Control
               type="text"
-              value={acneType}
               onChange={(e) => setAcneType(e.target.value)}
             />
           </Form.Group>
@@ -613,7 +597,6 @@ const EditProduct = () => {
             <Form.Label>Consider Acne</Form.Label>
             <Form.Control
               type="text"
-              value={considerAcne}
               onChange={(e) => setConsiderAcne(e.target.value)}
             />
           </Form.Group>

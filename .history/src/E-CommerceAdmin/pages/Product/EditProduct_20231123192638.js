@@ -594,7 +594,6 @@ const EditProduct = () => {
                 as="textarea"
                 style={{ height: "100px" }}
                 className="mb-3"
-                value={returnPolicy}
                 onChange={(e) => setReturnPolicy(e.target.value)}
               />
             </FloatingLabel>
@@ -605,7 +604,6 @@ const EditProduct = () => {
             <Form.Label>Acne Type</Form.Label>
             <Form.Control
               type="text"
-              value={acneType}
               onChange={(e) => setAcneType(e.target.value)}
             />
           </Form.Group>
@@ -613,7 +611,6 @@ const EditProduct = () => {
             <Form.Label>Consider Acne</Form.Label>
             <Form.Control
               type="text"
-              value={considerAcne}
               onChange={(e) => setConsiderAcne(e.target.value)}
             />
           </Form.Group>
