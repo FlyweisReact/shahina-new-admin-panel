@@ -3,6 +3,13 @@
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.6.6",
+    "@syncfusion/ej2-react-buttons": "^23.2.4",
+    "@syncfusion/ej2-react-calendars": "^23.2.6",
+    "@syncfusion/ej2-react-dropdowns": "^23.2.6",
+    "@syncfusion/ej2-react-inputs": "^23.2.4",
+    "@syncfusion/ej2-react-navigations": "^23.2.5",
+    "@syncfusion/ej2-react-schedule": "^23.2.4",
+    "@syncfusion/ej2-react-splitbuttons": "^23.2.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
