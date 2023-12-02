@@ -1352,7 +1352,7 @@ td {
   overflow: hidden;
 }
 .Appointment_Canvas{
-  padding-top: 200px;
+  padding-top: 20px;
 }
 .Appointment_Canvas .selector div p {
   text-transform: capitalize;
