@@ -22,8 +22,8 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   const token = localStorage.getItem("AdminToken");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [selectedUser, setSelectedUser] = useState({});
-  const [selectedService, setSelectedService] = useState([]);
+  const [ selectedUser , setSelectedUser ] = useState({})
+  const [ selectedService , setSelectedService ] = useState([])
 
   const Auth = {
     headers: {
@@ -65,6 +65,9 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
       }
     }
   }, [show]);
+
+
+
 
   const fetchUsers = async () => {
     try {
@@ -127,6 +130,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     }
   }, [startTime]);
 
+
   const filteredServices = searchTerm
     ? service?.filter((option) =>
         option.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -146,14 +150,13 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   // ---
   const userHandler = (i) => {
     setUserId(i._id);
-    setSelectedUser(i);
     setStep(2);
   };
 
   const serviceHandler = (i) => {
     setProductId(i._id);
-    setSelectedService((prev) => [...prev, i]);
-    // setStep(3);
+    setMultipleArr((prev) => [...prev, multipleObj]);
+    setStep(3);
   };
 
   useEffect(() => {
@@ -161,8 +164,6 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
       setStep(1);
     }
   }, [show]);
-
-
 
   return (
     <Offcanvas
@@ -248,62 +249,22 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
           ""
         )}
 
-        {step === 3 ? (
-          <>
-            <div className="selector">
-              <Slider {...settings}>
-                {all?.map((i, index) => (
-                  <div>
-                    <p
-                      onClick={() => setType(i.name)}
-                      className={i.name === type ? "active" : ""}
-                      key={`Index${index}`}
-                    >
-                      {" "}
-                      {i.name}{" "}
-                    </p>
-                  </div>
-                ))}
-              </Slider>
-            </div>
-
-            <div className="user_select_container">
-              <div className="user_select">
-                <div className="img">
-                  {" "}
-                  {selectedUser?.firstName?.slice(0, 1)}{" "}
-                </div>
-                <div className="content">
-                  <p className="heading">
-                    {" "}
-                    {selectedUser?.firstName +
-                      " " +
-                      selectedUser?.lastName}{" "}
-                  </p>
-                  <p className="faded"> +{selectedUser?.phone} </p>
-                  <p className="faded"> {selectedUser?.email} </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="service_selector_container">
-              {selectedService?.map((i, index) => (
-                <div
-                  className="service_selector"
-                  key={`service${index}`}
+        {/* <div className="selector">
+          <Slider {...settings}>
+            {all?.map((i, index) => (
+              <div>
+                <p
+                  onClick={() => setType(i.name)}
+                  className={i.name === type ? "active" : ""}
+                  key={`Index${index}`}
                 >
-                  <div>
-                    <p className="title"> {i.name} </p>
-                    <p className="faded"> 2h </p>
-                  </div>
-                  <p className="price"> ${i.price} </p>
-                </div>
-              ))}
-            </div>
-          </>
-        ) : (
-          ""
-        )}
+                  {" "}
+                  {i.name}{" "}
+                </p>
+              </div>
+            ))}
+          </Slider>
+        </div> */}
       </Offcanvas.Body>
     </Offcanvas>
   );

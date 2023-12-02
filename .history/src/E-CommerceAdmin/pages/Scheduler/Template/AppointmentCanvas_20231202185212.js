@@ -12,24 +12,6 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   const [type, setType] = useState("Info");
   const [step, setStep] = useState(2);
   const [width, setWidth] = useState();
-  const [search, setSearch] = useState("");
-  const [users, setUsers] = useState([]);
-  const [service, setServices] = useState([]);
-  const [productId, setProductId] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [userId, setUserId] = useState("");
-  const token = localStorage.getItem("AdminToken");
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const [selectedUser, setSelectedUser] = useState({});
-  const [selectedService, setSelectedService] = useState([]);
-
-  const Auth = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
 
   const settings = {
     dots: false,
@@ -66,6 +48,21 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     }
   }, [show]);
 
+  //   -----------------------
+  const [users, setUsers] = useState([]);
+  const [service, setServices] = useState([]);
+  const [productId, setProductId] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [userId, setUserId] = useState("");
+  const token = localStorage.getItem("AdminToken");
+
+  const Auth = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   const fetchUsers = async () => {
     try {
       const { data } = await axios.get(
@@ -97,7 +94,8 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     time,
   };
 
-  const addInCart = async () => {
+  const addInCart = async (e) => {
+    e.preventDefault();
     try {
       const { data } = await axios.post(
         `${process.env.React_App_Baseurl}api/v1/admin/addtoCart/service/${productId}`,
@@ -127,6 +125,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     }
   }, [startTime]);
 
+  const [searchTerm, setSearchTerm] = useState("");
   const filteredServices = searchTerm
     ? service?.filter((option) =>
         option.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -134,7 +133,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     : service;
 
   //   Filtered Users
-
+  const [search, setSearch] = useState("");
   const filtereUser = search
     ? users?.filter(
         (option) =>
@@ -146,23 +145,14 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   // ---
   const userHandler = (i) => {
     setUserId(i._id);
-    setSelectedUser(i);
     setStep(2);
-  };
-
-  const serviceHandler = (i) => {
-    setProductId(i._id);
-    setSelectedService((prev) => [...prev, i]);
-    // setStep(3);
   };
 
   useEffect(() => {
     if (show) {
-      setStep(1);
+      setStep(2);
     }
   }, [show]);
-
-
 
   return (
     <Offcanvas
@@ -228,82 +218,81 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="service_selector_container">
-              {filteredServices?.map((i, index) => (
-                <div
-                  className="service_selector"
-                  key={`service${index}`}
-                  onClick={() => serviceHandler(i)}
-                >
-                  <div>
-                    <p className="title"> {i.name} </p>
-                    <p className="faded"> 2h </p>
-                  </div>
-                  <p className="price"> ${i.price} </p>
-                </div>
-              ))}
+
+            <div className="service_selector">
+
             </div>
           </>
         ) : (
           ""
         )}
 
-        {step === 3 ? (
-          <>
-            <div className="selector">
-              <Slider {...settings}>
-                {all?.map((i, index) => (
-                  <div>
-                    <p
-                      onClick={() => setType(i.name)}
-                      className={i.name === type ? "active" : ""}
-                      key={`Index${index}`}
-                    >
-                      {" "}
-                      {i.name}{" "}
-                    </p>
-                  </div>
-                ))}
-              </Slider>
+        {/* <div className="Add_Service_Modal">
+          <form onSubmit={addInCart}>
+            <div>
+              <input
+                type="text"
+                placeholder="Start typing to search for services..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <select onChange={(e) => setProductId(e.target.value)}>
+                <option>open to see results...</option>
+                {filteredServices?.length > 0 ? (
+                  filteredServices?.map((option) => (
+                    <option key={option._id} value={option._id}>
+                      {option.name}
+                    </option>
+                  ))
+                ) : (
+                  <option>No Matching result found for {searchTerm}</option>
+                )}
+              </select>
             </div>
 
-            <div className="user_select_container">
-              <div className="user_select">
-                <div className="img">
+            <div>
+              <input
+                type="text"
+                placeholder="Start typing to search for users..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <select onChange={(e) => setUserId(e.target.value)}>
+                <option>open to see results...</option>
+                {filtereUser?.length > 0 ? (
+                  filtereUser?.map((option) => (
+                    <option key={option._id} value={option._id}>
+                      {option.firstName + " " + option.lastName}
+                    </option>
+                  ))
+                ) : (
+                  <option>No Matching result found for {search}</option>
+                )}
+              </select>
+            </div>
+
+            <button className="Add_Service_Modal_button" type="submit">
+              Add Service
+            </button>
+          </form>
+        </div> */}
+
+        {/* <div className="selector">
+          <Slider {...settings}>
+            {all?.map((i, index) => (
+              <div>
+                <p
+                  onClick={() => setType(i.name)}
+                  className={i.name === type ? "active" : ""}
+                  key={`Index${index}`}
+                >
                   {" "}
-                  {selectedUser?.firstName?.slice(0, 1)}{" "}
-                </div>
-                <div className="content">
-                  <p className="heading">
-                    {" "}
-                    {selectedUser?.firstName +
-                      " " +
-                      selectedUser?.lastName}{" "}
-                  </p>
-                  <p className="faded"> +{selectedUser?.phone} </p>
-                  <p className="faded"> {selectedUser?.email} </p>
-                </div>
+                  {i.name}{" "}
+                </p>
               </div>
-            </div>
-
-            <div className="service_selector_container">
-              {selectedService?.map((i, index) => (
-                <div
-                  className="service_selector"
-                  key={`service${index}`}
-                >
-                  <div>
-                    <p className="title"> {i.name} </p>
-                    <p className="faded"> 2h </p>
-                  </div>
-                  <p className="price"> ${i.price} </p>
-                </div>
-              ))}
-            </div>
-          </>
-        ) : (
-          ""
-        )}
+            ))}
+          </Slider>
+        </div> */}
       </Offcanvas.Body>
     </Offcanvas>
   );

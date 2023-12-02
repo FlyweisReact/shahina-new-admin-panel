@@ -153,7 +153,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   const serviceHandler = (i) => {
     setProductId(i._id);
     setSelectedService((prev) => [...prev, i]);
-    // setStep(3);
+    setStep(3);
   };
 
   useEffect(() => {

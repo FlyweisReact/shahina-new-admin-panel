@@ -153,7 +153,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   const serviceHandler = (i) => {
     setProductId(i._id);
     setSelectedService((prev) => [...prev, i]);
-    // setStep(3);
+    setStep(3);
   };
 
   useEffect(() => {
@@ -162,7 +162,8 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     }
   }, [show]);
 
-
+  console.log(selectedService);
+  console.log(selectedUser);
 
   return (
     <Offcanvas
@@ -287,10 +288,11 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
             </div>
 
             <div className="service_selector_container">
-              {selectedService?.map((i, index) => (
+              {filteredServices?.map((i, index) => (
                 <div
                   className="service_selector"
                   key={`service${index}`}
+                  onClick={() => serviceHandler(i)}
                 >
                   <div>
                     <p className="title"> {i.name} </p>

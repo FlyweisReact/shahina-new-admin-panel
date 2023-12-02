@@ -153,7 +153,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   const serviceHandler = (i) => {
     setProductId(i._id);
     setSelectedService((prev) => [...prev, i]);
-    // setStep(3);
+    setStep(3);
   };
 
   useEffect(() => {
@@ -162,7 +162,8 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     }
   }, [show]);
 
-
+  console.log(selectedService);
+  console.log(selectedUser);
 
   return (
     <Offcanvas
@@ -268,35 +269,21 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
             </div>
 
             <div className="user_select_container">
-              <div className="user_select">
-                <div className="img">
-                  {" "}
-                  {selectedUser?.firstName?.slice(0, 1)}{" "}
-                </div>
-                <div className="content">
-                  <p className="heading">
-                    {" "}
-                    {selectedUser?.firstName +
-                      " " +
-                      selectedUser?.lastName}{" "}
-                  </p>
-                  <p className="faded"> +{selectedUser?.phone} </p>
-                  <p className="faded"> {selectedUser?.email} </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="service_selector_container">
-              {selectedService?.map((i, index) => (
+              {filtereUser?.map((i, index) => (
                 <div
-                  className="service_selector"
-                  key={`service${index}`}
+                  className="user_select"
+                  key={index}
+                  onClick={() => userHandler(i)}
                 >
-                  <div>
-                    <p className="title"> {i.name} </p>
-                    <p className="faded"> 2h </p>
+                  <div className="img"> {i.firstName?.slice(0, 1)} </div>
+                  <div className="content">
+                    <p className="heading">
+                      {" "}
+                      {i.firstName + " " + i.lastName}{" "}
+                    </p>
+                    <p className="faded"> +{i.phone} </p>
+                    <p className="faded"> {i.email} </p>
                   </div>
-                  <p className="price"> ${i.price} </p>
                 </div>
               ))}
             </div>
