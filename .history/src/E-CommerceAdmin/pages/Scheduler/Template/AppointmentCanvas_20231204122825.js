@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { Offcanvas, Form } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Switch } from 'antd';
 
 export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
   const [type, setType] = useState("Info");
@@ -46,15 +47,15 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     {
       name: "Notes",
     },
-    // {
-    //   name: "Payments",
-    // },
-    // {
-    //   name: "Forms",
-    // },
-    // {
-    //   name: "Activity",
-    // },
+    {
+      name: "Payments",
+    },
+    {
+      name: "Forms",
+    },
+    {
+      name: "Activity",
+    },
   ];
 
   const fetchUsers = async () => {
@@ -149,7 +150,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
 
   useEffect(() => {
     if (show) {
-      setStep(1);
+      setStep(3);
     }
   }, [show]);
 
@@ -165,11 +166,9 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     };
   }, [isMobile]);
 
-  // Toggle Button Condition
-  const [isChecked, setIsChecked] = useState(true);
 
-  const handleSwitchChange = () => {
-    setIsChecked(!isChecked);
+  const onChange = (checked: boolean) => {
+    console.log(`switch to ${checked}`);
   };
 
   return (
@@ -258,111 +257,75 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
 
         {step === 3 ? (
           <>
-            <div className="select_container">
-              <div>
-                <div className="selector">
-                  <Slider {...settings}>
-                    {all?.map((i, index) => (
-                      <div>
-                        <p
-                          onClick={() => setType(i.name)}
-                          className={i.name === type ? "active" : ""}
-                          key={`Index${index}`}
-                        >
-                          {" "}
-                          {i.name}{" "}
-                        </p>
-                      </div>
-                    ))}
-                  </Slider>
-                </div>
-
-                {type === "Info" && (
-                  <>
-                    <div className="user_select_container">
-                      <div className="user_select">
-                        <div className="img">
-                          {" "}
-                          {selectedUser?.firstName?.slice(0, 1)}{" "}
-                        </div>
-                        <div className="content">
-                          <p className="heading">
-                            {" "}
-                            {selectedUser?.firstName +
-                              " " +
-                              selectedUser?.lastName}{" "}
-                          </p>
-                          <p className="faded"> +{selectedUser?.phone} </p>
-                          <p className="faded"> {selectedUser?.email} </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="service_selector_container">
-                      {selectedService?.map((i, index) => (
-                        <div
-                          className="service_selector"
-                          key={`service${index}`}
-                        >
-                          <div>
-                            <p className="title"> {i.name} </p>
-                            <p className="faded"> 2h </p>
-                          </div>
-                          <p className="price"> ${i.price} </p>
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                )}
-
-                {type === "Notes" && (
-                  <>
-                    <div className="info_tab">
-                      <p className="title">Appointment notes</p>
-                      <textarea />
-                      <p className="note">visible only to your team members</p>
-                    </div>
-                  </>
-                )}
-
-                {type === "Payments" && (
-                  <div className="payment_class">
-                    <div className="toggle_button_cont">
-                      <Form.Check
-                        type="switch"
-                        checked={isChecked}
-                        onChange={handleSwitchChange}
-                      />
-                      <p>Confirm appointment with card</p>
-                    </div>
-                    {isChecked && (
-                      <p className="faded">
-                        Once appointment is saved client will recieve a
-                        notification requiring them to confirm appointment with
-                        card and accept your poilcy of{" "}
-                        <strong style={{ color: "#000" }}>100% free</strong> for
-                        not showing up and{" "}
-                        <strong style={{ color: "#000" }}> 50% free</strong> for
-                        late cancellation under{" "}
-                        <strong style={{ color: "#000" }}>48 hours </strong>{" "}
-                        notice{" "}
-                      </p>
-                    )}
+            <div className="selector">
+              <Slider {...settings}>
+                {all?.map((i, index) => (
+                  <div>
+                    <p
+                      onClick={() => setType(i.name)}
+                      className={i.name === type ? "active" : ""}
+                      key={`Index${index}`}
+                    >
+                      {" "}
+                      {i.name}{" "}
+                    </p>
                   </div>
-                )}
-              </div>
-              {/* <div className="last_button">
-                <div className="text">
-                  <p>Total</p>
-                  <p>From $30 (30 min) </p>
+                ))}
+              </Slider>
+            </div>
+
+            {type === "Info" && (
+              <>
+                <div className="user_select_container">
+                  <div className="user_select">
+                    <div className="img">
+                      {" "}
+                      {selectedUser?.firstName?.slice(0, 1)}{" "}
+                    </div>
+                    <div className="content">
+                      <p className="heading">
+                        {" "}
+                        {selectedUser?.firstName +
+                          " " +
+                          selectedUser?.lastName}{" "}
+                      </p>
+                      <p className="faded"> +{selectedUser?.phone} </p>
+                      <p className="faded"> {selectedUser?.email} </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="btn_container">
-                  <button className="checkout">Checkout</button>
-                  <button className="save">Save</button>
+                <div className="service_selector_container">
+                  {selectedService?.map((i, index) => (
+                    <div className="service_selector" key={`service${index}`}>
+                      <div>
+                        <p className="title"> {i.name} </p>
+                        <p className="faded"> 2h </p>
+                      </div>
+                      <p className="price"> ${i.price} </p>
+                    </div>
+                  ))}
                 </div>
-              </div> */}
-            </div>
+              </>
+            )}
+
+            {type === "Notes" && (
+              <>
+                <div className="info_tab">
+                  <p className="title">Appointment notes</p>
+                  <textarea />
+                  <p className="note">visible only to your team members</p>
+                </div>
+              </>
+            )}
+
+            {type === "Payments" && <div className="payment_class">
+
+              <div className="toggle_button_cont">
+
+
+              </div>
+            </div>}
           </>
         ) : (
           ""

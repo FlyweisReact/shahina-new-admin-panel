@@ -1576,11 +1576,6 @@ td {
   font-weight: 600;
 }
 
-@media  (max-width : 768px) {
-  .Appointment_Canvas .last_button .btn_container button{
-    font-size: 12px !important;
-  }
-}
 .Appointment_Canvas .last_button .btn_container .save {
   width: 50%;
   border: 1px solid #000;

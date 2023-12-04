@@ -1489,7 +1489,7 @@ td {
   padding: 20px;
 }
 
-.Appointment_Canvas .info_tab p.title {
+.Appointment_Canvas .info_tab p.title{
   font-size: 25px;
   font-weight: 600;
 }
@@ -1500,101 +1500,12 @@ td {
   outline: none;
   padding: 20px;
   border-radius: 10px;
-  height: 100px;
+  height: 200px;
   font-size: 16px;
   font-weight: 600;
 }
 
-.Appointment_Canvas .info_tab .note {
+.Appointment_Canvas .info_tab .note{
   font-size: 14px;
-  color: #726f75;
-}
-
-.Appointment_Canvas .payment_class {
-  padding: 20px;
-}
-.Appointment_Canvas .payment_class .toggle_button_cont {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.Appointment_Canvas .payment_class .toggle_button_cont p {
-  margin: 0;
-  font-weight: 600;
-  font-size: 18px;
-}
-.Appointment_Canvas .payment_class .toggle_button_cont .form-check-input {
-  width: 40px !important;
-  height: 20px !important;
-}
-.Appointment_Canvas
-  .payment_class
-  .toggle_button_cont
-  .form-check-input:checked {
-  background-color: #6950f5 !important;
-  border-color: #6950f5 !important;
-}
-
-.Appointment_Canvas .payment_class .faded {
-  font-size: 16px;
-  margin-top: 20px;
-  color: #726f75;
-}
-
-.Appointment_Canvas .payment_class .toggle_button_cont .form-check-input:focus {
-  border-color: #6950f5 !important;
-  box-shadow: none;
-}
-
-.Appointment_Canvas .last_button {
-  border-top: 1px solid #d4d7dc;
-  padding: 20px;
-}
-
-.Appointment_Canvas .last_button .text {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-.Appointment_Canvas .last_button .text p {
-  font-weight: 600;
-  font-size: 16px;
-}
-.Appointment_Canvas .last_button .btn_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-.Appointment_Canvas .last_button .btn_container .checkout {
-  width: 50%;
-  border: 1px solid #d4d7dc;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-@media  (max-width : 768px) {
-  .Appointment_Canvas .last_button .btn_container button{
-    font-size: 12px !important;
-  }
-}
-.Appointment_Canvas .last_button .btn_container .save {
-  width: 50%;
-  border: 1px solid #000;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  background-color: #000;
-  color: #fff;
-}
-
-.Appointment_Canvas .select_container {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  height: 100%;
+  color: #;
 }

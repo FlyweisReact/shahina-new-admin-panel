@@ -46,15 +46,15 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     {
       name: "Notes",
     },
-    // {
-    //   name: "Payments",
-    // },
-    // {
-    //   name: "Forms",
-    // },
-    // {
-    //   name: "Activity",
-    // },
+    {
+      name: "Payments",
+    },
+    {
+      name: "Forms",
+    },
+    {
+      name: "Activity",
+    },
   ];
 
   const fetchUsers = async () => {
@@ -149,7 +149,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
 
   useEffect(() => {
     if (show) {
-      setStep(1);
+      setStep(3);
     }
   }, [show]);
 
@@ -351,7 +351,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
                   </div>
                 )}
               </div>
-              {/* <div className="last_button">
+              <div className="last_button">
                 <div className="text">
                   <p>Total</p>
                   <p>From $30 (30 min) </p>
@@ -361,7 +361,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
                   <button className="checkout">Checkout</button>
                   <button className="save">Save</button>
                 </div>
-              </div> */}
+              </div>
             </div>
           </>
         ) : (

@@ -149,7 +149,7 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
 
   useEffect(() => {
     if (show) {
-      setStep(1);
+      setStep(3);
     }
   }, [show]);
 
