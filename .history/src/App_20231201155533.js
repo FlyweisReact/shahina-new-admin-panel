@@ -66,7 +66,6 @@ import ReturnPolicy from "./E-CommerceAdmin/pages/PrivacyPolicy/ReturnPolicy";
 import Chat from "./E-CommerceAdmin/pages/Chat/Chat";
 import NewCal from "./E-CommerceAdmin/pages/Scheduler/NewCal";
 import Overview from "./E-CommerceAdmin/pages/Scheduler/NewCal2";
-import MembershipTerms from "./E-CommerceAdmin/pages/Subscription/MembershipTerms";
 
 function App() {
   return (
@@ -149,8 +148,6 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/newCal" element={<NewCal />} />
         <Route path="/newCal2" element={<Overview />} />
-
-        <Route path="/member_terms" element={<MembershipTerms />} />
       </Routes>
     </>
   );

@@ -6,7 +6,7 @@ import { Table, Modal, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const SkinType = () => {
+const MembershipTerms = () => {
   const [data, setData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [id, setId] = useState(null);
@@ -22,7 +22,7 @@ const SkinType = () => {
   const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.React_App_Baseurl}api/v1/admin/SkinType/allSkinType`
+        `${process.env.React_App_Baseurl}api/v1/static/getMembershipTerm`
       );
       setData(data?.data);
     } catch (e) {
@@ -142,7 +142,7 @@ const SkinType = () => {
               className="tracking-widest text-slate-900 font-semibold uppercase"
               style={{ fontSize: "1.5rem" }}
             >
-              All Skin Condition's ({data?.length})
+              Subscription Terms
             </span>
             <button
               className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
@@ -156,49 +156,26 @@ const SkinType = () => {
           </div>
 
           {data?.length === 0 || !data ? (
-            <Alert>Banner Not Found</Alert>
+            <Alert> Not Found</Alert>
           ) : (
             <>
               <div className="overFlowCont">
                 <Table>
                   <thead>
                     <tr>
-                      <th>No.</th>
-                      <th>Image</th>
-                      <th>Title</th>
+                      <th>Content.</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {data?.map((i, index) => (
-                      <tr key={index}>
-                        <td>#{index + 1} </td>
-                        <td>
-                          <img
-                            src={i.image}
-                            alt=""
-                            style={{ maxWidth: "100px" }}
-                          />
-                        </td>
-                        <td>{i.name} </td>
-                        <td>
-                          <span className="flexCont">
-                            <i
-                              className="fa-solid fa-trash"
-                              onClick={() => handleDelete(i._id)}
-                            />
-                            <i
-                              className="fa-solid fa-pen-to-square"
-                              onClick={() => {
-                                setId(i._id);
-                                setEdit(true);
-                                setModalShow(true);
-                              }}
-                            ></i>
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
+                    <tr>
+                      <td>{data?.terms} </td>
+                      <td>
+                        <span className="flexCont">
+                          <i className="fa-solid fa-trash" />
+                        </span>
+                      </td>
+                    </tr>
                   </tbody>
                 </Table>
               </div>
@@ -210,4 +187,4 @@ const SkinType = () => {
   );
 };
 
-export default HOC(SkinType);
+export default MembershipTerms;

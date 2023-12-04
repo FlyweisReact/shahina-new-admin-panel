@@ -6,7 +6,7 @@ import { Table, Modal, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const SkinType = () => {
+const MembershipTerms = () => {
   const [data, setData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [id, setId] = useState(null);
@@ -22,7 +22,7 @@ const SkinType = () => {
   const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.React_App_Baseurl}api/v1/admin/SkinType/allSkinType`
+        `${process.env.React_App_Baseurl}api/v1/static/getMembershipTerm`
       );
       setData(data?.data);
     } catch (e) {
@@ -142,7 +142,7 @@ const SkinType = () => {
               className="tracking-widest text-slate-900 font-semibold uppercase"
               style={{ fontSize: "1.5rem" }}
             >
-              All Skin Condition's ({data?.length})
+              Subscription Terms
             </span>
             <button
               className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
@@ -210,4 +210,4 @@ const SkinType = () => {
   );
 };
 
-export default HOC(SkinType);
+export default MembershipTerms;

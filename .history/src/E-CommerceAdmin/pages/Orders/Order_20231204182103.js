@@ -57,7 +57,7 @@ const Order = () => {
 
   const update_status = async (id) => {
     try {
-      const { res } = await axios.put(
+      const { res } = await axios.post(
         `${process.env.React_App_Baseurl}api/v1/admin/updateServiceStatus/${id}`,
         {},
         Auth

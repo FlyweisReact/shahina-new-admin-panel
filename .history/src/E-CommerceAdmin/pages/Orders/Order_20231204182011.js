@@ -10,6 +10,7 @@ import HOC from "../../layout/HOC";
 const Order = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
+  const [modalshow, setModalShow] = useState(false);
   const [search, setSearch] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
@@ -55,20 +56,26 @@ const Order = () => {
     window.scrollTo(0, 0);
   }, [search, FinalFromDate, FinalToDate, page, limit]);
 
-  const update_status = async (id) => {
+  const update_status = async (e, id) => {
+    e.preventDefault();
     try {
-      const { res } = await axios.put(
+      const { res } = await axios.post(
         `${process.env.React_App_Baseurl}api/v1/admin/updateServiceStatus/${id}`,
         {},
         Auth
       );
       toast.success("Submitted");
+      props.onHide();
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <>
+      <MyVerticallyCenteredModal
+        show={modalshow}
+        onHide={() => setModalShow(false)}
+      />
       <section>
         <section className="sectionCont">
           <p className="headP">Dashboard / Order</p>

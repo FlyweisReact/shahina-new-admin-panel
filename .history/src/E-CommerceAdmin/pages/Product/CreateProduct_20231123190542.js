@@ -429,7 +429,6 @@ const CreateProduct = () => {
                 <Form.Control
                   type="number"
                   min={1}
-                  step={0.01}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </Form.Group>
@@ -461,7 +460,6 @@ const CreateProduct = () => {
                   min={0}
                   value={multiplePrice}
                   placeholder="Price"
-                  step={0.01}
                   onChange={(e) => setMultiplePrice(e.target.value)}
                   className="mb-3"
                 />

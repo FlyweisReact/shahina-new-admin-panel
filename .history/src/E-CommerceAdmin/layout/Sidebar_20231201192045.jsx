@@ -237,11 +237,6 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/newCal",
       name: "New Added ",
     },
-    {
-      icon: <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>,
-      link: "/member_terms",
-      name: "Membership Terms  ",
-    },
   ];
 
   const logOut = () => {

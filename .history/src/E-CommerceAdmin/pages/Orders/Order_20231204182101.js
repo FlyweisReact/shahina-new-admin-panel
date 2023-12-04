@@ -55,9 +55,10 @@ const Order = () => {
     window.scrollTo(0, 0);
   }, [search, FinalFromDate, FinalToDate, page, limit]);
 
-  const update_status = async (id) => {
+  const update_status = async (e) => {
+
     try {
-      const { res } = await axios.put(
+      const { res } = await axios.post(
         `${process.env.React_App_Baseurl}api/v1/admin/updateServiceStatus/${id}`,
         {},
         Auth

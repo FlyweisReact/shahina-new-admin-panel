@@ -461,7 +461,6 @@ const CreateProduct = () => {
                   min={0}
                   value={multiplePrice}
                   placeholder="Price"
-                  step={0.01}
                   onChange={(e) => setMultiplePrice(e.target.value)}
                   className="mb-3"
                 />

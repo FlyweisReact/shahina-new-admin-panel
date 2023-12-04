@@ -6,7 +6,7 @@ import { Table, Modal, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const SkinType = () => {
+const MembershipTerms = () => {
   const [data, setData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [id, setId] = useState(null);
@@ -210,4 +210,4 @@ const SkinType = () => {
   );
 };
 
-export default HOC(SkinType);
+export default MembershipTerms;

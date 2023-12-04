@@ -2,14 +2,17 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Alert, Badge, Table } from "react-bootstrap";
+import { Alert, Badge, Button, Table, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Baseurl } from "../../../Baseurl";
 import HOC from "../../layout/HOC";
 
 const Order = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
+  const [modalshow, setModalShow] = useState(false);
+  const [id, setId] = useState("");
   const [search, setSearch] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
@@ -55,20 +58,28 @@ const Order = () => {
     window.scrollTo(0, 0);
   }, [search, FinalFromDate, FinalToDate, page, limit]);
 
-  const update_status = async (id) => {
+  // Create Shipment
+
+  const postHandler = async (e) => {
+    e.preventDefault();
     try {
-      const { res } = await axios.put(
+      const { res } = await axios.post(
         `${process.env.React_App_Baseurl}api/v1/admin/updateServiceStatus/${id}`,
-        {},
+        payload,
         Auth
       );
       toast.success("Submitted");
+      props.onHide();
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <>
+      <MyVerticallyCenteredModal
+        show={modalshow}
+        onHide={() => setModalShow(false)}
+      />
       <section>
         <section className="sectionCont">
           <p className="headP">Dashboard / Order</p>
@@ -174,7 +185,7 @@ const Order = () => {
                             <span>
                               <i
                                 className="fa-solid fa-pen-to-square"
-                                onClick={() => update_status(i.id)}
+                                onClick={() => setModalShow(true)}
                               />
                             </span>
                             <span>
