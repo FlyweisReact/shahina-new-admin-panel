@@ -49,12 +49,12 @@ export const AppointmentCanvas = ({ show, handleClose, startTime }) => {
     {
       name: "Payments",
     },
-    // {
-    //   name: "Forms",
-    // },
-    // {
-    //   name: "Activity",
-    // },
+    {
+      name: "Forms",
+    },
+    {
+      name: "Activity",
+    },
   ];
 
   const fetchUsers = async () => {
