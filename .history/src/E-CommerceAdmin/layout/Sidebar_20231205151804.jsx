@@ -239,8 +239,8 @@ const Sidebar = ({ hamb, setHamb }) => {
     },
     {
       icon: <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>,
-      link: "/another",
-      name: "Another Section ",
+      link: "/newCal",
+      name: "New Added ",
     },
     {
       icon: <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>,
