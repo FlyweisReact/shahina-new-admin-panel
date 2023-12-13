@@ -14,6 +14,7 @@ const AppointmentDetails = ({
   setIsBooked,
 }) => {
   const [type, setType] = useState("Info");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [userOpen, setUserOpen] = useState(false);
   const userClose = () => setUserOpen(false);
   const [edit, setEdit] = useState(false);
@@ -29,6 +30,15 @@ const AppointmentDetails = ({
     autoplay: false,
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 786);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobile]);
 
   const all = [
     {
