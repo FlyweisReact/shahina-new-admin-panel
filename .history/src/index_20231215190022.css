@@ -2562,26 +2562,12 @@ span {
   font-weight: 600;
 }
 
-.cancel_appointment .checkbox {
+.cancel_appointment .checkbox{
   display: flex;
   gap: 20px;
   align-items: flex-start;
 }
 .cancel_appointment .checkbox input {
-  width: 20px;
-  height: 20px;
-}
-.cancel_appointment .checkbox div {
-  margin: 0;
-}
-.cancel_appointment .checkbox div p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-}
-.cancel_appointment .checkbox div span {
-  margin: 0;
-  font-size: 12px;
-  color: #726f75;
-  font-weight: 600;
+  width: 40px;
+  height: 40px;
 }

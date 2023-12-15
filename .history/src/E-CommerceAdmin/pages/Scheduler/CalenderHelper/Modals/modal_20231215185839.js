@@ -140,6 +140,7 @@ export const BookedCanvas = ({
   setIsReschedule,
 }) => {
   const [type, setType] = useState("Info");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [userOpen, setUserOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [open_notes_modal, set_open_notes_modal] = useState(false);
@@ -165,10 +166,20 @@ export const BookedCanvas = ({
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: isMobile ? 1 : 4,
     slidesToScroll: 1,
     autoplay: false,
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 786);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobile]);
 
   const all = [
     {
@@ -293,12 +304,6 @@ export const BookedCanvas = ({
     setNotesVisible(false);
     handleClose();
   };
-
-  useEffect(() => {
-    if (show) {
-      setType("Info");
-    }
-  }, [show]);
   return (
     <>
       <ServiceCanvas
@@ -673,14 +678,8 @@ export const CancelCanvas = ({ show, handleClose }) => {
             </div>
 
             <div className="checkbox">
-              <input type="checkbox" />
-              <div>
-                <p>Send Caitin a cancellation notification</p>
-                <span>
-                  Send a message informing Catlin their appointment has been
-                  updated
-                </span>
-              </div>
+            <input type='che'
+
             </div>
             <button>Cancel appointment</button>
           </form>

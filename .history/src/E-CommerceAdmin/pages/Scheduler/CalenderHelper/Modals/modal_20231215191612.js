@@ -140,6 +140,7 @@ export const BookedCanvas = ({
   setIsReschedule,
 }) => {
   const [type, setType] = useState("Info");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [userOpen, setUserOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [open_notes_modal, set_open_notes_modal] = useState(false);
@@ -165,10 +166,12 @@ export const BookedCanvas = ({
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow:  4,
     slidesToScroll: 1,
     autoplay: false,
   };
+
+
 
   const all = [
     {
@@ -293,12 +296,6 @@ export const BookedCanvas = ({
     setNotesVisible(false);
     handleClose();
   };
-
-  useEffect(() => {
-    if (show) {
-      setType("Info");
-    }
-  }, [show]);
   return (
     <>
       <ServiceCanvas

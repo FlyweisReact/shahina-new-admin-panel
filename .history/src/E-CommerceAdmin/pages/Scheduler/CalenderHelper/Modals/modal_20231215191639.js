@@ -298,7 +298,7 @@ export const BookedCanvas = ({
     if (show) {
       setType("Info");
     }
-  }, [show]);
+  }, []);
   return (
     <>
       <ServiceCanvas

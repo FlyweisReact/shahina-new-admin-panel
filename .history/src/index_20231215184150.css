@@ -2339,33 +2339,13 @@ td {
   align-items: center;
   margin-bottom: 10px;
   gap: 10px;
-  border: 1px solid #d4d7dc;
-  max-width: 700px;
-  margin: auto;
-  /* padding: 10px; */
-  border-radius: 50px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.date_selector button.next {
-  border-right: 1px solid #d4d7dc;
-  padding: 10px;
-  color: #341c96;
-  font-weight: 700;
-  font-size: 12px;
-}
-.date_selector button.prev {
-  border-left: 1px solid #d4d7dc;
-  padding: 10px;
-  color: #341c96;
-  font-weight: 700;
-  font-size: 12px;
 }
 .date_selector input {
   outline: none;
-  font-size: 12px;
+  border-bottom: 1px solid #000;
+  font-size: 18px;
   font-weight: 700;
+  width: ;
 }
 .date_selector span {
   font-size: 12px;
@@ -2526,10 +2506,12 @@ span {
     font-size: 16px;
   }
   .calender_notification .container .content p.faded {
+
     font-size: 12px;
   }
   .calender_notification .container .content p {
     font-size: 12px;
+
   }
 }
 .calender_filter {
@@ -2553,35 +2535,4 @@ span {
 .calender_filter button.active {
   background-color: #6751d9;
   color: #fff !important;
-}
-
-.cancel_appointment .tagLine {
-  font-size: 14px;
-
-  margin: 0;
-  font-weight: 600;
-}
-
-.cancel_appointment .checkbox {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-.cancel_appointment .checkbox input {
-  width: 20px;
-  height: 20px;
-}
-.cancel_appointment .checkbox div {
-  margin: 0;
-}
-.cancel_appointment .checkbox div p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-}
-.cancel_appointment .checkbox div span {
-  margin: 0;
-  font-size: 12px;
-  color: #726f75;
-  font-weight: 600;
 }

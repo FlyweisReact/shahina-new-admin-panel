@@ -2348,17 +2348,17 @@ td {
   padding-left: 10px;
   padding-right: 10px;
 }
-.date_selector button.next {
+.date_selector  button.next{
   border-right: 1px solid #d4d7dc;
   padding: 10px;
-  color: #341c96;
+  color: #341C96;
   font-weight: 700;
   font-size: 12px;
 }
-.date_selector button.prev {
+.date_selector  button.prev{
   border-left: 1px solid #d4d7dc;
   padding: 10px;
-  color: #341c96;
+  color: #341C96;
   font-weight: 700;
   font-size: 12px;
 }
@@ -2553,35 +2553,4 @@ span {
 .calender_filter button.active {
   background-color: #6751d9;
   color: #fff !important;
-}
-
-.cancel_appointment .tagLine {
-  font-size: 14px;
-
-  margin: 0;
-  font-weight: 600;
-}
-
-.cancel_appointment .checkbox {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-.cancel_appointment .checkbox input {
-  width: 20px;
-  height: 20px;
-}
-.cancel_appointment .checkbox div {
-  margin: 0;
-}
-.cancel_appointment .checkbox div p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-}
-.cancel_appointment .checkbox div span {
-  margin: 0;
-  font-size: 12px;
-  color: #726f75;
-  font-weight: 600;
 }

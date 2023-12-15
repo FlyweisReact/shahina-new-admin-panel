@@ -213,32 +213,18 @@ const Another = () => {
     const value =
       Day?.slice(0, 3) + " " + d + " " + month?.slice(0, 3) + " , " + year;
 
-    const handlePrevClick = () => {
-      const newSelectedDate = new Date(selectedDate);
-      newSelectedDate.setDate(selectedDate.getDate() - 1);
-      setSelectedDate(newSelectedDate);
-    };
-    const handleNextClick = () => {
-      const newSelectedDate = new Date(selectedDate);
-      newSelectedDate.setDate(selectedDate.getDate() + 1);
-      setSelectedDate(newSelectedDate);
-    };
-
     return (
       <div className="date_selector">
-        <button className="next" onClick={handlePrevClick}>
-          Prev
-        </button>
+      <button className="next">Prev</button>
         <input
           type="date"
           id="datePicker"
           value={moment(selectedDate).format("YYYY-MM-DD")}
           onChange={handleDateChange}
         />
-        <span> {value} </span>
-        <button className="prev" onClick={handleNextClick}>
-          Next
-        </button>
+        ( <span> {value} </span>)
+        <button className="prev">Next</button>
+      
       </div>
     );
   };
@@ -246,7 +232,6 @@ const Another = () => {
   const onClose = () => {};
 
   const handle_Close_Booked = () => set_Open_Booked_Canvas(false);
-  const closeReschdule = () => setOpenReschedule(false);
 
   const getSlotStyle = (date) => {
     const slotTime = date.getHours() * 60 + date.getMinutes();
@@ -261,6 +246,7 @@ const Another = () => {
     }
     return {};
   };
+
 
   return (
     <>
@@ -284,7 +270,7 @@ const Another = () => {
       />
       <RescheduleCanvas
         show={openReschedule}
-        handleClose={closeReschdule}
+        handleClose={handle_Close_Booked}
       />
 
       <BookedCanvas

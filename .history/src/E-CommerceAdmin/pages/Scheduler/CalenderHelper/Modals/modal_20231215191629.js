@@ -165,10 +165,12 @@ export const BookedCanvas = ({
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow:  4,
     slidesToScroll: 1,
     autoplay: false,
   };
+
+
 
   const all = [
     {
@@ -295,10 +297,8 @@ export const BookedCanvas = ({
   };
 
   useEffect(() => {
-    if (show) {
-      setType("Info");
-    }
-  }, [show]);
+    if()
+  })
   return (
     <>
       <ServiceCanvas

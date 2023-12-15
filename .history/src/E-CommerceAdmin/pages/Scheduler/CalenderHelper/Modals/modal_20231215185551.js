@@ -140,6 +140,7 @@ export const BookedCanvas = ({
   setIsReschedule,
 }) => {
   const [type, setType] = useState("Info");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [userOpen, setUserOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [open_notes_modal, set_open_notes_modal] = useState(false);
@@ -165,10 +166,20 @@ export const BookedCanvas = ({
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: isMobile ? 1 : 4,
     slidesToScroll: 1,
     autoplay: false,
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 786);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobile]);
 
   const all = [
     {
@@ -293,12 +304,6 @@ export const BookedCanvas = ({
     setNotesVisible(false);
     handleClose();
   };
-
-  useEffect(() => {
-    if (show) {
-      setType("Info");
-    }
-  }, [show]);
   return (
     <>
       <ServiceCanvas
@@ -655,34 +660,26 @@ export const CancelCanvas = ({ show, handleClose }) => {
     >
       <Offcanvas.Header closeButton>
         <Offcanvas.Title style={{ fontWeight: "700" }}>
-          Cancel appointment
+          Appointment details
         </Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <div className="booked_appointment_modal cancel_appointment ">
-          <p className="tagLine">
-            This appointment was boooked by Shahina at 3:05am , 22 Octobe
-          </p>
+        <div className="booked_appointment_modal">
           <form>
             <div>
-              <p>Cancellation reason</p>
-              <select>
-                <option></option>
-                <option>No reason provided</option>
-              </select>
+              <p>Date</p>
+              <input type="date" />
             </div>
 
-            <div className="checkbox">
-              <input type="checkbox" />
-              <div>
-                <p>Send Caitin a cancellation notification</p>
-                <span>
-                  Send a message informing Catlin their appointment has been
-                  updated
-                </span>
-              </div>
+            <div>
+              <p>Frequency</p>
+              <select>
+                <option></option>
+                <option>Doesn't repeat</option>
+                <option>repeat </option>
+              </select>
             </div>
-            <button>Cancel appointment</button>
+            <button>Apply Changes</button>
           </form>
         </div>
       </Offcanvas.Body>

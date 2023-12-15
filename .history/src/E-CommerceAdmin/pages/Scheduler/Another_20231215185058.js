@@ -235,7 +235,7 @@ const Another = () => {
           value={moment(selectedDate).format("YYYY-MM-DD")}
           onChange={handleDateChange}
         />
-        <span> {value} </span>
+        ( <span> {value} </span>
         <button className="prev" onClick={handleNextClick}>
           Next
         </button>
@@ -246,7 +246,6 @@ const Another = () => {
   const onClose = () => {};
 
   const handle_Close_Booked = () => set_Open_Booked_Canvas(false);
-  const closeReschdule = () => setOpenReschedule(false);
 
   const getSlotStyle = (date) => {
     const slotTime = date.getHours() * 60 + date.getMinutes();
@@ -284,7 +283,7 @@ const Another = () => {
       />
       <RescheduleCanvas
         show={openReschedule}
-        handleClose={closeReschdule}
+        handleClose={handle_Close_Booked}
       />
 
       <BookedCanvas

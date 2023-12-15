@@ -2581,7 +2581,6 @@ span {
 }
 .cancel_appointment .checkbox div span {
   margin: 0;
-  font-size: 12px;
-  color: #726f75;
+  font-size: 14px;
   font-weight: 600;
 }

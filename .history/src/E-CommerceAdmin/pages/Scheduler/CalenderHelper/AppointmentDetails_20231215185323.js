@@ -1,5 +1,5 @@
 /** @format */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Offcanvas  } from "react-bootstrap";
 import Slider from "react-slick";
 import UserDetailCanvas from "./UserDetailCanvas";
@@ -72,7 +72,7 @@ const AppointmentDetails = ({
 
           <div className="date_container">
             <p>29 Dec 2023</p>
-            <button onClick={() => setOpenDate(true)}>Edit</button>
+            <button onClick={() => setService_Edit_Visible(true)}>Edit</button>
           </div>
 
           <div className="booked_service">
@@ -164,12 +164,6 @@ const AppointmentDetails = ({
   function closeService() {
     setOpenService(false);
   }
-
-  useEffect(() => {
-    if(show){
-      setType('Info')
-    }
-  },[show])
   return (
     <>
       <ServiceCanvas

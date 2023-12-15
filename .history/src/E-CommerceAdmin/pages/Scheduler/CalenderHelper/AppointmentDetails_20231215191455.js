@@ -1,5 +1,5 @@
 /** @format */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Offcanvas  } from "react-bootstrap";
 import Slider from "react-slick";
 import UserDetailCanvas from "./UserDetailCanvas";

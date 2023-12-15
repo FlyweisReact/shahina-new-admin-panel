@@ -284,7 +284,7 @@ const Another = () => {
       />
       <RescheduleCanvas
         show={openReschedule}
-        handleClose={closeReschdule}
+        handleClose={handle_Close_Booked}
       />
 
       <BookedCanvas
