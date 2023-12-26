@@ -387,8 +387,8 @@ const Another = () => {
             defaultView="day"
             date={selectedDate}
             slotPropGetter={getSlotStyle}
+            // step={15}
             step={15}
-            // step={20}
           />
           <div className="motion_Handler">
             <motion.div
