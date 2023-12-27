@@ -151,7 +151,7 @@ const Editservice = () => {
       );
       toast.success(res.data.message);
       setSubmitLoading(false);
-      getDetail();
+      getDetail()
     } catch (e) {
       const msg = e.response.data.message;
       toast.error(msg);
@@ -185,19 +185,7 @@ const Editservice = () => {
       setName(data?.name);
       setTotalTime(data?.totalTime);
       setSessionArr(data?.session?.length > 0 ? data?.session : []);
-      setBenifitArr(data?.benfit ? data?.benfit : []);
-      if (data?.sizePrice) {
-        for (const item of data?.sizePrice) {
-          setMultipleArr((prev) => [
-            ...prev,
-            {
-              sizes: item.size,
-              multiplePrice: item.price,
-              memberPrice: item.mPrice,
-            },
-          ]);
-        }
-      }
+      setBenifitArr(data?.benefit ? )
     }
   }, [data]);
 

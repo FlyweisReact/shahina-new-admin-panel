@@ -16,12 +16,8 @@ import img1 from "../../../../Images/list.png";
 import info from "./Constant/constant.json";
 import { editBookedNoted, getBookingDetail } from "../../../../Respo/Api";
 import PdfViewer from "./Pdf/PdfViewer";
-import {
-  closeModal,
-  openModal,
-  selectModalById,
-} from "../../../../Store/Slices/modalSlices";
-import { useDispatch, useSelector } from "react-redux";
+import { selectModalById } from "../../../../Store/Slices/modalSlices";
+import { useSelector } from "react-redux";
 
 const AppointmentDetails = ({
   show,
@@ -44,7 +40,6 @@ const AppointmentDetails = ({
   const [serviceId, setServiceId] = useState("");
   const [notes, setNotes] = useState("");
   const [isNotes, setIsNotes] = useState(false);
-  const dispatch = useDispatch();
 
   const { modalData } = useSelector(selectModalById("appointmentDetails"));
 
@@ -326,47 +321,14 @@ const AppointmentDetails = ({
 
   const badgeName = modalData?.isShow ? "No-Show" : "New Client";
 
-  // ----
-  function useShow(id) {
-    const { showModal } = useSelector(selectModalById(id));
-    return showModal;
-  }
-
-  const openModalById = (modalId, data) => {
-    dispatch(openModal({ modalId, showModal: true, modalData: data }));
-  };
-
-  const closeModalById = (modalId) => {
-    dispatch(closeModal({ modalId }));
-  };
-
-  const handleShow = (modalId, data) => {
-    const start = data?.start?.toString();
-    const end = data?.end?.toString();
-    const realData = {
-      start,
-      end,
-      id: data?.id,
-      isShow: data?.isShow,
-      fullName: data?.fullName,
-    };
-    openModalById(modalId, realData);
-  };
-
-  const closeModals = (modalId) => {
-    closeModalById(modalId);
-  };
-
   return (
     <>
-      {/* To add service in cart */}
+    {/*  */}
       <ServiceCanvas
         show={openService}
         handleClose={closeService}
         serviceHandler={serviceHandler}
       />
-
-      {/* To open options in checkout ellipse */}
       <DetailDialog
         show={isNotes}
         setShow={setIsNotes}
@@ -376,7 +338,6 @@ const AppointmentDetails = ({
         id={detail?.user?._id}
         orderId={detail?._id}
       />
-
       <SelectDate show={openDate} handleClose={closeDate} />
       <EditService
         show={service_edit_visible}

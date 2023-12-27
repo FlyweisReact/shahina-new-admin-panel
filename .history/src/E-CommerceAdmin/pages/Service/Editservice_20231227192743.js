@@ -191,9 +191,9 @@ const Editservice = () => {
           setMultipleArr((prev) => [
             ...prev,
             {
-              sizes: item.size,
-              multiplePrice: item.price,
-              memberPrice: item.mPrice,
+              sizes,
+              multiplePrice,
+              memberPrice : item.mPrice,
             },
           ]);
         }

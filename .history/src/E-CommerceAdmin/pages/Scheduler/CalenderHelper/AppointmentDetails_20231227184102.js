@@ -16,12 +16,8 @@ import img1 from "../../../../Images/list.png";
 import info from "./Constant/constant.json";
 import { editBookedNoted, getBookingDetail } from "../../../../Respo/Api";
 import PdfViewer from "./Pdf/PdfViewer";
-import {
-  closeModal,
-  openModal,
-  selectModalById,
-} from "../../../../Store/Slices/modalSlices";
-import { useDispatch, useSelector } from "react-redux";
+import { openModal, selectModalById } from "../../../../Store/Slices/modalSlices";
+import { useSelector } from "react-redux";
 
 const AppointmentDetails = ({
   show,
@@ -44,7 +40,6 @@ const AppointmentDetails = ({
   const [serviceId, setServiceId] = useState("");
   const [notes, setNotes] = useState("");
   const [isNotes, setIsNotes] = useState(false);
-  const dispatch = useDispatch();
 
   const { modalData } = useSelector(selectModalById("appointmentDetails"));
 
@@ -353,7 +348,7 @@ const AppointmentDetails = ({
     openModalById(modalId, realData);
   };
 
-  const closeModals = (modalId) => {
+  const handleClose = (modalId) => {
     closeModalById(modalId);
   };
 

@@ -353,7 +353,7 @@ const AppointmentDetails = ({
     openModalById(modalId, realData);
   };
 
-  const closeModals = (modalId) => {
+  const handleClose = (modalId) => {
     closeModalById(modalId);
   };
 

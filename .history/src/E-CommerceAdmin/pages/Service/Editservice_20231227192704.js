@@ -186,16 +186,18 @@ const Editservice = () => {
       setTotalTime(data?.totalTime);
       setSessionArr(data?.session?.length > 0 ? data?.session : []);
       setBenifitArr(data?.benfit ? data?.benfit : []);
-      if (data?.sizePrice) {
+      if(data?.sizePrice) {
         for (const item of data?.sizePrice) {
-          setMultipleArr((prev) => [
-            ...prev,
-            {
-              sizes: item.size,
-              multiplePrice: item.price,
-              memberPrice: item.mPrice,
-            },
-          ]);
+          const serviceName = service?.serviceId?.name;
+          const pdfFileName = serviceToPdfPathMap[serviceName];
+          if (pdfFileName) {
+            const pdfUrl = `https://shahina-new-admin-panel.vercel.app/FormPdf/${pdfFileName}`;
+            pdfUrls.push(pdfUrl);
+            attachments.push({
+              filename: serviceName,
+              content: pdfUrl,
+            });
+          }
         }
       }
     }

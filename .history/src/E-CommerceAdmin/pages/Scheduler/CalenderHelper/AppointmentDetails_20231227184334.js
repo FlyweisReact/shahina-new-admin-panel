@@ -353,7 +353,7 @@ const AppointmentDetails = ({
     openModalById(modalId, realData);
   };
 
-  const closeModals = (modalId) => {
+  const handleClose = (modalId) => {
     closeModalById(modalId);
   };
 
@@ -368,8 +368,10 @@ const AppointmentDetails = ({
 
       {/* To open options in checkout ellipse */}
       <DetailDialog
-        show={isNotes}
-        setShow={setIsNotes}
+        // show={isNotes}
+        // setShow={setIsNotes}
+        show={useShow("DetailDialog")}
+        handleClose={() => handleClose("DetailDialog")}
         selector={selector}
         type={setType}
         Date={detail.date?.slice(0, 10)}

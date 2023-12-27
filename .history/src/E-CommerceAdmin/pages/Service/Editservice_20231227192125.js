@@ -151,7 +151,6 @@ const Editservice = () => {
       );
       toast.success(res.data.message);
       setSubmitLoading(false);
-      getDetail();
     } catch (e) {
       const msg = e.response.data.message;
       toast.error(msg);
@@ -184,20 +183,6 @@ const Editservice = () => {
       setMultipleSize(data?.multipleSize === true ? "true" : "false");
       setName(data?.name);
       setTotalTime(data?.totalTime);
-      setSessionArr(data?.session?.length > 0 ? data?.session : []);
-      setBenifitArr(data?.benfit ? data?.benfit : []);
-      if (data?.sizePrice) {
-        for (const item of data?.sizePrice) {
-          setMultipleArr((prev) => [
-            ...prev,
-            {
-              sizes: item.size,
-              multiplePrice: item.price,
-              memberPrice: item.mPrice,
-            },
-          ]);
-        }
-      }
     }
   }, [data]);
 
@@ -248,6 +233,7 @@ const Editservice = () => {
             <Form.Control
               type="file"
               multiple
+
               onChange={(e) => setImages(e.target.files)}
             />
           </Form.Group>
@@ -274,7 +260,7 @@ const Editservice = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Type</Form.Label>
-            <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
+            <Form.Select value={type onChange={(e) => setType(e.target.value)}>
               <option>Selete Your Prefrence</option>
               <option value="Service"> Service </option>
               <option value="offer"> Offer </option>

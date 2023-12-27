@@ -25,6 +25,7 @@ import {
 const Another = () => {
   const localizer = momentLocalizer(moment);
   const [data, setData] = useState([]);
+  const [additionalProps, setAdditionalProps] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -32,6 +33,7 @@ const Another = () => {
   const [blockData, setBlockedData] = useState([]);
   const [orderId, setOrderId] = useState("");
   const [isBooked, setIsBooked] = useState(false);
+  const [open_booked_canvas, set_Open_Booked_Canvas] = useState(false);
 
   const dispatch = useDispatch();
   const items = useSelector(dates);
@@ -149,6 +151,7 @@ const Another = () => {
   );
 
   const handleSelectSlot = (e) => {
+    setAdditionalProps(e);
     if (isBlocked) {
       handleShow("blockedCanvas", e);
     } else if (isReschedule) {
@@ -266,6 +269,8 @@ const Another = () => {
   };
 
   const onClose = () => {};
+
+  const handle_Close_Booked = () => set_Open_Booked_Canvas(false);
 
   const getSlotStyle = (date) => {
     const slotTime = date.getHours() * 60 + date.getMinutes();

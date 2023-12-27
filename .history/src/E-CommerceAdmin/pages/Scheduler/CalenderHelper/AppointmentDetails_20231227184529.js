@@ -368,8 +368,10 @@ const AppointmentDetails = ({
 
       {/* To open options in checkout ellipse */}
       <DetailDialog
-        show={isNotes}
-        setShow={setIsNotes}
+        // show={isNotes}
+        // setShow={setIsNotes}
+        show={useShow("detailDialog")}
+        handleClose={() => handleClose("DetailDialog")}
         selector={selector}
         type={setType}
         Date={detail.date?.slice(0, 10)}

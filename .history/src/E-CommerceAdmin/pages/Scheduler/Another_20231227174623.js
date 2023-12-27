@@ -25,6 +25,7 @@ import {
 const Another = () => {
   const localizer = momentLocalizer(moment);
   const [data, setData] = useState([]);
+  const [additionalProps, setAdditionalProps] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());

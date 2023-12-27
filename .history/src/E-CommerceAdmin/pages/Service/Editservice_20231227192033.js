@@ -151,7 +151,6 @@ const Editservice = () => {
       );
       toast.success(res.data.message);
       setSubmitLoading(false);
-      getDetail();
     } catch (e) {
       const msg = e.response.data.message;
       toast.error(msg);
@@ -182,22 +181,8 @@ const Editservice = () => {
       setAreaArr(data?.area ? data?.area : []);
       setDescription(data?.description);
       setMultipleSize(data?.multipleSize === true ? "true" : "false");
-      setName(data?.name);
-      setTotalTime(data?.totalTime);
-      setSessionArr(data?.session?.length > 0 ? data?.session : []);
-      setBenifitArr(data?.benfit ? data?.benfit : []);
-      if (data?.sizePrice) {
-        for (const item of data?.sizePrice) {
-          setMultipleArr((prev) => [
-            ...prev,
-            {
-              sizes: item.size,
-              multiplePrice: item.price,
-              memberPrice: item.mPrice,
-            },
-          ]);
-        }
-      }
+      setName(data?.name)
+      setTotalTime(data?.totalTime)
     }
   }, [data]);
 
@@ -222,17 +207,13 @@ const Editservice = () => {
             <Form.Label>Total Time</Form.Label>
             <Form.Control
               type="text"
-              value={totalTime}
               onChange={(e) => setTotalTime(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
-            <Form.Select
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
-            >
+            <Form.Select onChange={(e) => setCategoryId(e.target.value)}>
               <option>Selete Your Prefrence</option>
               {catArr?.map((i, index) => (
                 <option key={index} value={i._id}>
@@ -274,7 +255,7 @@ const Editservice = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Type</Form.Label>
-            <Form.Select value={type} onChange={(e) => setType(e.target.value)}>
+            <Form.Select onChange={(e) => setType(e.target.value)}>
               <option>Selete Your Prefrence</option>
               <option value="Service"> Service </option>
               <option value="offer"> Offer </option>

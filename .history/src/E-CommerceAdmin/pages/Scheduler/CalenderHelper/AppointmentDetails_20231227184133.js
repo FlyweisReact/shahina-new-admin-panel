@@ -17,7 +17,6 @@ import info from "./Constant/constant.json";
 import { editBookedNoted, getBookingDetail } from "../../../../Respo/Api";
 import PdfViewer from "./Pdf/PdfViewer";
 import {
-  closeModal,
   openModal,
   selectModalById,
 } from "../../../../Store/Slices/modalSlices";
@@ -353,7 +352,7 @@ const AppointmentDetails = ({
     openModalById(modalId, realData);
   };
 
-  const closeModals = (modalId) => {
+  const handleClose = (modalId) => {
     closeModalById(modalId);
   };
 

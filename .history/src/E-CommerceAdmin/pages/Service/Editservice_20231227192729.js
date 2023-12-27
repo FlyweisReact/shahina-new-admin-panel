@@ -188,14 +188,11 @@ const Editservice = () => {
       setBenifitArr(data?.benfit ? data?.benfit : []);
       if (data?.sizePrice) {
         for (const item of data?.sizePrice) {
-          setMultipleArr((prev) => [
-            ...prev,
-            {
-              sizes: item.size,
-              multiplePrice: item.price,
-              memberPrice: item.mPrice,
-            },
-          ]);
+          setMultipleArr((prev) => [...prev, {
+    sizes,
+    multiplePrice,
+    memberPrice,
+  };]);
         }
       }
     }

@@ -613,11 +613,11 @@ export const DetailDialog = ({
 
   function NotesSelector() {
     type("Notes");
-    setShow(false);
+    setShow(false)
   }
   function PaymentSelector() {
     type("Payments");
-    setShow(false);
+    setShow(false)
   }
   function cancleOpener() {
     setCancelVisible(true);
@@ -627,7 +627,6 @@ export const DetailDialog = ({
   }
   const showHandler = () => {
     noShow(id, Date);
-    setShow(false);
   };
 
   return (
@@ -653,7 +652,7 @@ export const DetailDialog = ({
             {" "}
             No-show{" "}
           </p>
-          <p style={{ color: "red" }} onClick={() => setShow(false)}>
+          <p style={{ color: "red" }} onClick={() => cancleOpener()}>
             {" "}
             Cancel{" "}
           </p>

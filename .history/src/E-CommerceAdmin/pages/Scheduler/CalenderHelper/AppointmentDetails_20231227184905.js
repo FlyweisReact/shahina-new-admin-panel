@@ -370,6 +370,8 @@ const AppointmentDetails = ({
       <DetailDialog
         show={isNotes}
         setShow={setIsNotes}
+        // show={useShow("detailDialog")}
+        // closeThis={() => closeModals("DetailDialog")}
         selector={selector}
         type={setType}
         Date={detail.date?.slice(0, 10)}

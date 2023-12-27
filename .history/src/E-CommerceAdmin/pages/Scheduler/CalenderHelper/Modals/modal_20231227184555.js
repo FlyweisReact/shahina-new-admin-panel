@@ -602,7 +602,7 @@ export const ServiceCanvas = ({
 
 export const DetailDialog = ({
   show,
-  setShow,
+  handleClose,
   selector,
   type,
   Date,
@@ -613,21 +613,22 @@ export const DetailDialog = ({
 
   function NotesSelector() {
     type("Notes");
-    setShow(false);
+    handleClose();
   }
   function PaymentSelector() {
     type("Payments");
-    setShow(false);
+    handleClose();
   }
   function cancleOpener() {
     setCancelVisible(true);
+    setShow(false);
   }
   function hideCancel() {
     setCancelVisible(false);
   }
   const showHandler = () => {
     noShow(id, Date);
-    setShow(false);
+    handleClose();
   };
 
   return (
@@ -641,7 +642,7 @@ export const DetailDialog = ({
       <Modal
         title="Copy to Clipboard"
         show={show}
-        onHide={() => setShow(false)}
+        onHide={handleClose}
         className="text_Modal"
         style={{ top: "55%" }}
       >
@@ -653,12 +654,12 @@ export const DetailDialog = ({
             {" "}
             No-show{" "}
           </p>
-          <p style={{ color: "red" }} onClick={() => setShow(false)}>
+          <p style={{ color: "red" }} onClick={() => cancleOpener()}>
             {" "}
             Cancel{" "}
           </p>
         </div>
-        <div className="close_btn">
+        <div className="close_btn" onClick={() => setShow(false)}>
           <p>Close</p>
         </div>
       </Modal>
