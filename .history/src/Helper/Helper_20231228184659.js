@@ -21,3 +21,8 @@ export const SendSms = (number) => {
   window.location.href = smsUrl;
 };
 
+
+
+export const scrollToTop = () => {
+  window.sc
+}

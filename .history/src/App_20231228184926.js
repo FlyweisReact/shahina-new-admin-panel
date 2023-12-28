@@ -1,5 +1,6 @@
 /** @format */
-import { Routes, Route } from "react-router-dom";
+
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./E-CommerceAdmin/forms/Login";
@@ -70,8 +71,24 @@ import Calender from "./E-CommerceAdmin/pages/Scheduler/Calender";
 import Another from "./E-CommerceAdmin/pages/Scheduler/Another";
 import CalenderNotification from "./E-CommerceAdmin/pages/Scheduler/Notification/CalenderNotification";
 import { ReactNotifications } from "react-notifications-component";
+import { useEffect } from "react";
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unlisten = navigate((location) => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, [navigate]);
+
   return (
     <>
       <ToastContainer
@@ -85,7 +102,6 @@ function App() {
         pauseOnHover
       />
       <ReactNotifications />
-
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />

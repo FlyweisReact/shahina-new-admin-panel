@@ -21,3 +21,11 @@ export const SendSms = (number) => {
   window.location.href = smsUrl;
 };
 
+export const scrollToTop = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+};

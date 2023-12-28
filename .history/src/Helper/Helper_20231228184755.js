@@ -21,3 +21,4 @@ export const SendSms = (number) => {
   window.location.href = smsUrl;
 };
 
+

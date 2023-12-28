@@ -96,8 +96,6 @@ const MembershipTerms = () => {
     }
   };
 
-  
-
   return (
     <>
       <MyVerticallyCenteredModal

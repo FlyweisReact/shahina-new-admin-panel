@@ -15,9 +15,9 @@ export const Mail = (mail) => {
 export const Call = (number) => {
   window.location.href = `tel:${number}`;
 };
-
 export const SendSms = (number) => {
   const smsUrl = `sms:${number}`;
   window.location.href = smsUrl;
 };
+
 

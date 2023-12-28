@@ -1,4 +1,5 @@
 /** @format */
+
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -70,8 +71,15 @@ import Calender from "./E-CommerceAdmin/pages/Scheduler/Calender";
 import Another from "./E-CommerceAdmin/pages/Scheduler/Another";
 import CalenderNotification from "./E-CommerceAdmin/pages/Scheduler/Notification/CalenderNotification";
 import { ReactNotifications } from "react-notifications-component";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <>
       <ToastContainer

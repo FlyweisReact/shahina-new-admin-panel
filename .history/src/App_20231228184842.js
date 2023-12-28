@@ -1,4 +1,5 @@
 /** @format */
+
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -70,8 +71,23 @@ import Calender from "./E-CommerceAdmin/pages/Scheduler/Calender";
 import Another from "./E-CommerceAdmin/pages/Scheduler/Another";
 import CalenderNotification from "./E-CommerceAdmin/pages/Scheduler/Notification/CalenderNotification";
 import { ReactNotifications } from "react-notifications-component";
+import { useEffect } from "react";
 
 function App() {
+  const history = useHistory();
+
+  useEffect(() => {
+    const unlisten = history.listen(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, [history]);
   return (
     <>
       <ToastContainer
@@ -85,7 +101,6 @@ function App() {
         pauseOnHover
       />
       <ReactNotifications />
-
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />

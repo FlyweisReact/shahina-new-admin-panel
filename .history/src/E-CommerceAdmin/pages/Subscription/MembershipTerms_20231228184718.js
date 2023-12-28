@@ -96,10 +96,9 @@ const MembershipTerms = () => {
     }
   };
 
-  
-
   return (
     <>
+    <scrollToTop
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
