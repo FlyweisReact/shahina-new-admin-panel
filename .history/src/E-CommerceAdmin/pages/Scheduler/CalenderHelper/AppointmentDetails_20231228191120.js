@@ -118,10 +118,10 @@ const AppointmentDetails = ({
         "FaceandBodyContouringCelluliteReductionTreatmentCare.pdf",
       "Laser Skin Resurafacing": "ErbiumYag2940nmLaserSkinResurfacingPRE.pdf",
       "Dermamelan Peel": "DermamelanPeelPre.pdf",
-      "Microneedling": "AQUAGOLD.pdf",
+      "Aquagold Microneedling": "AQUAGOLD.pdf",
     };
 
-    if (detail?.services) {
+    if (detail?.service) {
       for (const service of detail?.services) {
         const serviceName = service?.serviceId?.name;
         const pdfFileName = serviceToPdfPathMap[serviceName];
@@ -136,13 +136,7 @@ const AppointmentDetails = ({
     }
   };
 
-  useEffect(() => {
-    if (show) {
-      sendEmail();
-    }
-  }, [show]);
-
-  // console.log(attachments)
+  sendEmail();
 
   function isAvailable(statement, code) {
     if (statement) {
@@ -215,10 +209,9 @@ const AppointmentDetails = ({
             <p> {date} </p>
           </div>
 
-          <p style={{ fontSize: "25px", fontWeight: "700", marginTop: "10px" }}>
-            Ad-On Service
-          </p>
+          <p style={{fontSize : '25px' , fontW}}>Ad-On Service</p>
           <div className="booked_service d-flex flex-wrap gap-4">
+       
             {detail?.AddOnservicesSchema?.map((i, index) => (
               <div
                 className="service_selector"
@@ -234,9 +227,6 @@ const AppointmentDetails = ({
               </div>
             ))}
           </div>
-          <p style={{ fontSize: "25px", fontWeight: "700", marginTop: "10px" }}>
-            Regular Service
-          </p>
           <div className="booked_service d-flex flex-wrap gap-4">
             {detail?.services?.map((i, index) => (
               <div

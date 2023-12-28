@@ -118,13 +118,14 @@ const AppointmentDetails = ({
         "FaceandBodyContouringCelluliteReductionTreatmentCare.pdf",
       "Laser Skin Resurafacing": "ErbiumYag2940nmLaserSkinResurfacingPRE.pdf",
       "Dermamelan Peel": "DermamelanPeelPre.pdf",
-      "Microneedling": "AQUAGOLD.pdf",
+      "Aquagold Microneedling": "AQUAGOLD.pdf",
     };
 
-    if (detail?.services) {
+    if (detail?.service) {
       for (const service of detail?.services) {
         const serviceName = service?.serviceId?.name;
         const pdfFileName = serviceToPdfPathMap[serviceName];
+        console.log(pdfFileName)
         if (pdfFileName) {
           const pdfUrl = `https://shahina-new-admin-panel.vercel.app/FormPdf/${pdfFileName}`;
           attachments.push({
@@ -136,13 +137,9 @@ const AppointmentDetails = ({
     }
   };
 
-  useEffect(() => {
-    if (show) {
-      sendEmail();
-    }
-  }, [show]);
+  sendEmail();
 
-  // console.log(attachments)
+  console.log(attachments)
 
   function isAvailable(statement, code) {
     if (statement) {

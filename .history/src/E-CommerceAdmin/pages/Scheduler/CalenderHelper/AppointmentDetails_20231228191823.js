@@ -100,6 +100,7 @@ const AppointmentDetails = ({
   // Form Pdf
   const attachments = [];
   const sendEmail = async () => {
+ 
     const serviceToPdfPathMap = {
       "JetPeel Facial": "JetPeelPreandPost.pdf",
       "PRP Hair Loss Treatment": "LaserhairremovalPrepCare.pdf",
@@ -118,7 +119,7 @@ const AppointmentDetails = ({
         "FaceandBodyContouringCelluliteReductionTreatmentCare.pdf",
       "Laser Skin Resurafacing": "ErbiumYag2940nmLaserSkinResurfacingPRE.pdf",
       "Dermamelan Peel": "DermamelanPeelPre.pdf",
-      "Microneedling": "AQUAGOLD.pdf",
+      Microneedling: "AQUAGOLD.pdf",
     };
 
     if (detail?.services) {

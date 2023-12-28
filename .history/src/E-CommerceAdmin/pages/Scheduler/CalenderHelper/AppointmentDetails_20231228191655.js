@@ -100,6 +100,7 @@ const AppointmentDetails = ({
   // Form Pdf
   const attachments = [];
   const sendEmail = async () => {
+    console.log("in")
     const serviceToPdfPathMap = {
       "JetPeel Facial": "JetPeelPreandPost.pdf",
       "PRP Hair Loss Treatment": "LaserhairremovalPrepCare.pdf",
@@ -118,12 +119,15 @@ const AppointmentDetails = ({
         "FaceandBodyContouringCelluliteReductionTreatmentCare.pdf",
       "Laser Skin Resurafacing": "ErbiumYag2940nmLaserSkinResurfacingPRE.pdf",
       "Dermamelan Peel": "DermamelanPeelPre.pdf",
-      "Microneedling": "AQUAGOLD.pdf",
+      Microneedling: "AQUAGOLD.pdf",
     };
 
-    if (detail?.services) {
+    console.log(serviceToPdfPathMap)
+    console.log(detail?.service?.length)
+    if (detail?.service) {
       for (const service of detail?.services) {
         const serviceName = service?.serviceId?.name;
+        console.log(serviceName);
         const pdfFileName = serviceToPdfPathMap[serviceName];
         if (pdfFileName) {
           const pdfUrl = `https://shahina-new-admin-panel.vercel.app/FormPdf/${pdfFileName}`;

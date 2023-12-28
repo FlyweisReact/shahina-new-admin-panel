@@ -121,9 +121,11 @@ const AppointmentDetails = ({
       "Microneedling": "AQUAGOLD.pdf",
     };
 
-    if (detail?.services) {
+
+    if (detail?.service) {
       for (const service of detail?.services) {
         const serviceName = service?.serviceId?.name;
+        console.log(serviceName)
         const pdfFileName = serviceToPdfPathMap[serviceName];
         if (pdfFileName) {
           const pdfUrl = `https://shahina-new-admin-panel.vercel.app/FormPdf/${pdfFileName}`;
@@ -137,10 +139,10 @@ const AppointmentDetails = ({
   };
 
   useEffect(() => {
-    if (show) {
+    if(show){
       sendEmail();
     }
-  }, [show]);
+  })
 
   // console.log(attachments)
 
