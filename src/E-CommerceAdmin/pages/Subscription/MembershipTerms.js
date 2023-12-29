@@ -32,6 +32,13 @@ const MembershipTerms = () => {
     fetchHandler();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   function MyVerticallyCenteredModal(props) {
     const [terms, setTerms] = useState("");
 

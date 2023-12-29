@@ -1,19 +1,18 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
 import { Link } from "react-router-dom";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Baseurl } from "../../../Baseurl";
 
 const CreateAboutUs = () => {
   const [desc, setDesc] = useState([]);
   const [descName, setDescName] = useState("");
-  const [ title , setTitle ] = useState("")
-  const [ designation  , setDesignation ] = useState("")
-  const [ image , setImage ] = useState('')
+  const [title, setTitle] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [image, setImage] = useState("");
 
   const token = localStorage.getItem("AdminToken");
   const Auth = {
@@ -21,7 +20,6 @@ const CreateAboutUs = () => {
       Authorization: `Bearer ${token}`,
     },
   };
-
 
   const DescSelector = () => {
     setDesc((prev) => [...prev, descName]);
@@ -36,15 +34,15 @@ const CreateAboutUs = () => {
   Array.from(desc).forEach((item) => {
     fd.append("description", item);
   });
-  fd.append("title" , title)
-  fd.append("designation" , designation)
-  fd.append("image" , image)
-  
+  fd.append("title", title);
+  fd.append("designation", designation);
+  fd.append("image", image);
+
   const postHandler = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-         ` ${process.env.React_App_Baseurl}api/v1/static/createAboutus ` ,
+        ` ${process.env.React_App_Baseurl}api/v1/static/createAboutus `,
         fd,
         Auth
       );
@@ -56,6 +54,12 @@ const CreateAboutUs = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
   return (
     <section>
       <p className="headP">Dashboard / Create About-Us</p>
@@ -75,7 +79,7 @@ const CreateAboutUs = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
-      
+
           <Form.Group className="mb-3">
             <Form.Label>Designation</Form.Label>
             <Form.Control
@@ -122,8 +126,6 @@ const CreateAboutUs = () => {
               </li>
             </ul>
           ))}
-      
-
 
           <div className="w-100 d-flex justify-content-between">
             <Button variant="success" type="submit">

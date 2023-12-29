@@ -34,7 +34,13 @@ const ShippingPrivacy = () => {
 
   useEffect(() => {
     fetchData();
-    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   function MyVerticallyCenteredModal(props) {

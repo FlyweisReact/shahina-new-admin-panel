@@ -4,7 +4,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import { Baseurl } from "../../../Baseurl";
 import HOC from "../../layout/HOC";
 
 const SingleProduct = () => {
@@ -22,6 +21,13 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getOrder();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   function ValueChecker(holder, string) {

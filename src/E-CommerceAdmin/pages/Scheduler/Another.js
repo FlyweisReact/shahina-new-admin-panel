@@ -5,13 +5,12 @@ import HOC from "../../layout/HOC";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import { AppointmentCanvas } from "./CalenderHelper/AppointmentCanvas";
 import { motion } from "framer-motion";
 import BlockedCanvas from "./CalenderHelper/BlockedCanvas";
 import AppointmentDetails from "./CalenderHelper/AppointmentDetails";
-import { BookedCanvas, RescheduleCanvas } from "./CalenderHelper/Modals/modal";
+import { RescheduleCanvas } from "./CalenderHelper/Modals/modal";
 import { Alert } from "antd";
 import { getAppointment, getBlockedSlots } from "../../../Respo/Api";
 import { useDispatch, useSelector } from "react-redux";
@@ -83,7 +82,10 @@ const Another = () => {
     });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   const events = data?.flatMap((order) =>

@@ -37,6 +37,13 @@ const Privacy = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
 
   function MyVerticallyCenteredModal(props) {
     const [privacy, setPrivacy] = useState("");

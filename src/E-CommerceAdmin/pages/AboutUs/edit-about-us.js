@@ -1,20 +1,19 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
 import { Link, useParams } from "react-router-dom";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Baseurl } from "../../../Baseurl";
 
 const EditAboutUs = () => {
-  const { id } = useParams()
+  const { id } = useParams();
   const [desc, setDesc] = useState([]);
   const [descName, setDescName] = useState("");
-  const [ title , setTitle ] = useState("")
-  const [ designation  , setDesignation ] = useState("")
-  const [ image , setImage ] = useState('')
+  const [title, setTitle] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [image, setImage] = useState("");
 
   const token = localStorage.getItem("AdminToken");
   const Auth = {
@@ -22,7 +21,6 @@ const EditAboutUs = () => {
       Authorization: `Bearer ${token}`,
     },
   };
-
 
   const DescSelector = () => {
     setDesc((prev) => [...prev, descName]);
@@ -37,15 +35,15 @@ const EditAboutUs = () => {
   Array.from(desc).forEach((item) => {
     fd.append("description", item);
   });
-  fd.append("title" , title)
-  fd.append("designation" , designation)
-  fd.append("image" , image)
-  
+  fd.append("title", title);
+  fd.append("designation", designation);
+  fd.append("image", image);
+
   const postHandler = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.put(
-         ` ${process.env.React_App_Baseurl}api/v1/static/aboutUs/${id}` ,
+        ` ${process.env.React_App_Baseurl}api/v1/static/aboutUs/${id}`,
         fd,
         Auth
       );
@@ -56,6 +54,13 @@ const EditAboutUs = () => {
       toast.error(msg);
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
 
   return (
     <section>
@@ -76,7 +81,7 @@ const EditAboutUs = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
-      
+
           <Form.Group className="mb-3">
             <Form.Label>Designation</Form.Label>
             <Form.Control
@@ -123,8 +128,6 @@ const EditAboutUs = () => {
               </li>
             </ul>
           ))}
-      
-
 
           <div className="w-100 d-flex justify-content-between">
             <Button variant="success" type="submit">

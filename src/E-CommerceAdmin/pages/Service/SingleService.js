@@ -25,6 +25,13 @@ const SingleService = () => {
     getOrder();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   function ValueChecker(holder, string) {
     return holder ? (
       <div className="Desc-Container mt-1">

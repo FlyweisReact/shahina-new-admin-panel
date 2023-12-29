@@ -32,8 +32,14 @@ const Acne = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   const deleteHandler = async (id) => {

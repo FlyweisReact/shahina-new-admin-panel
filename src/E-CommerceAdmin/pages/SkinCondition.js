@@ -5,7 +5,6 @@ import HOC from "../layout/HOC";
 import { Table, Modal, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Baseurl } from "../../Baseurl";
 
 const SkinCondition = () => {
   const [data, setData] = useState([]);
@@ -33,6 +32,14 @@ const SkinCondition = () => {
 
   useEffect(() => {
     fetchHandler();
+  }, []);
+
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   function MyVerticallyCenteredModal(props) {

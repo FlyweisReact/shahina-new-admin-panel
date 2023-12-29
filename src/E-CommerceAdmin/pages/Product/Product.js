@@ -48,6 +48,13 @@ const Product = () => {
     fetchData();
   }, [page, query]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(

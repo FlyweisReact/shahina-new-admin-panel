@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
 import SpinnerComp from "../Component/SpinnerComp";
-import { Baseurl } from "../../../Baseurl";
 
 const AcneSuggestion = () => {
   const [data, setData] = useState([]);
@@ -33,7 +32,12 @@ const AcneSuggestion = () => {
 
   useEffect(() => {
     fetchData();
-    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   const deleteHandler = async (id) => {

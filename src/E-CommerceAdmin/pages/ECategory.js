@@ -35,6 +35,13 @@ const ECategory = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(

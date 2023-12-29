@@ -41,7 +41,7 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
     };
     await addNote(userId, payload);
     fetchCart();
-    setNotes("")
+    setNotes("");
   };
 
   const deleteHandler = (id) => {
@@ -320,7 +320,6 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
         )
         .join("\n")}`,
     };
-
     try {
       const response = await emailjs.send(
         "service_h5eugu8",

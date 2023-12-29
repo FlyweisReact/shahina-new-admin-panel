@@ -31,9 +31,6 @@ const Chat = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -50,7 +47,10 @@ const Chat = () => {
   }, [initializing]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   // Get All Document Of Collection

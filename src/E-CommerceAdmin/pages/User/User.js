@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import { Table, Alert, Modal, Form, Button } from "react-bootstrap";
+import { Table, Alert } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import axios from "axios";
@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 const User = () => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
-  const [modalShow, setModalShow] = useState(false);
   const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
@@ -38,7 +37,13 @@ const User = () => {
 
   useEffect(() => {
     fetchData();
-    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   const deleteHandler = async (id) => {
@@ -55,139 +60,6 @@ const User = () => {
     }
   };
 
-  // Regestration Modal
-  function MyVerticallyCenteredModal(props) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [gender, setGender] = useState("");
-    const [password, setPassword] = useState("");
-    const [dob, setDob] = useState("");
-
-    const payload = {
-      firstName,
-      lastName,
-      email,
-      phone,
-      gender,
-      password,
-      dob,
-    };
-
-    const postHandler = async (e) => {
-      e.preventDefault();
-      try {
-        const { data } = await axios.post(
-          `${process.env.React_App_Baseurl}api/v1/admin/clientRegistration`,
-          payload,
-          Auth
-        );
-        toast.success(data.message);
-        props.onHide();
-        fetchData();
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    return (
-      <Modal
-        {...props}
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Create New
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={postHandler}>
-            <Form.Group className="mb-3">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                type="tel"
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Gender</Form.Label>
-              <Form.Select onChange={(e) => setGender(e.target.value)}>
-                <option>Select Your Prefrence</option>
-                <option value={"Male"}> Male </option>
-                <option value={"Female"}> Female </option>
-                <option value={"Other"}> Other </option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>DOB</Form.Label>
-              <Form.Control
-                type="date"
-                onChange={(e) => setDob(e.target.value)}
-              />
-            </Form.Group>
-
-            <Button
-              style={{ backgroundColor: "#19376d", borderRadius: "0" }}
-              type="submit"
-            >
-              Submit
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
-    );
-  }
-
-  const targteHandler = () => {
-    const target = document.getElementById("file");
-    target.click();
-  };
-
-  const uploader = async (file) => {
-    const fd = new FormData();
-    fd.append("file", file);
-    try {
-      const { res } = await axios.post(
-        `http://127.0.0.1:2019/api/v1/admin/uploadClient`,
-        fd,
-        Auth
-      );
-      toast.success("Uploaded");
-    } catch {}
-  };
-
-  // Filter User
-
   const TotolData = query
     ? data?.filter(
         (i) =>
@@ -200,10 +72,6 @@ const User = () => {
 
   return (
     <>
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
       <section className="sectionCont">
         <p className="headP">Dashboard / All User</p>
 
@@ -214,27 +82,6 @@ const User = () => {
           >
             All User's ( Total : {total} )
           </span>
-          <div className="flex gap-2">
-            <button
-              className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
-              onClick={() => targteHandler()}
-            >
-              Upload
-            </button>
-            <input
-              onChange={(e) => uploader(e.target.files[0])}
-              style={{ display: "none" }}
-              id="file"
-              type="file"
-            />
-
-            <button
-              className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
-              onClick={() => setModalShow(true)}
-            >
-              Create New
-            </button>
-          </div>
         </div>
 
         {data?.length === 0 || !data ? (
@@ -265,7 +112,6 @@ const User = () => {
                       <th>Mobile Number</th>
                       <th>Email Address</th>
                       <th>Gender</th>
-                      <th>Cart</th>
                       <th> </th>
                     </tr>
                   </thead>
@@ -284,14 +130,7 @@ const User = () => {
                         </td>
                         <td>{i.email}</td>
                         <td>{i.gender}</td>
-                        <td>
-                          <button
-                            className="md:py-2 px-3 md:px-4 py-1 rounded-sm bg-[#042b26] text-white tracking-wider"
-                            onClick={() => navigate(`/cart/${i._id}`)}
-                          >
-                            View
-                          </button>
-                        </td>
+
                         <td>
                           <span className="flexCont">
                             <i

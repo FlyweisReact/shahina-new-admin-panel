@@ -1,10 +1,9 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { Table, Modal, Form, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Baseurl } from "../../../Baseurl";
 import HOC from "../../layout/HOC";
 import { Link } from "react-router-dom";
 
@@ -25,6 +24,14 @@ const Subscription = () => {
     getSubCategory();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
+  
   const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(

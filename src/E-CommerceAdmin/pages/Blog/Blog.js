@@ -24,6 +24,12 @@ const Blog = () => {
     },
   };
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
   const fetchData = async () => {
     try {
       const { data } = await axios.get(

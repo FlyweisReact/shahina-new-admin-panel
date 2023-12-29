@@ -36,21 +36,27 @@ const Dashboard = () => {
 
   const fetchGallary = async () => {
     try {
-      const { data } = await axios.get(`${process.env.React_App_Baseurl}api/v1/Gallary/getGallary`);
+      const { data } = await axios.get(
+        `${process.env.React_App_Baseurl}api/v1/Gallary/getGallary`
+      );
       setGalleryCount(data.data?.length);
     } catch {}
   };
 
   const fetchNews = async () => {
     try {
-      const { data } = await axios.get(`${process.env.React_App_Baseurl}api/v1/News/getNews`);
+      const { data } = await axios.get(
+        `${process.env.React_App_Baseurl}api/v1/News/getNews`
+      );
       setNewsCount(data.data?.length);
     } catch {}
   };
 
   const fetchBrand = async () => {
     try {
-      const { data } = await axios.get(`${process.env.React_App_Baseurl}api/v1/admin/Brand/allBrand`);
+      const { data } = await axios.get(
+        `${process.env.React_App_Baseurl}api/v1/admin/Brand/allBrand`
+      );
       setBrands(data.data?.length);
     } catch {}
   };
@@ -91,6 +97,13 @@ const Dashboard = () => {
     fetchNutrition();
     fetchProductType();
     fetchSkinCondition();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   const card = [

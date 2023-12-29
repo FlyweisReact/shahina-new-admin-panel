@@ -9,9 +9,10 @@ import { toast } from "react-toastify";
 
 const Sidebar = ({ hamb, setHamb }) => {
   const navigate = useNavigate();
-
-
-  const nav = [
+  const detail = JSON.parse(localStorage.getItem("details"));
+  const user_role = detail?.userType;
+  let allowedTabs = [];
+  let nav = [
     {
       icon: <MdDashboardCustomize className="text-xl mr-3 rounded-full " />,
       link: "/dashboard ",
@@ -227,7 +228,7 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/chat",
       name: "Chat",
     },
-   
+
     {
       icon: <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>,
       link: "/another",
@@ -243,7 +244,22 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/member_terms",
       name: "Membership Terms  ",
     },
+    {
+      icon: <i className="fa-solid fa-user  text-xl mr-3 rounded-full"></i>,
+      link: "/sub-admin",
+      name: "Sub Admin",
+    },
   ];
+
+  if (user_role === "SUBADMIN") {
+    if (detail?.permissions?.length > 0) {
+      for (const item of detail?.permissions) {
+        allowedTabs.push(...nav?.filter((i) => i.link === `/${item}`));
+      }
+    }
+  } else {
+    allowedTabs = nav;
+  }
 
   const logOut = () => {
     localStorage.clear();
@@ -278,7 +294,7 @@ const Sidebar = ({ hamb, setHamb }) => {
           </span>
         </figure>
         <nav className="py-6">
-          {nav.map((nav) => {
+          {allowedTabs?.map((nav) => {
             return (
               <Link
                 to={nav.link}

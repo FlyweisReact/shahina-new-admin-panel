@@ -504,3 +504,62 @@ export const deleteSuggestionOrder = async (id, suggesstionId, fetchCart) => {
     }
   } catch {}
 };
+
+// Sub Admin
+
+export const getAllSubAdmin = async (setResponse) => {
+  try {
+    const res = await axios.get(`${Baseurl}api/v1/admin/getAllSubAdmin`);
+    const status = res.status;
+    const data = res.data.data;
+    if (status === 200) {
+      setResponse(data);
+    }
+  } catch {}
+};
+
+export const editSubadmin = async (id, payload, fetchHandler, hide) => {
+  try {
+    const res = await axios.put(
+      `${Baseurl}api/v1/admin/updateSubAdminProfile/${id}`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("AdminToken")}`,
+        },
+      }
+    );
+    const status = res.status;
+    if (status === 200) {
+      await fetchHandler();
+      await hide();
+      showMsg("Updated ", "", "info");
+    }
+  } catch {}
+};
+
+export const createSubadmin = async (payload, fetchHandler, hide) => {
+  try {
+    const res = await axios.post(
+      `${Baseurl}api/v1/admin/addSubAdmin`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("AdminToken")}`,
+        },
+      }
+    );
+
+    const status = res.status;
+    if (status === 200) {
+      await fetchHandler();
+      await hide();
+      showMsg("Created ", "", "info");
+    }
+  } catch {}
+};
+
+
+
+
+// ---

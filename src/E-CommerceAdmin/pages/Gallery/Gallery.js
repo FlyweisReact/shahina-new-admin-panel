@@ -34,6 +34,13 @@ const Gallery = () => {
     fetchHandler();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   function MyVerticallyCenteredModal(props) {
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");

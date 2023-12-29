@@ -92,6 +92,13 @@ const CreateService = () => {
     fetchNut();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   const token = localStorage.getItem("AdminToken");
   const Auth = {
     headers: {

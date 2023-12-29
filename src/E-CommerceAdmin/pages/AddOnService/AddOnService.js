@@ -21,9 +21,11 @@ const AddOnService = () => {
       Authorization: `Bearer ${token}`,
     },
   };
-
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   }, []);
 
   const fetchData = async () => {

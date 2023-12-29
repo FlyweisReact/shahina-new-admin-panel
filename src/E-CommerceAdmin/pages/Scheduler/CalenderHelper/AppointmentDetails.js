@@ -118,7 +118,7 @@ const AppointmentDetails = ({
         "FaceandBodyContouringCelluliteReductionTreatmentCare.pdf",
       "Laser Skin Resurafacing": "ErbiumYag2940nmLaserSkinResurfacingPRE.pdf",
       "Dermamelan Peel": "DermamelanPeelPre.pdf",
-      "Microneedling": "AQUAGOLD.pdf",
+      Microneedling: "AQUAGOLD.pdf",
     };
 
     if (detail?.services) {
@@ -215,44 +215,65 @@ const AppointmentDetails = ({
             <p> {date} </p>
           </div>
 
-          <p style={{ fontSize: "25px", fontWeight: "700", marginTop: "10px" }}>
-            Ad-On Service
-          </p>
-          <div className="booked_service d-flex flex-wrap gap-4">
-            {detail?.AddOnservicesSchema?.map((i, index) => (
-              <div
-                className="service_selector"
-                style={{ cursor: "auto" }}
-                key={`addOnservicesId${index}`}
+          {detail?.services?.length > 0 && (
+            <>
+              <p
+                style={{
+                  fontSize: "25px",
+                  fontWeight: "700",
+                  marginTop: "10px",
+                }}
               >
-                <div>
-                  <p className="title"> {i.addOnservicesId?.name} </p>
-                  <p className="faded">({i.addOnservicesId?.totalTime}) </p>
-                  <p className="faded"> Shahina Hoja </p>
-                  <p className="faded"> ${i.addOnservicesId?.price} </p>
-                </div>
+                Regular Service
+              </p>
+              <div className="booked_service d-flex flex-wrap gap-4">
+                {detail?.services?.map((i, index) => (
+                  <div
+                    className="service_selector"
+                    style={{ cursor: "auto" }}
+                    key={`Service${index}`}
+                  >
+                    <div>
+                      <p className="title"> {i.serviceId?.name} </p>
+                      <p className="faded">({i.serviceId?.totalTime}) </p>
+                      <p className="faded"> Shahina Hoja </p>
+                      <p className="faded"> ${i.serviceId?.price} </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <p style={{ fontSize: "25px", fontWeight: "700", marginTop: "10px" }}>
-            Regular Service
-          </p>
-          <div className="booked_service d-flex flex-wrap gap-4">
-            {detail?.services?.map((i, index) => (
-              <div
-                className="service_selector"
-                style={{ cursor: "auto" }}
-                key={`Service${index}`}
+            </>
+          )}
+
+          {detail?.AddOnservicesSchema?.length > 0 && (
+            <>
+              <p
+                style={{
+                  fontSize: "25px",
+                  fontWeight: "700",
+                  marginTop: "10px",
+                }}
               >
-                <div>
-                  <p className="title"> {i.serviceId?.name} </p>
-                  <p className="faded">({i.serviceId?.totalTime}) </p>
-                  <p className="faded"> Shahina Hoja </p>
-                  <p className="faded"> ${i.serviceId?.price} </p>
-                </div>
+                Ad-On Service
+              </p>
+              <div className="booked_service d-flex flex-wrap gap-4">
+                {detail?.AddOnservicesSchema?.map((i, index) => (
+                  <div
+                    className="service_selector"
+                    style={{ cursor: "auto" }}
+                    key={`addOnservicesId${index}`}
+                  >
+                    <div>
+                      <p className="title"> {i.addOnservicesId?.name} </p>
+                      <p className="faded">({i.addOnservicesId?.totalTime}) </p>
+                      <p className="faded"> Shahina Hoja </p>
+                      <p className="faded"> ${i.addOnservicesId?.price} </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </>
       );
     };

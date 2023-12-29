@@ -52,8 +52,14 @@ const Order = () => {
 
   useEffect(() => {
     getOrders();
-    window.scrollTo(0, 0);
   }, [search, FinalFromDate, FinalToDate, page, limit]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
 
   const update_status = async (id) => {
     try {

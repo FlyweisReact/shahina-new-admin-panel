@@ -5,7 +5,6 @@ export const TableImage = (img) => {
 };
 
 export const Mail = (mail) => {
-  console.log(mail);
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${mail}`;
   window.location.href = gmailUrl;
 };
@@ -20,4 +19,3 @@ export const SendSms = (number) => {
   const smsUrl = `sms:${number}`;
   window.location.href = smsUrl;
 };
-

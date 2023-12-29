@@ -156,6 +156,14 @@ const EditProduct = () => {
     fetchBrand();
   }, []);
 
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
   //  ---
   const [data, setData] = useState({});
   const fetchDetails = async () => {

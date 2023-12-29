@@ -26,8 +26,6 @@ const CreateProduct = () => {
   const [benfit, setBenefit] = useState([]);
   const [benefitName, setBenefitName] = useState("");
   const [multipleSize, setMultipleSize] = useState("false");
-  const [shopId, setShopId] = useState("");
-  const [id, setId] = useState("");
   const [sizes, setSizes] = useState("");
   const [multiplePrice, setMultiplePrice] = useState(0);
   const [multipleStock, setMultipleStock] = useState(0);
@@ -159,6 +157,15 @@ const CreateProduct = () => {
     fetchBrand();
   }, []);
 
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
+
+  
   const token = localStorage.getItem("AdminToken");
   const Auth = {
     headers: {
