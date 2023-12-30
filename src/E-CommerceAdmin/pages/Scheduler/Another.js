@@ -126,14 +126,14 @@ const Another = () => {
               <ul style={{ padding: 0 }}>
                 {item?.services?.map((names) => {
                   const formattedStartTime =
-                    adjustedStartTime.toLocaleTimeString("en-US", {
+                    adjustedStartTime?.toLocaleTimeString("en-US", {
                       hour: "numeric",
                       minute: "numeric",
                       hour12: true,
                     });
                   const adjustedEndTime = new Date(
                     adjustedStartTime.getTime() +
-                      names.serviceId.totalMin * 60000
+                      names?.serviceId?.totalMin * 60000
                   );
 
                   const formattedEndTime = adjustedEndTime.toLocaleTimeString(
@@ -169,11 +169,11 @@ const Another = () => {
 
                   const adjustedEndTimeAddon = new Date(
                     adjustedStartTime.getTime() +
-                      names.addOnservicesId.totalMin * 60000
+                      names?.addOnservicesId?.totalMin * 60000
                   );
 
                   const formattedEndTimeAddon =
-                    adjustedEndTimeAddon.toLocaleTimeString("en-US", {
+                    adjustedEndTimeAddon?.toLocaleTimeString("en-US", {
                       hour: "numeric",
                       minute: "numeric",
                       hour12: true,
