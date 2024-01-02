@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import Select from "react-select";
 import ReactQuill from "react-quill";
-import { View_description } from "../../../Helper/Helper";
 
 const CreateProduct = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -415,7 +414,7 @@ const CreateProduct = () => {
                 {i.step}
               </li>
               <li style={{ listStyle: "disc" }} className="mt-1">
-                <View_description description={i.stepDescription} />
+                {i.stepDescription}
               </li>
               <li className="mt-3">
                 <Button onClick={() => use_remover(index)}>

@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import Select from "react-select";
 import ReactQuill from "react-quill";
-import { View_description } from "../../../Helper/Helper";
 
 const CreateProduct = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -27,6 +26,7 @@ const CreateProduct = () => {
   const [ingredients, setIngredeints] = useState("");
   const [price, setPrice] = useState(0);
   const [benfit, setBenefit] = useState("");
+  const [benefitName, setBenefitName] = useState("");
   const [multipleSize, setMultipleSize] = useState("false");
   const [sizes, setSizes] = useState("");
   const [multiplePrice, setMultiplePrice] = useState(0);
@@ -40,7 +40,8 @@ const CreateProduct = () => {
   const [brandId, setBrandId] = useState([]);
 
   // New Field
-  const [keyIngredients, setKeyIngredients] = useState("");
+  const [keyIngredients, setKeyIngredients] = useState([]);
+  const [keyIngredientsName, setKeyIngredientsName] = useState("");
   const [returnPolicy, setReturnPolicy] = useState("");
   const [acneType, setAcneType] = useState("");
   const [considerAcne, setConsiderAcne] = useState("");
@@ -76,6 +77,7 @@ const CreateProduct = () => {
   const use_remover = (index) => {
     setHowToUse((prev) => prev.filter((_, i) => i !== index));
   };
+
 
   const fetchNut = async () => {
     try {
@@ -132,6 +134,15 @@ const CreateProduct = () => {
     }
   };
 
+  const key_ingredients_adder = () => {
+    setKeyIngredients((prev) => [...prev, keyIngredientsName]);
+    setKeyIngredientsName("");
+  };
+
+  const key_ingredients_remover = (index) => {
+    setKeyIngredients((prev) => prev.filter((_, i) => i !== index));
+  };
+
   useEffect(() => {
     fetchNut();
     fetchSkinType();
@@ -170,7 +181,9 @@ const CreateProduct = () => {
     fd.append("multiplePrice[]", i.multiplePrice);
     fd.append("multipleStock[]", i.multipleStock);
   });
-  fd.append("benfit[]", benfit);
+  Array.from(benfit).forEach((i) => {
+    fd.append("benfit[]", i);
+  });
   Array.from(nutritionId).forEach((i) => {
     fd.append("nutritionId[]", i.value);
   });
@@ -189,8 +202,9 @@ const CreateProduct = () => {
   fd.append("price", price);
   fd.append("ingredients", ingredients);
   fd.append("multipleSize", multipleSize);
-  fd.append("keyIngredients[]", keyIngredients);
-
+  Array.from(keyIngredients).forEach((i) => {
+    fd.append("keyIngredients[]", i);
+  });
   fd.append("returnPolicy", returnPolicy);
   fd.append("acneType", acneType);
   fd.append("considerAcne", considerAcne);
@@ -367,37 +381,17 @@ const CreateProduct = () => {
               className="mb-3"
             />
 
-            <ReactQuill
-              value={stepDescription}
-              onChange={(value) => setStepDescription(value)}
-              modules={{
-                toolbar: [
-                  [{ header: [1, 2, false] }],
-                  ["bold", "italic", "underline", "strike", "blockquote"],
-                  [
-                    { list: "ordered" },
-                    { list: "bullet" },
-                    { indent: "-1" },
-                    { indent: "+1" },
-                  ],
-                  ["link"],
-                ],
-              }}
-              formats={[
-                "header",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-              ]}
-            />
+            <FloatingLabel label="Step Description">
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                value={stepDescription}
+                onChange={(e) => setStepDescription(e.target.value)}
+              />
+            </FloatingLabel>
 
-            <Button variant="dark mt-3" onClick={() => use_adder()}>
+            <Button variant="dark" onClick={() => use_adder()}>
               Add
             </Button>
           </Form.Group>
@@ -415,7 +409,7 @@ const CreateProduct = () => {
                 {i.step}
               </li>
               <li style={{ listStyle: "disc" }} className="mt-1">
-                <View_description description={i.stepDescription} />
+                {i.stepDescription}
               </li>
               <li className="mt-3">
                 <Button onClick={() => use_remover(index)}>
@@ -598,7 +592,7 @@ const CreateProduct = () => {
           <Form.Group className="mb-3">
             <Form.Label>Benefit</Form.Label>
             <ReactQuill
-              value={benfit}
+              value={benefit}
               onChange={(value) => setBenefit(value)}
               modules={{
                 toolbar: [
@@ -626,74 +620,81 @@ const CreateProduct = () => {
                 "link",
               ]}
             />
+        
           </Form.Group>
+
+          {benfit?.map((i, index) => (
+            <ul
+              className="mt-2"
+              style={{
+                border: "1px solid #000",
+                paddingTop: "10px",
+                paddingBottom: "20px",
+              }}
+            >
+              <li style={{ listStyle: "disc" }} className="mt-1">
+                {i}
+              </li>
+
+              <li className="mt-3">
+                <Button onClick={() => benefit_remover(index)}>
+                  Remove This One
+                </Button>
+              </li>
+            </ul>
+          ))}
 
           {/* Key Ingredients */}
           <Form.Group className="mb-3">
             <Form.Label>Key Ingredients</Form.Label>
-            <ReactQuill
-              value={keyIngredients}
-              onChange={(value) => setKeyIngredients(value)}
-              modules={{
-                toolbar: [
-                  [{ header: [1, 2, false] }],
-                  ["bold", "italic", "underline", "strike", "blockquote"],
-                  [
-                    { list: "ordered" },
-                    { list: "bullet" },
-                    { indent: "-1" },
-                    { indent: "+1" },
-                  ],
-                  ["link"],
-                ],
-              }}
-              formats={[
-                "header",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-              ]}
-            />
+
+            <FloatingLabel>
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                value={keyIngredientsName}
+                onChange={(e) => setKeyIngredientsName(e.target.value)}
+              />
+            </FloatingLabel>
+
+            <Button variant="dark" onClick={() => key_ingredients_adder()}>
+              Add
+            </Button>
           </Form.Group>
+
+          {keyIngredients?.map((i, index) => (
+            <ul
+              className="mt-2"
+              style={{
+                border: "1px solid #000",
+                paddingTop: "10px",
+                paddingBottom: "20px",
+              }}
+            >
+              <li style={{ listStyle: "disc" }} className="mt-1">
+                {i}
+              </li>
+
+              <li className="mt-3">
+                <Button onClick={() => key_ingredients_remover(index)}>
+                  Remove This One
+                </Button>
+              </li>
+            </ul>
+          ))}
 
           {/* Return Policu */}
           <Form.Group className="mb-3">
             <Form.Label>Return Policy</Form.Label>
-            <ReactQuill
-              value={returnPolicy}
-              onChange={(value) => setReturnPolicy(value)}
-              modules={{
-                toolbar: [
-                  [{ header: [1, 2, false] }],
-                  ["bold", "italic", "underline", "strike", "blockquote"],
-                  [
-                    { list: "ordered" },
-                    { list: "bullet" },
-                    { indent: "-1" },
-                    { indent: "+1" },
-                  ],
-                  ["link"],
-                ],
-              }}
-              formats={[
-                "header",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-              ]}
-            />
+            <FloatingLabel>
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                onChange={(e) => setReturnPolicy(e.target.value)}
+              />
+            </FloatingLabel>
           </Form.Group>
 
           {/* Acne Type */}

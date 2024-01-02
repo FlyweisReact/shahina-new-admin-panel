@@ -415,7 +415,7 @@ const CreateProduct = () => {
                 {i.step}
               </li>
               <li style={{ listStyle: "disc" }} className="mt-1">
-                <View_description description={i.stepDescription} />
+               <View_description description={View_description} />
               </li>
               <li className="mt-3">
                 <Button onClick={() => use_remover(index)}>

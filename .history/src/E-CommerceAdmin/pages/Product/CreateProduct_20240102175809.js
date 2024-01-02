@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import Select from "react-select";
 import ReactQuill from "react-quill";
-import { View_description } from "../../../Helper/Helper";
 
 const CreateProduct = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -131,6 +130,7 @@ const CreateProduct = () => {
       console.log(e.message);
     }
   };
+
 
   useEffect(() => {
     fetchNut();
@@ -367,37 +367,17 @@ const CreateProduct = () => {
               className="mb-3"
             />
 
-            <ReactQuill
-              value={stepDescription}
-              onChange={(value) => setStepDescription(value)}
-              modules={{
-                toolbar: [
-                  [{ header: [1, 2, false] }],
-                  ["bold", "italic", "underline", "strike", "blockquote"],
-                  [
-                    { list: "ordered" },
-                    { list: "bullet" },
-                    { indent: "-1" },
-                    { indent: "+1" },
-                  ],
-                  ["link"],
-                ],
-              }}
-              formats={[
-                "header",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-              ]}
-            />
+            <FloatingLabel label="Step Description">
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                value={stepDescription}
+                onChange={(e) => setStepDescription(e.target.value)}
+              />
+            </FloatingLabel>
 
-            <Button variant="dark mt-3" onClick={() => use_adder()}>
+            <Button variant="dark" onClick={() => use_adder()}>
               Add
             </Button>
           </Form.Group>
@@ -415,7 +395,7 @@ const CreateProduct = () => {
                 {i.step}
               </li>
               <li style={{ listStyle: "disc" }} className="mt-1">
-                <View_description description={i.stepDescription} />
+                {i.stepDescription}
               </li>
               <li className="mt-3">
                 <Button onClick={() => use_remover(index)}>
@@ -632,8 +612,8 @@ const CreateProduct = () => {
           <Form.Group className="mb-3">
             <Form.Label>Key Ingredients</Form.Label>
             <ReactQuill
-              value={keyIngredients}
-              onChange={(value) => setKeyIngredients(value)}
+              value={benfit}
+              onChange={(value) => ser(value)}
               modules={{
                 toolbar: [
                   [{ header: [1, 2, false] }],
@@ -662,38 +642,38 @@ const CreateProduct = () => {
             />
           </Form.Group>
 
+          {keyIngredients?.map((i, index) => (
+            <ul
+              className="mt-2"
+              style={{
+                border: "1px solid #000",
+                paddingTop: "10px",
+                paddingBottom: "20px",
+              }}
+            >
+              <li style={{ listStyle: "disc" }} className="mt-1">
+                {i}
+              </li>
+
+              <li className="mt-3">
+                <Button onClick={() => key_ingredients_remover(index)}>
+                  Remove This One
+                </Button>
+              </li>
+            </ul>
+          ))}
+
           {/* Return Policu */}
           <Form.Group className="mb-3">
             <Form.Label>Return Policy</Form.Label>
-            <ReactQuill
-              value={returnPolicy}
-              onChange={(value) => setReturnPolicy(value)}
-              modules={{
-                toolbar: [
-                  [{ header: [1, 2, false] }],
-                  ["bold", "italic", "underline", "strike", "blockquote"],
-                  [
-                    { list: "ordered" },
-                    { list: "bullet" },
-                    { indent: "-1" },
-                    { indent: "+1" },
-                  ],
-                  ["link"],
-                ],
-              }}
-              formats={[
-                "header",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-              ]}
-            />
+            <FloatingLabel>
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                onChange={(e) => setReturnPolicy(e.target.value)}
+              />
+            </FloatingLabel>
           </Form.Group>
 
           {/* Acne Type */}

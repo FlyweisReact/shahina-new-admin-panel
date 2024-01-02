@@ -4,7 +4,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import { View_description } from "../../../Helper/Helper";
 import HOC from "../../layout/HOC";
 
 const SingleProduct = () => {
@@ -67,33 +66,27 @@ const SingleProduct = () => {
           <div className="Desc-Container mt-1">
             <p className="title"> Description </p>
             <div className="dag">
-              <View_description description={data?.description} />
+              <div dangerouslySetInnerHTML={{ __html: data?.description }} />
             </div>
           </div>
         )}
         {data?.ingredients && (
           <div className="Desc-Container mt-1">
-            <p className="title"> Ingredeints </p>
+            <p className="title"> Description </p>
             <div className="dag">
-              <View_description description={data?.ingredients} />
-            </div>
-          </div>
-        )}
-        {data?.ingredients && (
-          <div className="Desc-Container mt-1">
-            <p className="title"> Return Policy </p>
-            <div className="dag">
-              <View_description description={data?.returnPolicy} />
+             <View_description description={data?.ingredients} />
             </div>
           </div>
         )}
         {ValueChecker(data?.numOfReviews, "Number of Reviews")}
+        {ValueChecker(data?.ingredients, "Ingredeints")}
         {ValueChecker(data?.brandId?.name, "Brand ")}
         {ValueChecker(data?.nutritionId?.name, "Nutrition ")}
         {ValueChecker(data?.skinTypeId?.name, "Skin Type")}
         {ValueChecker(data?.productTypeId?.name, "Product Tyoe")}
         {ValueChecker(data?.skinConditionId?.name, "Skin Condition")}
         {ValueChecker(data?.numOfReviews, "Number of Reviews")}
+        {ValueChecker(data?.returnPolicy, "Return Policy")}
         {ValueChecker(data?.acneType, "Acne Type")}
         {ValueChecker(data?.considerAcne, "Consider Acne")}
 
@@ -138,7 +131,8 @@ const SingleProduct = () => {
             <p className="title"> Key Ingredeints </p>
             {data?.keyIngredients?.map((i, index) => (
               <p className="desc" key={`keyIngredients ${index}`}>
-                <View_description description={i} />
+                {" "}
+                {i}{" "}
               </p>
             ))}
           </div>
@@ -149,7 +143,8 @@ const SingleProduct = () => {
             <p className="title"> Benefits </p>
             {data?.benfit?.map((i, index) => (
               <p className="desc" key={`benefit ${index}`}>
-                <View_description description={i} />
+                {" "}
+                {i}{" "}
               </p>
             ))}
           </div>
@@ -164,7 +159,7 @@ const SingleProduct = () => {
                   {i?.step}{" "}
                 </p>
                 <p className="desc" key={`use ${index}`}>
-                  Description : <View_description description={i.description} />
+                  Description : {i?.description}{" "}
                 </p>
               </>
             ))}

@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import Select from "react-select";
 import ReactQuill from "react-quill";
-import { View_description } from "../../../Helper/Helper";
 
 const CreateProduct = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -396,8 +395,17 @@ const CreateProduct = () => {
                 "link",
               ]}
             />
+            <FloatingLabel label="Step Description">
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                value={stepDescription}
+                onChange={(e) => setStepDescription(e.target.value)}
+              />
+            </FloatingLabel>
 
-            <Button variant="dark mt-3" onClick={() => use_adder()}>
+            <Button variant="dark" onClick={() => use_adder()}>
               Add
             </Button>
           </Form.Group>
@@ -415,7 +423,7 @@ const CreateProduct = () => {
                 {i.step}
               </li>
               <li style={{ listStyle: "disc" }} className="mt-1">
-                <View_description description={i.stepDescription} />
+                {i.stepDescription}
               </li>
               <li className="mt-3">
                 <Button onClick={() => use_remover(index)}>

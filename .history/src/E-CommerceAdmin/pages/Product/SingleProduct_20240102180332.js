@@ -138,7 +138,9 @@ const SingleProduct = () => {
             <p className="title"> Key Ingredeints </p>
             {data?.keyIngredients?.map((i, index) => (
               <p className="desc" key={`keyIngredients ${index}`}>
-                <View_description description={i} />
+                {" "}
+                {i}{" "}
+                <View_description description={data?.returnPolicy} />
               </p>
             ))}
           </div>
@@ -149,7 +151,8 @@ const SingleProduct = () => {
             <p className="title"> Benefits </p>
             {data?.benfit?.map((i, index) => (
               <p className="desc" key={`benefit ${index}`}>
-                <View_description description={i} />
+                {" "}
+                {i}{" "}
               </p>
             ))}
           </div>
@@ -164,7 +167,7 @@ const SingleProduct = () => {
                   {i?.step}{" "}
                 </p>
                 <p className="desc" key={`use ${index}`}>
-                  Description : <View_description description={i.description} />
+                  Description : {i?.description}{" "}
                 </p>
               </>
             ))}
