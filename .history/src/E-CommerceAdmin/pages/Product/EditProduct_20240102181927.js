@@ -26,6 +26,7 @@ const EditProduct = () => {
   const [ingredients, setIngredeints] = useState("");
   const [price, setPrice] = useState(0);
   const [benfit, setBenefit] = useState([]);
+  const [benefitName, setBenefitName] = useState("");
   const [multipleSize, setMultipleSize] = useState("false");
   const [sizes, setSizes] = useState("");
   const [multiplePrice, setMultiplePrice] = useState(0);
@@ -75,6 +76,14 @@ const EditProduct = () => {
     setHowToUse((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const benefit_adder = () => {
+    setBenefit((prev) => [...prev, benefitName]);
+    setBenefitName("");
+  };
+
+  const benefit_remover = (index) => {
+    setBenefit((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const fetchNut = async () => {
     try {
@@ -176,10 +185,10 @@ const EditProduct = () => {
       setProductTypeId(data?.productTypeId);
       setSkinConditionId(data?.skinConditionId);
       setBrandId(data?.brandId);
-      setBenefit(data?.benfit?.length > 0 ? data?.benfit?.[0] : "");
+      setBenefit(data?.benefit?.length > 0 ? data?.benefit : []);
       setMultipleArr(data?.sizePrice?.length > 0 ? data?.sizePrice : []);
       setKeyIngredients(
-        data?.keyIngredients?.length > 0 ? data?.keyIngredients?.[0] : ""
+        data?.keyIngredients?.length > 0 ? data?.keyIngredients?.[0] : []
       );
     }
   }, [data]);
@@ -232,7 +241,8 @@ const EditProduct = () => {
     fd.append("stock", stock);
   }
   if (benfit) {
-    fd.append("benfit", benfit);
+      fd.append("benfit", benfit);
+   
   }
   if (ingredients) {
     fd.append("ingredients", ingredients);

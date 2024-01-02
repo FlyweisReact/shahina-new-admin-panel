@@ -26,6 +26,7 @@ const EditProduct = () => {
   const [ingredients, setIngredeints] = useState("");
   const [price, setPrice] = useState(0);
   const [benfit, setBenefit] = useState([]);
+  const [benefitName, setBenefitName] = useState("");
   const [multipleSize, setMultipleSize] = useState("false");
   const [sizes, setSizes] = useState("");
   const [multiplePrice, setMultiplePrice] = useState(0);

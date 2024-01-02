@@ -26,6 +26,7 @@ const EditProduct = () => {
   const [ingredients, setIngredeints] = useState("");
   const [price, setPrice] = useState(0);
   const [benfit, setBenefit] = useState([]);
+  const [benefitName, setBenefitName] = useState("");
   const [multipleSize, setMultipleSize] = useState("false");
   const [sizes, setSizes] = useState("");
   const [multiplePrice, setMultiplePrice] = useState(0);
@@ -75,6 +76,14 @@ const EditProduct = () => {
     setHowToUse((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const benefit_adder = () => {
+    setBenefit((prev) => [...prev, benefitName]);
+    setBenefitName("");
+  };
+
+  const benefit_remover = (index) => {
+    setBenefit((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const fetchNut = async () => {
     try {

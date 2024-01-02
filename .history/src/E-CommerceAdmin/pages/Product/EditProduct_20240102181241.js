@@ -6,7 +6,7 @@ import { Form, Button, FloatingLabel, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
 import ReactQuill from "react-quill";
-import { Editor_desciption, View_description } from "../../../Helper/Helper";
+import { Editor_desciption } from "../../../Helper/Helper";
 
 const EditProduct = () => {
   const { product } = useParams();
@@ -26,6 +26,7 @@ const EditProduct = () => {
   const [ingredients, setIngredeints] = useState("");
   const [price, setPrice] = useState(0);
   const [benfit, setBenefit] = useState([]);
+  const [benefitName, setBenefitName] = useState("");
   const [multipleSize, setMultipleSize] = useState("false");
   const [sizes, setSizes] = useState("");
   const [multiplePrice, setMultiplePrice] = useState(0);
@@ -33,6 +34,7 @@ const EditProduct = () => {
   const [multipleArr, setMultipleArr] = useState([]);
   // New Field
   const [keyIngredients, setKeyIngredients] = useState([]);
+  const [keyIngredientsName, setKeyIngredientsName] = useState("");
   const [returnPolicy, setReturnPolicy] = useState("");
   const [acneType, setAcneType] = useState("");
   const [considerAcne, setConsiderAcne] = useState("");
@@ -75,6 +77,23 @@ const EditProduct = () => {
     setHowToUse((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const benefit_adder = () => {
+    setBenefit((prev) => [...prev, benefitName]);
+    setBenefitName("");
+  };
+
+  const benefit_remover = (index) => {
+    setBenefit((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const key_ingredients_adder = () => {
+    setKeyIngredients((prev) => [...prev, keyIngredientsName]);
+    setKeyIngredientsName("");
+  };
+
+  const key_ingredients_remover = (index) => {
+    setKeyIngredients((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const fetchNut = async () => {
     try {
@@ -176,10 +195,10 @@ const EditProduct = () => {
       setProductTypeId(data?.productTypeId);
       setSkinConditionId(data?.skinConditionId);
       setBrandId(data?.brandId);
-      setBenefit(data?.benfit?.length > 0 ? data?.benfit?.[0] : "");
+      setBenefit(data?.benefit?.length > 0 ? data?.benefit : []);
       setMultipleArr(data?.sizePrice?.length > 0 ? data?.sizePrice : []);
       setKeyIngredients(
-        data?.keyIngredients?.length > 0 ? data?.keyIngredients?.[0] : ""
+        data?.keyIngredients?.length > 0 ? data?.keyIngredients : []
       );
     }
   }, [data]);
@@ -231,14 +250,18 @@ const EditProduct = () => {
     fd.append("price", price);
     fd.append("stock", stock);
   }
-  if (benfit) {
-    fd.append("benfit", benfit);
+  if (benfit?.length > 0) {
+    Array.from(benfit).forEach((i) => {
+      fd.append("benfit", i);
+    });
   }
   if (ingredients) {
     fd.append("ingredients", ingredients);
   }
-  if (keyIngredients) {
-    fd.append("keyIngredients", keyIngredients);
+  if (keyIngredients?.length > 0) {
+    Array.from(keyIngredients).forEach((i) => {
+      fd.append("keyIngredients", i);
+    });
   }
   if (returnPolicy) {
     fd.append("returnPolicy", returnPolicy);
@@ -357,11 +380,15 @@ const EditProduct = () => {
               className="mb-3"
             />
 
-            <Editor_desciption
-              setDescription={setStepDescription}
-              label={"Step Description"}
-              description={stepDescription}
-            />
+            <FloatingLabel label="Step Description">
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                value={stepDescription}
+                onChange={(e) => setStepDescription(e.target.value)}
+              />
+            </FloatingLabel>
 
             <Button variant="dark" onClick={() => use_adder()}>
               Add
@@ -381,9 +408,9 @@ const EditProduct = () => {
                 {i.step}
               </li>
               <li style={{ listStyle: "disc" }} className="mt-1">
-                <View_description description={i.stepDescription} />
+                {i.stepDescription}
               </li>
-              <li className="mt-3 " style={{ listStyle: "none" }}>
+              <li className="mt-3">
                 <Button onClick={() => use_remover(index)}>
                   Remove This One
                 </Button>
@@ -400,17 +427,50 @@ const EditProduct = () => {
             />
           </Form.Group>
 
-          <Editor_desciption
-            setDescription={setDescription}
-            label={"Description"}
-            description={description}
-          />
+          <Form.Group className="mb-3 quill-container">
+            <Form.Label>Description</Form.Label>
+            <ReactQuill
+              value={description}
+              onChange={(value) => setDescription(value)}
+              modules={{
+                toolbar: [
+                  [{ header: [1, 2, false] }],
+                  ["bold", "italic", "underline", "strike", "blockquote"],
+                  [
+                    { list: "ordered" },
+                    { list: "bullet" },
+                    { indent: "-1" },
+                    { indent: "+1" },
+                  ],
+                  ["link"],
+                ],
+              }}
+              formats={[
+                "header",
+                "bold",
+                "italic",
+                "underline",
+                "strike",
+                "blockquote",
+                "list",
+                "bullet",
+                "indent",
+                "link",
+              ]}
+            />
+          </Form.Group>
 
-          <Editor_desciption
-            setDescription={setIngredeints}
-            label={"Ingredient"}
-            description={ingredients}
-          />
+          <Form.Group className="mb-3">
+            <Form.Label>Ingredients</Form.Label>
+            <FloatingLabel>
+              <Form.Control
+                as="textarea"
+                value={ingredients}
+                style={{ height: "100px" }}
+                onChange={(e) => setIngredeints(e.target.value)}
+              />
+            </FloatingLabel>
+          </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Multiple Sizes</Form.Label>
@@ -506,18 +566,88 @@ const EditProduct = () => {
             </>
           )}
 
-          <Editor_desciption
-            setDescription={setBenefit}
-            label={"Benefit"}
-            description={benfit}
-          />
+          <Form.Group className="mb-3">
+            <Form.Label>Benefit</Form.Label>
+            <FloatingLabel>
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                value={benefitName}
+                onChange={(e) => setBenefitName(e.target.value)}
+              />
+            </FloatingLabel>
+
+            <Button variant="dark" onClick={() => benefit_adder()}>
+              Add
+            </Button>
+          </Form.Group>
+
+          {benfit?.map((i, index) => (
+            <ul
+              className="mt-2"
+              style={{
+                border: "1px solid #000",
+                paddingTop: "10px",
+                paddingBottom: "20px",
+              }}
+            >
+              <li style={{ listStyle: "disc" }} className="mt-1">
+                {i}
+              </li>
+
+              <li className="mt-3">
+                <Button onClick={() => benefit_remover(index)}>
+                  Remove This One
+                </Button>
+              </li>
+            </ul>
+          ))}
 
           {/* Key Ingredients */}
           <Editor_desciption
             setDescription={setKeyIngredients}
             label={"Key Ingredient"}
-            description={keyIngredients}
+            description={returnPolicy}
           />
+          <Form.Group className="mb-3">
+            <Form.Label>Key Ingredients</Form.Label>
+
+            <FloatingLabel>
+              <Form.Control
+                as="textarea"
+                style={{ height: "100px" }}
+                className="mb-3"
+                value={keyIngredientsName}
+                onChange={(e) => setKeyIngredientsName(e.target.value)}
+              />
+            </FloatingLabel>
+
+            <Button variant="dark" onClick={() => key_ingredients_adder()}>
+              Add
+            </Button>
+          </Form.Group>
+
+          {keyIngredients?.map((i, index) => (
+            <ul
+              className="mt-2"
+              style={{
+                border: "1px solid #000",
+                paddingTop: "10px",
+                paddingBottom: "20px",
+              }}
+            >
+              <li style={{ listStyle: "disc" }} className="mt-1">
+                {i}
+              </li>
+
+              <li className="mt-3">
+                <Button onClick={() => key_ingredients_remover(index)}>
+                  Remove This One
+                </Button>
+              </li>
+            </ul>
+          ))}
 
           {/* Return Policu */}
           <Editor_desciption
