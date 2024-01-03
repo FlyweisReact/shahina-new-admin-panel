@@ -32,6 +32,7 @@ const Another = () => {
   const [blockData, setBlockedData] = useState([]);
   const [orderId, setOrderId] = useState("");
   const [isBooked, setIsBooked] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const dispatch = useDispatch();
   const items = useSelector(dates);
@@ -393,6 +394,24 @@ const Another = () => {
     closeModalById(modalId);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  let view;
+  // useEffect(() => {
+  //   if (isMobile) {
+  //     view = ["day", "week", "month", "agenda"];
+  //   } else {
+  //     ["day", "week", "agenda"];
+  //   }
+  // }, [isMobile]);
   return (
     <>
       <AppointmentCanvas
@@ -447,6 +466,7 @@ const Another = () => {
               eventPropGetter={eventStyleGetter}
               defaultView="day"
               date={selectedDate}
+              // views={view}
               slotPropGetter={getSlotStyle}
               step={15}
             />

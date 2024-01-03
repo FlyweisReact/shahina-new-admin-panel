@@ -859,24 +859,22 @@ export const EditService = ({
     type === "AdOn"
       ? adOnServices?.filter((i) => i._id === serviceId)
       : service?.filter((i) => i._id === serviceId);
-      
-      useEffect(() => {
-        if (show) {
-          if (type === "AdOn" && filteredService?.length > 0) {
-            setNewServiceId(filteredService?.[0]?._id);
-            setPrice(filteredService?.[0]?.price);
-            setTotalTime(filteredService?.[0]?.totalTime);
-          } else if (type === "Regular" && filteredService?.length > 0) {
-            setNewServiceId(filteredService?.[0]?._id);
-            if (filteredService?.[0]?.sizePrice?.length > 0) {
-              setPrice(filteredService?.[0]?.sizePrice?.[0]?.memberPrice);
-            } else {
-              setPrice(filteredService?.[0].price);
-            }
-            setTotalTime(filteredService?.[0]?.totalTime);
-          }
-        }
-      }, [show]);
+
+  useEffect(() => {
+    if (type === "AdOn" && filteredService?.length > 0) {
+      setNewServiceId(filteredService?.[0]?._id);
+      setPrice(filteredService?.[0]?.price);
+      setTotalTime(filteredService?.[0]?.totalTime);
+    } else if (type === "Regular" && filteredService?.length > 0) {
+      setNewServiceId(filteredService?.[0]?._id);
+      if (filteredService?.[0]?.sizePrice?.length > 0) {
+        setPrice(filteredService?.[0]?.sizePrice?.[0]?.memberPrice);
+      } else {
+        setPrice(filteredService?.[0].price);
+      }
+      setTotalTime(filteredService?.[0]?.totalTime);
+    }
+  }, [filteredService, serviceId, type]);
 
   return (
     <Offcanvas
@@ -1632,7 +1630,7 @@ export const EditBookedService = ({
     type === "AdOn"
       ? adOnServices?.filter((i) => i._id === serviceId)
       : service?.filter((i) => i._id === serviceId);
-
+      
   useEffect(() => {
     if (show) {
       if (type === "AdOn" && filteredService?.length > 0) {

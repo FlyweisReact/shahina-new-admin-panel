@@ -356,6 +356,7 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
     }
   };
 
+  console.log()
 
   return (
     <>

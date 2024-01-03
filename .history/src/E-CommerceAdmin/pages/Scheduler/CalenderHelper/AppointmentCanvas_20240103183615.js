@@ -356,7 +356,6 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
     }
   };
 
-
   return (
     <>
       <EditService

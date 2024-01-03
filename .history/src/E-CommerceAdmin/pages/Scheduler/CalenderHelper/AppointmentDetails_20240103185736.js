@@ -545,6 +545,7 @@ const AppointmentDetails = ({
     }
   };
 
+  console.log(detail)
 
   return (
     <>

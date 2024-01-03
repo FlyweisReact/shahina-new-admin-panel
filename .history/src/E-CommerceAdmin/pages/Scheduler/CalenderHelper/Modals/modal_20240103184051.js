@@ -799,41 +799,25 @@ export const EditService = ({
 
   function convertToMinutes(timeString) {
     setTotalTime(timeString);
-
-    const hoursAndMinutesMatch = timeString.match(
-      /(\d+)\s*hr(?:\s*(\d*)\s*min)?/
-    );
-    const onlyHoursMatch = timeString.match(/(\d+)\s*hr/);
+    const hoursAndMinutesMatch = timeString.match(/(\d+)\s*hr\s*(\d*)\s*min/);
     const onlyMinutesMatch = timeString.match(/(\d+)\s*min/);
 
     if (hoursAndMinutesMatch) {
       const hours = parseInt(hoursAndMinutesMatch[1]) || 0;
       const minutes = parseInt(hoursAndMinutesMatch[2]) || 0;
       setTotalMin(hours * 60 + minutes);
-    } else if (onlyHoursMatch) {
-      console.log("On Hours");
-      const hours = parseInt(onlyHoursMatch[1]) || 0;
-      setTotalMin(hours * 60);
     } else if (onlyMinutesMatch) {
       const minutes = parseInt(onlyMinutesMatch[1]) || 0;
       setTotalMin(minutes);
     } else {
       console.error(
-        'Invalid input format. Please use the format like "1hr 30min", "2hr", "30min", "45min", etc.'
+        'Invalid input format. Please use the format like "1hr 30min", "30min", "45min", etc.'
       );
     }
   }
-
   useEffect(() => {
     if (totalTime) {
-      const hoursAndMinutesMatch = totalTime.match(
-        /(\d+)\s*hr(?:\s*(\d*)\s*min)?/
-      );
-      const onlyHoursMatch = totalTime.match(/(\d+)\s*hr/);
-      const onlyMinutesMatch = totalTime.match(/(\d+)\s*min/);
-      if (hoursAndMinutesMatch || onlyMinutesMatch || onlyHoursMatch) {
-        convertToMinutes(totalTime);
-      }
+      convertToMinutes(totalTime);
     }
   }, [totalTime]);
 
@@ -859,24 +843,22 @@ export const EditService = ({
     type === "AdOn"
       ? adOnServices?.filter((i) => i._id === serviceId)
       : service?.filter((i) => i._id === serviceId);
-      
-      useEffect(() => {
-        if (show) {
-          if (type === "AdOn" && filteredService?.length > 0) {
-            setNewServiceId(filteredService?.[0]?._id);
-            setPrice(filteredService?.[0]?.price);
-            setTotalTime(filteredService?.[0]?.totalTime);
-          } else if (type === "Regular" && filteredService?.length > 0) {
-            setNewServiceId(filteredService?.[0]?._id);
-            if (filteredService?.[0]?.sizePrice?.length > 0) {
-              setPrice(filteredService?.[0]?.sizePrice?.[0]?.memberPrice);
-            } else {
-              setPrice(filteredService?.[0].price);
-            }
-            setTotalTime(filteredService?.[0]?.totalTime);
-          }
-        }
-      }, [show]);
+
+  useEffect(() => {
+    if (type === "AdOn" && filteredService?.length > 0) {
+      setNewServiceId(filteredService?.[0]?._id);
+      setPrice(filteredService?.[0]?.price);
+      setTotalTime(filteredService?.[0]?.totalTime);
+    } else if (type === "Regular" && filteredService?.length > 0) {
+      setNewServiceId(filteredService?.[0]?._id);
+      if (filteredService?.[0]?.sizePrice?.length > 0) {
+        setPrice(filteredService?.[0]?.sizePrice?.[0]?.memberPrice);
+      } else {
+        setPrice(filteredService?.[0].price);
+      }
+      setTotalTime(filteredService?.[0]?.totalTime);
+    }
+  }, [filteredService, serviceId, type]);
 
   return (
     <Offcanvas
@@ -1632,7 +1614,6 @@ export const EditBookedService = ({
     type === "AdOn"
       ? adOnServices?.filter((i) => i._id === serviceId)
       : service?.filter((i) => i._id === serviceId);
-
   useEffect(() => {
     if (show) {
       if (type === "AdOn" && filteredService?.length > 0) {
