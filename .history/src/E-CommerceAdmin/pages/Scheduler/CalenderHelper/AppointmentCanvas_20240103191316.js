@@ -179,7 +179,7 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
                       <p className="title"> {i?.serviceId?.name} </p>
                       <p className="faded"> {i?.totalTime} </p>
                     </div>
-                    <p className="price"> ${i?.price} </p>
+                    <p className="price"> ${i?.subTotal} </p>
                   </div>
                 ))}
               </div>

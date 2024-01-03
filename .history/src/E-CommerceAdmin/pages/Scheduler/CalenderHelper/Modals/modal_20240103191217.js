@@ -876,8 +876,9 @@ export const EditService = ({
             setTotalTime(filteredService?.[0]?.totalTime);
           }
         }
-      }, [show]);
+      }, [show , filteredService]);
 
+      console.log(filteredService)
 
   return (
     <Offcanvas

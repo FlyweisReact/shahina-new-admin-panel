@@ -878,6 +878,7 @@ export const EditService = ({
         }
       }, [show]);
 
+      console.log(filteredService)
 
   return (
     <Offcanvas
