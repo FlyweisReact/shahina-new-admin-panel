@@ -507,10 +507,10 @@ export const UserCanvas = ({ show, handleClose, userHandler }) => {
   };
 
   useEffect(() => {
-    if (show) {
-      fetchUsers();
-    }
-  }, [show]);
+  if(show){
+    fetchUsers();
+  }
+  }, []);
 
   const filtereUser = search
     ? users?.filter(

@@ -62,8 +62,7 @@ const Slot = () => {
 
     const postHandler = async (e) => {
       e.preventDefault();
-      await unblock_slot(payload);
-      fetchData();
+      unblock_slot(payload);
     };
 
     return (
