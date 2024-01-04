@@ -238,15 +238,18 @@ export const ServiceCanvas = ({
   }, [show]);
 
   // Fetching Service
-  const fetchService = () => {
-    fetchServices(setServices);
-  };
+  const fetchService = useCallback(() => {
+    getPaginatedServices(searchTerm, page, setServices);
+      fetchServices(setService);
+  }, [searchTerm, page]);
+
+  c
 
   useEffect(() => {
     if (show) {
       fetchService();
     }
-  }, [show]);
+  }, [fetchService, show]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -271,11 +274,14 @@ export const ServiceCanvas = ({
     slidesToScroll: 1,
     autoplay: true,
   };
-  const filteredService = searchTerm
-    ? service?.filter((option) =>
-        option.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : service;
+
+  function Next() {
+    setPage(page + 1);
+  }
+
+  function Prev() {
+    setPage(page - 1);
+  }
 
   return (
     <Offcanvas
@@ -329,13 +335,13 @@ export const ServiceCanvas = ({
         )}
 
         {/* Regular Services */}
-        {filteredService?.length > 0 && (
+        {service?.length > 0 && (
           <>
             <div className="heading mt-3">
               <p>Regular services</p>
             </div>
             <div className="service_selector_container">
-              {filteredService?.map((i, index) => (
+              {service?.map((i, index) => (
                 <div
                   className="service_selector"
                   key={`service${index}`}
@@ -375,6 +381,26 @@ export const ServiceCanvas = ({
             </div>{" "}
           </>
         )}
+
+        <div className="last_button">
+          {page > 1 && service?.length === 0 ? (
+            ""
+          ) : (
+            <div className="btn_container justify-center">
+              <button className="save" type="button" onClick={Next}>
+                View More
+              </button>
+            </div>
+          )}
+
+          {page > 1 && service?.length === 0 && (
+            <div className="btn_container justify-center">
+              <button className="save" type="button" onClick={Prev}>
+                View Less
+              </button>
+            </div>
+          )}
+        </div>
       </Offcanvas.Body>
     </Offcanvas>
   );
@@ -940,7 +966,6 @@ export const EditService = ({
                 >
                   <option></option>
                   <option value={"Noor R."}>Noor R.</option>
-                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
                 </select>
               </div>
             </div>
@@ -1005,9 +1030,7 @@ export const EditService = ({
                   onChange={(e) => setTeamMember(e.target.value)}
                 >
                   <option></option>
-                    <option value={"Noor R."}>Noor R.</option>
-                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
-               
+                  <option value={"Noor R."}>Noor R.</option>
                 </select>
               </div>
             </div>

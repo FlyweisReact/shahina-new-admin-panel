@@ -1005,9 +1005,7 @@ export const EditService = ({
                   onChange={(e) => setTeamMember(e.target.value)}
                 >
                   <option></option>
-                    <option value={"Noor R."}>Noor R.</option>
-                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
-               
+                  <option value={"Noor R."}>Noor R.</option>
                 </select>
               </div>
             </div>
