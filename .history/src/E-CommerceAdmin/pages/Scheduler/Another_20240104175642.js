@@ -454,7 +454,7 @@ const Another = () => {
           {isBooked && (
             <div className="Alert_container">
               <Alert
-                message="Select a time to book"
+                message="Select time to book"
                 type="info"
                 closable
                 onClose={onClose}
@@ -523,7 +523,7 @@ const Another = () => {
                   <div
                     onClick={() => {
                       setIsBlocked(false);
-                      setIsBooked(true);
+                      setIsBooked=
                       setIsOpen(false);
                       setIsUnBlock(false);
                     }}

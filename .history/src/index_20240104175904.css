@@ -2857,5 +2857,6 @@ ol {
   background: #6950f2;
 }
 .Alert_container .ant-alert-message {
-  color: #fff;  
+  
+  background: #6950f2;
 }
