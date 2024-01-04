@@ -1089,7 +1089,7 @@ export const EditService = ({
                   value={time1}
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth} className="select_Div" >
                 <p>Duration</p>
                 <Select
                   options={durationOption}
@@ -1928,13 +1928,13 @@ export const EditBookedService = ({
                   value={time1}
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Duration</p>
-
-                <Select
-                  options={durationOption}
-                  placeholder="Select Duration"
-                  onChange={(e) => durationHandler(e)}
+                <input
+                  type="text"
+                  value={totalTime}
+                  placeholder="10min , 1hr 30min"
+                  onChange={(e) => setTotalTime(e.target.value)}
                 />
               </div>
             </div>
@@ -1950,13 +1950,16 @@ export const EditBookedService = ({
                   placeholder="150"
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Team member</p>
-                <Select
-                  options={teamOption}
-                  placeholder="Select Team Member"
-                  onChange={(e) => setTeamMember(e.value)}
-                />
+                <select
+                  value={teamMember}
+                  onChange={(e) => setTeamMember(e.target.value)}
+                >
+                  <option></option>
+                  <option value={"Noor R."}>Noor R.</option>
+                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
+                </select>
               </div>
             </div>
 
@@ -1991,13 +1994,13 @@ export const EditBookedService = ({
                   value={time1}
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Duration</p>
-
-                <Select
-                  options={durationOption}
-                  placeholder="Select Duration"
-                  onChange={(e) => durationHandler(e)}
+                <input
+                  type="text"
+                  value={totalTime}
+                  placeholder="10min , 1hr 30min"
+                  onChange={(e) => setTotalTime(e.target.value)}
                 />
               </div>
             </div>
@@ -2013,13 +2016,16 @@ export const EditBookedService = ({
                   placeholder="150"
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Team member</p>
-                <Select
-                  options={teamOption}
-                  placeholder="Select Team Member"
-                  onChange={(e) => setTeamMember(e.value)}
-                />
+                <select
+                  value={teamMember}
+                  onChange={(e) => setTeamMember(e.target.value)}
+                >
+                  <option></option>
+                  <option value={"Noor R."}>Noor R.</option>
+                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
+                </select>
               </div>
             </div>
             <div className="mt-4"></div>

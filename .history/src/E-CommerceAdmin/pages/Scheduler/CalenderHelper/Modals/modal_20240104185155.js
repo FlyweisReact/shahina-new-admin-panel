@@ -700,7 +700,7 @@ export const EditService = ({
   const [totalTime, setTotalTime] = useState("");
   const [totalMin, setTotalMin] = useState("");
   const [newServiceId, setNewServiceId] = useState("");
-  const [teamMember, setTeamMember] = useState("Shahina Hoja");
+  const [teamMember, setTeamMember] = useState("");
 
   async function fetchHandler() {
     fetchServices(setService);
@@ -903,81 +903,22 @@ export const EditService = ({
     },
     {
       value: "50min",
-      label: "50min",
+      label: "35min",
     },
     {
-      value: "55min",
-      label: "55min",
+      value: "35min",
+      label: "35min",
     },
     {
-      value: "1hr",
-      label: "1hr",
-    },
-
-    {
-      value: "1hr 5min",
-      label: "1hr 5min",
-    },
-    {
-      value: "1hr 10min",
-      label: "1hr 10min",
-    },
-    {
-      value: "1hr 15min",
-      label: "1hr 15min",
-    },
-    {
-      value: "1hr 20min",
-      label: "1hr 20min",
-    },
-    {
-      value: "1hr 25min",
-      label: "1hr 25min",
-    },
-    {
-      value: "1hr 30min",
-      label: "1hr 30min",
-    },
-    {
-      value: "31hr 5min",
-      label: "1hr 35min",
-    },
-    {
-      value: "1hr 40min",
-      label: "1hr 40min",
-    },
-    {
-      value: "1hr 45min",
-      label: "1hr 45min",
-    },
-    {
-      value: "1hr 50min",
-      label: "1hr 50min",
-    },
-    {
-      value: "1hr 55min",
-      label: "1hr 55min",
-    },
-    {
-      value: "2hr",
-      label: "2hr",
+      value: "35min",
+      label: "35min",
     },
   ];
 
   const durationHandler = (e) => {
-    setTotalTime(e.value);
-  };
+    console.log(e?.value)
 
-  const teamOption = [
-    {
-      value: "Shahina Hoja",
-      label: "Shahina Hoja",
-    },
-    {
-      value: "Noor R.",
-      label: "Noor R.",
-    },
-  ];
+  }
 
   return (
     <Offcanvas
@@ -1026,9 +967,14 @@ export const EditService = ({
                   value={time1}
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth} className='select_Div' >
                 <p>Duration</p>
-
+                <input
+                  type="text"
+                  value={totalTime}
+                  placeholder="10min , 1hr 30min"
+                  onChange={(e) => setTotalTime(e.target.value)}
+                />
                 <Select
                   options={durationOption}
                   placeholder="Select Duration"
@@ -1048,13 +994,16 @@ export const EditService = ({
                   placeholder="150"
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Team member</p>
-                <Select
-                  options={teamOption}
-                  placeholder="Select Team Member"
-                  onChange={(e) => setTeamMember(e.value)}
-                />
+                <select
+                  value={teamMember}
+                  onChange={(e) => setTeamMember(e.target.value)}
+                >
+                  <option></option>
+                  <option value={"Noor R."}>Noor R.</option>
+                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
+                </select>
               </div>
             </div>
 
@@ -1089,12 +1038,13 @@ export const EditService = ({
                   value={time1}
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Duration</p>
-                <Select
-                  options={durationOption}
-                  placeholder="Select Duration"
-                  onChange={(e) => durationHandler(e)}
+                <input
+                  type="text"
+                  value={totalTime}
+                  placeholder="10min , 1hr 30min"
+                  onChange={(e) => setTotalTime(e.target.value)}
                 />
               </div>
             </div>
@@ -1110,13 +1060,16 @@ export const EditService = ({
                   placeholder="150"
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Team member</p>
-                <Select
-                  options={teamOption}
-                  placeholder="Select Team Member"
-                  onChange={(e) => setTeamMember(e.value)}
-                />
+                <select
+                  value={teamMember}
+                  onChange={(e) => setTeamMember(e.target.value)}
+                >
+                  <option></option>
+                  <option value={"Noor R."}>Noor R.</option>
+                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
+                </select>
               </div>
             </div>
             <div className="mt-4"></div>
@@ -1767,120 +1720,6 @@ export const EditBookedService = ({
     }
   };
 
-  const durationOption = [
-    {
-      value: "5min",
-      label: "5min",
-    },
-    {
-      value: "10min",
-      label: "10min",
-    },
-    {
-      value: "15min",
-      label: "15min",
-    },
-    {
-      value: "20min",
-      label: "20min",
-    },
-    {
-      value: "25min",
-      label: "25min",
-    },
-    {
-      value: "30min",
-      label: "30min",
-    },
-    {
-      value: "35min",
-      label: "35min",
-    },
-    {
-      value: "40min",
-      label: "40min",
-    },
-    {
-      value: "45min",
-      label: "45min",
-    },
-    {
-      value: "50min",
-      label: "50min",
-    },
-    {
-      value: "55min",
-      label: "55min",
-    },
-    {
-      value: "1hr",
-      label: "1hr",
-    },
-
-    {
-      value: "1hr 5min",
-      label: "1hr 5min",
-    },
-    {
-      value: "1hr 10min",
-      label: "1hr 10min",
-    },
-    {
-      value: "1hr 15min",
-      label: "1hr 15min",
-    },
-    {
-      value: "1hr 20min",
-      label: "1hr 20min",
-    },
-    {
-      value: "1hr 25min",
-      label: "1hr 25min",
-    },
-    {
-      value: "1hr 30min",
-      label: "1hr 30min",
-    },
-    {
-      value: "31hr 5min",
-      label: "1hr 35min",
-    },
-    {
-      value: "1hr 40min",
-      label: "1hr 40min",
-    },
-    {
-      value: "1hr 45min",
-      label: "1hr 45min",
-    },
-    {
-      value: "1hr 50min",
-      label: "1hr 50min",
-    },
-    {
-      value: "1hr 55min",
-      label: "1hr 55min",
-    },
-    {
-      value: "2hr",
-      label: "2hr",
-    },
-  ];
-
-  const durationHandler = (e) => {
-    setTotalTime(e.value);
-  };
-
-  const teamOption = [
-    {
-      value: "Shahina Hoja",
-      label: "Shahina Hoja",
-    },
-    {
-      value: "Noor R.",
-      label: "Noor R.",
-    },
-  ];
   return (
     <Offcanvas
       show={show}
@@ -1928,13 +1767,13 @@ export const EditBookedService = ({
                   value={time1}
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Duration</p>
-
-                <Select
-                  options={durationOption}
-                  placeholder="Select Duration"
-                  onChange={(e) => durationHandler(e)}
+                <input
+                  type="text"
+                  value={totalTime}
+                  placeholder="10min , 1hr 30min"
+                  onChange={(e) => setTotalTime(e.target.value)}
                 />
               </div>
             </div>
@@ -1950,13 +1789,16 @@ export const EditBookedService = ({
                   placeholder="150"
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Team member</p>
-                <Select
-                  options={teamOption}
-                  placeholder="Select Team Member"
-                  onChange={(e) => setTeamMember(e.value)}
-                />
+                <select
+                  value={teamMember}
+                  onChange={(e) => setTeamMember(e.target.value)}
+                >
+                  <option></option>
+                  <option value={"Noor R."}>Noor R.</option>
+                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
+                </select>
               </div>
             </div>
 
@@ -1991,13 +1833,13 @@ export const EditBookedService = ({
                   value={time1}
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Duration</p>
-
-                <Select
-                  options={durationOption}
-                  placeholder="Select Duration"
-                  onChange={(e) => durationHandler(e)}
+                <input
+                  type="text"
+                  value={totalTime}
+                  placeholder="10min , 1hr 30min"
+                  onChange={(e) => setTotalTime(e.target.value)}
                 />
               </div>
             </div>
@@ -2013,13 +1855,16 @@ export const EditBookedService = ({
                   placeholder="150"
                 />
               </div>
-              <div style={halfWidth} className="select_Div">
+              <div style={halfWidth}>
                 <p>Team member</p>
-                <Select
-                  options={teamOption}
-                  placeholder="Select Team Member"
-                  onChange={(e) => setTeamMember(e.value)}
-                />
+                <select
+                  value={teamMember}
+                  onChange={(e) => setTeamMember(e.target.value)}
+                >
+                  <option></option>
+                  <option value={"Noor R."}>Noor R.</option>
+                  <option value={"Shahina Hoja"}>Shahina Hoja</option>
+                </select>
               </div>
             </div>
             <div className="mt-4"></div>

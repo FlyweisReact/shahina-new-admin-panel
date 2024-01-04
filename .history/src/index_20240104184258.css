@@ -2854,13 +2854,8 @@ ol {
   background: #6950f2 !important;
 }
 .Alert_container :where(.css-dev-only-do-not-override-6j9yrn).ant-alert-info {
-  background: #6950f2 !important;
+  background: #6950f2;
 }
 .Alert_container .ant-alert-message {
   color: #fff;  
-}
-
-
-.select_Div div{
-  margin: 0 !important;
 }
