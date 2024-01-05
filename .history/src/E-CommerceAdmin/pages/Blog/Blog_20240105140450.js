@@ -172,6 +172,27 @@ const Blog = () => {
     );
   }
 
+  function textTransaform(data) {
+    if (data?.length > 100) {
+      return (
+        <span>
+          <div dangerouslySetInnerHTML={{ __html: data?.substr(0, 100) }} />
+          <span
+            onClick={() => {
+              setDesc(data);
+              setDescModal(true);
+            }}
+            style={{ marginLeft: "10px", color: "blue", cursor: "pointer" }}
+          >
+            Read More
+          </span>
+        </span>
+      );
+    } else {
+      return <span> {data} </span>;
+    }
+  }
+
   return (
     <>
       <MyVerticallyCenteredModal
