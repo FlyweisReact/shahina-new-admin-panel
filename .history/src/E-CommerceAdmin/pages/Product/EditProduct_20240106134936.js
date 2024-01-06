@@ -171,8 +171,8 @@ const EditProduct = () => {
       setNutritionId(data?.nutritionId?._id);
       seteSkinTypeId(data?.skinTypeId?._id);
       setProductTypeId(data?.productTypeId?._id);
-      setSkinConditionId(data?.skinConditionId?._id);
-      setBrandId(data?.brandId?._id);
+      setSkinConditionId(data?.skinConditionId);
+      setBrandId(data?.brandId);
       setBenefit(data?.benfit?.length > 0 ? data?.benfit?.[0] : "");
       if (data?.multipleSize === true) {
         if (data?.sizePrice?.length > 0) {
@@ -197,6 +197,7 @@ const EditProduct = () => {
       );
     }
   }, [data]);
+
 
   const token = localStorage.getItem("AdminToken");
   const Auth = {

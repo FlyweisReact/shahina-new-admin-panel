@@ -168,11 +168,11 @@ const EditProduct = () => {
       setReturnPolicy(data?.returnPolicy);
       setAcneType(data?.acneType);
       setConsiderAcne(data?.considerAcne);
-      setNutritionId(data?.nutritionId?._id);
-      seteSkinTypeId(data?.skinTypeId?._id);
-      setProductTypeId(data?.productTypeId?._id);
-      setSkinConditionId(data?.skinConditionId?._id);
-      setBrandId(data?.brandId?._id);
+      setNutritionId(data?.nutritionId);
+      seteSkinTypeId(data?.skinTypeId);
+      setProductTypeId(data?.productTypeId);
+      setSkinConditionId(data?.skinConditionId);
+      setBrandId(data?.brandId);
       setBenefit(data?.benfit?.length > 0 ? data?.benfit?.[0] : "");
       if (data?.multipleSize === true) {
         if (data?.sizePrice?.length > 0) {
@@ -197,6 +197,8 @@ const EditProduct = () => {
       );
     }
   }, [data]);
+
+  console.log(data);
 
   const token = localStorage.getItem("AdminToken");
   const Auth = {

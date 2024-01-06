@@ -198,6 +198,7 @@ const EditProduct = () => {
     }
   }, [data]);
 
+
   const token = localStorage.getItem("AdminToken");
   const Auth = {
     headers: {
