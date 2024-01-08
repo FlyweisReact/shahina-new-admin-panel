@@ -156,12 +156,10 @@ export const RescheduleCanvas = ({
     minute: "2-digit",
   });
 
-  const startingTime2 = start?.toLocaleTimeString([], {
+  const startingTime = start?.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: false,
   });
-
   const putHandler = async () => {
     const payload = {
       time: startingTime?.slice(0, 5),

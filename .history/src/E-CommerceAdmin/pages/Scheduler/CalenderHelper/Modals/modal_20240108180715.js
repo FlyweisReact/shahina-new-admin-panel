@@ -162,6 +162,7 @@ export const RescheduleCanvas = ({
     hour12: false,
   });
 
+  console.log(startingTime2)
   const putHandler = async () => {
     const payload = {
       time: startingTime?.slice(0, 5),
