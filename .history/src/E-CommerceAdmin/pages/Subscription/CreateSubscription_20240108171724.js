@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
 import { Link } from "react-router-dom";
-import { Form, Button, Spinner } from "react-bootstrap";
+import { Form, Button, FloatingLabel, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Editor_desciption } from "../../../Helper/Helper";
@@ -106,11 +106,6 @@ const CreateSubscription = () => {
             setDescription={setDetails}
             description={details}
             label={"Details"}
-          />
-          <Editor_desciption
-            setDescription={setTerm}
-            description={term}
-            label={"Terms"}
           />
 
           <div className="w-100 d-flex justify-content-between">

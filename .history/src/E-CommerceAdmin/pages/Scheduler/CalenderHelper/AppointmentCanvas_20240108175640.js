@@ -327,7 +327,7 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
       "Acne Peel" : "Acne Peel.docx" ,
       "Enlighten Peel" : "Enlighten Peel.docx" ,
       "Pro Clinical Peel" : "Pro Clinical Peel.docx" ,
-      "Painless PRP Hair Loss Treatment" : "PRP Microneedling Pre & Post Care.pdf",
+      "Painless PRP Hair Loss Treatment" : ".pdf",
       "PRP Face Rejuvenation" : "PRPMicroneedlingPre&PostCare.pdf" ,
       "Radiofrequency Skin Tightening" : "PiXel8.pdf" ,
       "Enlighten Peel" : "MicroneedlingPre.pdf" ,

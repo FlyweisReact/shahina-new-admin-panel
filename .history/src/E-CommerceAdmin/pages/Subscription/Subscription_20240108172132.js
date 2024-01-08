@@ -77,7 +77,6 @@ const Subscription = () => {
                   <th>Month</th>
                   <th>Discount</th>
                   <th>Detail</th>
-                  <th>Term</th>
                   <th>Created At</th>
                   <th></th>
                 </tr>
@@ -94,7 +93,7 @@ const Subscription = () => {
                       <View_description description={ele?.details} />
                     </td>
                     <td>
-                      <View_description description={ele?.term} />
+                      <View_description description={ele?.details} />
                     </td>
                     <td>{ele?.createdAt?.slice(0, 10)}</td>
                     <td>

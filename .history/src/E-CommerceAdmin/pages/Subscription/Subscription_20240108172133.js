@@ -77,7 +77,6 @@ const Subscription = () => {
                   <th>Month</th>
                   <th>Discount</th>
                   <th>Detail</th>
-                  <th>Term</th>
                   <th>Created At</th>
                   <th></th>
                 </tr>

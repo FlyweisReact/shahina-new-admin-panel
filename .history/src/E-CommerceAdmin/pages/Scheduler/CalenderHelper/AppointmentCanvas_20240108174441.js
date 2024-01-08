@@ -327,19 +327,7 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
       "Acne Peel" : "Acne Peel.docx" ,
       "Enlighten Peel" : "Enlighten Peel.docx" ,
       "Pro Clinical Peel" : "Pro Clinical Peel.docx" ,
-      "Painless PRP Hair Loss Treatment" : "PRP Microneedling Pre & Post Care.pdf",
-      "PRP Face Rejuvenation" : "PRPMicroneedlingPre&PostCare.pdf" ,
-      "Radiofrequency Skin Tightening" : "PiXel8.pdf" ,
-      "Enlighten Peel" : "MicroneedlingPre.pdf" ,
-      "Facial Contouring" : "Face and Body Contouring,Cellulite Reduction Treatment Care.pdf" ,
-      "Melasma (Hormonal Pigment) Treatment" : "PreandPostCosmelanDepigmentationInstructions.pdf",
-      "RF Body Tightening" : "RFSkinTighteningPre.pdf" ,
-      "Laser Skin Resurfacing" : "Laser hair removal PrepCare.pdf" , 
-      "Red Carpet Facial" : "RFSkinTighteningPre.pdf" ,
-      "RevePeel" : "Enlighten Peel.docx" ,
-      "IPL pigment Removal" : "Pre and Post Treatment Instructions for IPL.pdf" , 
-      "Acne"   : "Pre and Post Treatment Instructions for IPL.pdf" , 
-      "Skin and Rosacea" : "Pre and Post Treatment Instructions for IPL.pdf"
+      "Painless PRP Hair Loss Treatmen"
     };
 
     const pdfUrls = [];

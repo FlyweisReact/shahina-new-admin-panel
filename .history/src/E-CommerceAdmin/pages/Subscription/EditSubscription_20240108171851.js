@@ -2,22 +2,21 @@
 
 import React, { useEffect, useState } from "react";
 import HOC from "../../layout/HOC";
-import { Link } from "react-router-dom";
-import { Form, Button, Spinner } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import { Form, Button, FloatingLabel, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Editor_desciption } from "../../../Helper/Helper";
 
-const CreateSubscription = () => {
+const EditSubscription = () => {
+  const { id } = useParams();
   const [submitLoading, setSubmitLoading] = useState(false);
   const [plan, setPlan] = useState("");
   const [price, setPrice] = useState(0);
   const [details, setDetails] = useState("");
-  const [term, setTerm] = useState("");
   const [month, setMonth] = useState(0);
   const [discount, setDiscount] = useState(0);
-
-
+  const [term, setTerm] = useState(""); 
   const token = localStorage.getItem("AdminToken");
   const Auth = {
     headers: {
@@ -31,15 +30,14 @@ const CreateSubscription = () => {
     month,
     discount,
     details,
-    term
   };
 
   const createProduct = async (e) => {
     e.preventDefault();
     setSubmitLoading(true);
     try {
-      const res = await axios.post(
-        `${process.env.React_App_Baseurl}api/v1/subscription`,
+      const res = await axios.put(
+        `${process.env.React_App_Baseurl}api/v1/subscription/${id}`,
         payload,
         Auth
       );
@@ -63,7 +61,7 @@ const CreateSubscription = () => {
   return (
     <section>
       <section className="sectionCont">
-        <p className="headP">Dashboard / Create New Subscription</p>
+        <p className="headP">Dashboard / Edit Subscription</p>
 
         <Form onSubmit={createProduct}>
           <Form.Group className="mb-3">
@@ -105,9 +103,10 @@ const CreateSubscription = () => {
           <Editor_desciption
             setDescription={setDetails}
             description={details}
-            label={"Details"}
+            label={"Detail"}
           />
-          <Editor_desciption
+
+                    <Editor_desciption
             setDescription={setTerm}
             description={term}
             label={"Terms"}
@@ -132,4 +131,4 @@ const CreateSubscription = () => {
   );
 };
 
-export default HOC(CreateSubscription);
+export default HOC(EditSubscription);
