@@ -324,9 +324,9 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
       "Dermamelan Peel": "DermamelanPeelPre.pdf",
       "Aquagold Microneedling": "AQUAGOLD.pdf",
       "IV THERAPY" : "IV THERAPY.docx" ,
-      "Acne Peel" : "Acne Peel.docx" ,
-      "Enlighten Peel" : "Enlighten Peel.docx" ,
-      "Pro Clinical Peel" : "Pro Clinical Peel.docx"
+      "IV THERAPY" : "IV THERAPY.docx" ,
+      "IV THERAPY" : "IV THERAPY.docx" ,
+      "IV THERAPY" : "IV THERAPY.docx" ,
     };
 
     const pdfUrls = [];

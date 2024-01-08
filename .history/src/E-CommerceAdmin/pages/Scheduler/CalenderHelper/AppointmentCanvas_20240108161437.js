@@ -326,7 +326,7 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
       "IV THERAPY" : "IV THERAPY.docx" ,
       "Acne Peel" : "Acne Peel.docx" ,
       "Enlighten Peel" : "Enlighten Peel.docx" ,
-      "Pro Clinical Peel" : "Pro Clinical Peel.docx"
+      "v"
     };
 
     const pdfUrls = [];

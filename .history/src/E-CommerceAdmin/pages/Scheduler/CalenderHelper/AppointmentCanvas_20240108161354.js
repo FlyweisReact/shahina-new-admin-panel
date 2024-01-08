@@ -323,10 +323,7 @@ export const AppointmentCanvas = ({ show, handleClose }) => {
       "Laser Skin Resurafacing": "ErbiumYag2940nmLaserSkinResurfacingPRE.pdf",
       "Dermamelan Peel": "DermamelanPeelPre.pdf",
       "Aquagold Microneedling": "AQUAGOLD.pdf",
-      "IV THERAPY" : "IV THERAPY.docx" ,
-      "Acne Peel" : "Acne Peel.docx" ,
-      "Enlighten Peel" : "Enlighten Peel.docx" ,
-      "Pro Clinical Peel" : "Pro Clinical Peel.docx"
+      "IV THERAPY" : ""
     };
 
     const pdfUrls = [];
